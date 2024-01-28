@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="icon" type="image/x-icon" href="./icon.png">
+    <style>
+        body{
+            /* background-color: #2f2f2f;  */
+            color: #fff;
+            font-family: Arial,Helvetica,sans-serif;
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+        .b1{
+            background-color: rgba(0,0,0,0);
+            background-image: url(./b.png);
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .b2{
+            background-color: rgba(0,0,0,0.25);
+            background-image: url(./b2.jpg);
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .b3{
+            background-color: rgba(0,0,0,0.35);
+            background-image: url(./b3.jpg);
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .ww-box {
+            border-radius: 7px;
+        }
+        .rad {
+            border-radius: 7px;
+            background-image: url(./gr.png);
+            background-position: center;
+        }
+        .tempM {
+            height: 216px;
+            width: 138px;
+        }
+        .timeM {
+            height: 97px;
+            width: 138px;
+        }
+        .timeM2 {
+            position: sticky;
+            top: 54.3vh;
+            font-size: 250%;
+        }
+        .timeM3 {
+            position: sticky;
+            top: 58.6vh;
+            font-size: 135%;
+            color: #8f8f8f;
+        }
+        .ti {
+            width: 29px;
+            height: 40px;
+            position: relative;
+            top: 3px;
+        }
+        .hi {
+            width: 26px;
+            height: 40px;
+            position: relative;
+            top: 3px;
+        }
+        .inl{
+            position: relative;
+            top: 6.5vh;
+            font-size: 157%;
+        }
+        .t1{
+            border-spacing: 5px 0px;
+        }
+        .t2{
+            border-spacing: 12px;
+            scale: 1.65;
+            position: relative;
+            top: 26vh;
+        }
+        .bs{
+            box-shadow:
+  3.2px 2.4px 2px rgba(0, 0, 0, 0.063),
+  7.6px 5.7px 4.8px rgba(0, 0, 0, 0.091),
+  14.4px 10.8px 9px rgba(0, 0, 0, 0.105),
+  25.7px 19.2px 16.1px rgba(0, 0, 0, 0.111),
+  48px 35.9px 30.1px rgba(0, 0, 0, 0.117),
+  115px 86px 72px rgba(0, 0, 0, 0.15)
+;
+        }
+        .s1{
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 9px;
+            border-radius: 15px;
+            width: 600px;
+            border: none;
+        }
+        .s1:hover {
+            background-color: rgba(235, 235, 235, 0.5);
+            padding: 9px;
+            border-radius: 15px;
+            width: 600px;
+            border: none;
+        }
+        .s1:focus {
+            outline: solid 0.01rem #fff;
+        }
+        .s2{
+            background: none;
+            position: relative;
+            left: -2.5vw;
+            top: 1vh;
+            height: 33px;
+            border: none;
+            cursor: pointer;
+        }
+        .s3{
+            scale: 1.4;
+            width: fit-content;
+        }
+        .timeM4{
+            position: relative;
+            top: 11px;
+        }
+    </style>
+</head>
+<body id="body">
+    <center>
+        <form id="fc">
+            <input autocomplete="on" class="s1" name="token" id="token" placeholder="Введите запрос..." required="required"  type="text">
+            <button class="s2" type="submit" id="submitB"><img width="28px" height="auto" src="./s.png" alt=""></button>
+        </form>
+        <form action="https://www.yandex.ru/search" class="s3" method="get" name="searchform" target="_blank">
+            <input autocomplete="on" class="s1" name="text" placeholder="Введите запрос..." required="required"  type="text">
+            <button class="s2" type="submit"><img width="28px" height="auto" src="./s.png" alt=""></button>
+        </form>
+        <table class="t2">
+            <Tr>
+                <th style="width: auto;">
+                    <div>
+                        <div class="rad bs" id="ww_3917d5ed2bc7e" v='1.3' loc='id' a='{"t":"horizontal","lang":"ru","ids":["wl4007"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+                            <a href="https://weatherwidget.org/" id="ww_3917d5ed2bc7e_u" target="_blank">Html weather widget</a>
+                        </div><script async src="https://app2.weatherwidget.org/js/?id=ww_3917d5ed2bc7e"></script>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <div class="rad tempM bs">
+                            <center>
+                                <div class="inl">
+                                    <table class="t1">
+                                        <tr>
+                                            <th>
+                                                <img src="./t.png" class="ti">
+                                            </th>
+                                            <th>
+                                                <span id="t"></span>°C
+                                            </th>
+                                        </tr>
+                                    </table>
+                                    
+
+                                    <table class="t1">
+                                        <tr>
+                                            <th>
+                                                <img src="./h.png" class="hi">
+                                            </th>
+                                            <th>
+                                                <span id="h"></span>%
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </th>
+            </Tr>
+            <Tr>
+                <th style="width: 440px;">
+                    <div class="rad">
+                        <div class="rad bs" id="ww_9e264a3bb9c2a" v='1.3' loc='id' a='{"t":"responsive","lang":"ru","ids":["wl4007"],"font":"Arial","sl_ics":"one_a","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_nme":3,"el_cwi":3,"el_ctm":3}'>
+                            <a href="https://weatherwidget.org/" id="ww_9e264a3bb9c2a_u" target="_blank">Html weather widget</a>
+                        </div><script async src="https://app2.weatherwidget.org/js/?id=ww_9e264a3bb9c2a"></script>
+                    </div>
+                </th>
+                <th>
+                    <div class="rad timeM bs">
+                        <div class="timeM4">
+                            <span class="timeM2" id="clock"></span>
+                            <br>
+                            <span class="timeM3" id="clock2"></span>
+                        </div>
+                    </div>
+                </th>
+            </Tr>
+        </table>
+
+        
+    </center>
+    <script>
+        if (document.cookie.length > 0) {
+            console.log(unescape(document.cookie.substring(0, 100)));
+            elem = document.getElementById("fc");
+            elem.parentNode.removeChild(elem);
+        }
+        else {
+            document.getElementById("submitB").addEventListener('click', function(e) {
+            document.cookie = "";
+
+            console.log(document.getElementById('token').value);
+            document.cookie = document.getElementById('token').value + "; path=/";
+            })
+        }
+
+        token = unescape(document.cookie.substring(0, 100));
+
+        req = new XMLHttpRequest();
+        req2 = new XMLHttpRequest();
+
+        cl1 = document.getElementById("clock");
+        cl2 = document.getElementById("clock2");
+        tb = document.getElementById("t");
+        th = document.getElementById("h");
+
+        now = new Date();
+        day = now.getDate();
+        Hour = 0;
+        Minutes = 0;
+        month = 0;
+
+        if (day % 3 == 0)
+            document.getElementById("body").classList.add('b2');
+        else if (day % 2 == 0)
+            document.getElementById("body").classList.add('b3');
+        else
+            document.getElementById("body").classList.add('b1');
+
+        UpdateF();
+
+        setInterval(UpdateF, 990);
+
+        function UpdateF() {
+            now = new Date();
+            day = now.getDate();
+            Hour = now.getHours();
+            Minutes = now.getMinutes();
+            month = now.getMonth() + 1;
+
+            if (month < 10)
+                month = "0" + month;
+
+            if (Minutes < 10)
+                Minutes = "0" + Minutes;
+
+            cl1.innerHTML = Hour + ':' + Minutes;
+            cl2.innerHTML = day + "." + month + "." + now.getFullYear();
+            req.open("GET", "https://blynk.cloud/external/api/get?token=" + token + "&v9", false);
+            req.send(null);
+            req2.open("GET", "https://blynk.cloud/external/api/get?token=" + token + "&v10", false);
+            req2.send(null);
+            t = req.responseText;
+            h = req2.responseText
+
+            tb.innerHTML = t;
+            th.innerHTML = h;
+
+            if (t < 18)
+                tb.style.color = '#0036ff';
+            else if (t >= 18 && t <= 20)
+                tb.style.color = '#7a96ff';
+            else if (t > 20 && t <= 24)
+                tb.style.color = '#ffffff';
+            else if (t > 24 && t <= 26)
+                tb.style.color = '#ffaf7a';
+            else if (t > 26 && t <= 26.5)
+                tb.style.color = '#ff5f45';
+            else if (t > 26.5)
+                tb.style.color = '#f71010';
+
+            if (h <= 15)
+                th.style.color = '#ff5f45';
+            else if (h > 15 && h <= 40)
+                th.style.color = '#ffffff';
+            else if (h > 40)
+                th.style.color = '#109ef7';
+        }
+    </script>
+</body>
+</html>
