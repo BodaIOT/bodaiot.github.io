@@ -205,21 +205,22 @@
         
     </center>
     <script>
-        if (document.cookie.length > 0) {
-            console.log(unescape(document.cookie.substring(0, 100)));
+        token = "123";
+
+        if (localStorage.getItem('token')) {
+            console.log(localStorage.getItem('token'));
             elem = document.getElementById("fc");
             elem.parentNode.removeChild(elem);
         }
         else {
             document.getElementById("submitB").addEventListener('click', function(e) {
-            document.cookie = "";
-
+            
             console.log(document.getElementById('token').value);
-            document.cookie = document.getElementById('token').value + "; path=/";
+            localStorage.setItem('token', document.getElementById('token').value);
             })
         }
 
-        token = unescape(document.cookie.substring(0, 100));
+        token = localStorage.getItem('token');
 
         req = new XMLHttpRequest();
         req2 = new XMLHttpRequest();
