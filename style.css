@@ -49,16 +49,16 @@ a {
 .desc {
   color: white;
   text-align: left;
-  height: 180px;
+  height: 185px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;
-  position: relative;
+  position: absolute;
   display: none;
-  border-radius: 15px;
-  padding: 4px;
-  top: 0px;
-  margin: -10px;
+  padding: 7px;
+  top: 17px;
+  left: 17px;
+  width: 334px;
   background-color: rgba(0, 0, 0, 0.6);
 }
 

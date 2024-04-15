@@ -15,8 +15,8 @@ $.ajax({
 		result = result.items;
 		console.log(result);
 		result.forEach(element => {
-			console.log(element.title);
-			console.log(element.title.length);
+			desc = element.description.replace("[…]", "") + "<br>" + element.pubDate;
+			console.log(element);
 			cs = 0;
 			if (element.title.length <= 75){
 				cs = bigTextSize;
@@ -38,7 +38,7 @@ $.ajax({
 			<a target="_blank" href="` + element.link + `" style="none">
 			<div class="wrap wrap--1">
 				<div class="container container--1" style="background: linear-gradient(0deg, rgb(0 0 0 / 92%) 48%, rgb(0 0 0 / 48%) 100%), url(` + element.enclosure.link + `); background-size: cover;">
-				<div class="desc" style="font-size:` + cds + `px;">` + element.description.replace("[…]", "") + `</div>
+				<div class="desc" style="font-size:` + cds + `px;">` + desc + `</div>
 				<div class="title" style="font-size:` + cs + `px;">` + element.title + `</div>
 				</div>
 			</div>
@@ -60,8 +60,7 @@ $.ajax({
 			  result = result.items;
 			  console.log(result);
 			  result.forEach(element => {
-				console.log(element.title);
-				console.log(element.title.length);
+				desc = element.description.replace("[…]", "") + "<br>" + element.pubDate;
 				cs = 0;
 				if (element.title.length <= 75){
 					cs = bigTextSize;
@@ -83,7 +82,7 @@ $.ajax({
 				<a target="_blank" href="` + element.link + `" style="none">
 				<div class="wrap wrap--1">
 					<div class="container container--1" style="background: linear-gradient(0deg, rgb(0 0 0 / 92%) 48%, rgb(0 0 0 / 48%) 100%), url(` + element.enclosure.link + `); background-size: cover;">
-					<div class="desc" style="font-size:` + cds + `px;">` + element.description.replace("[…]", "") + `</div>
+					<div class="desc" style="font-size:` + cds + `px;">` + desc + `</div>
 					<div class="title" style="font-size:` + cs + `px;">` + element.title + `</div>
 					</div>
 				</div>
