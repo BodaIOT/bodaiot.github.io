@@ -27,12 +27,16 @@ token = "123";
       cl2 = document.getElementById("clock2");
       tb = document.getElementById("t");
       th = document.getElementById("h");
+      tb2 = document.getElementById("t2");
+      th2 = document.getElementById("h2");
 
       now = new Date();
       day = now.getDate();
       Hour = 0;
       Minutes = 0;
       month = 0;
+
+      dvoet = true;
 
       if (day % 3 == 0) document.getElementById("body").classList.add("b2");
       else if (day % 2 == 0)
@@ -56,7 +60,15 @@ token = "123";
 
         if (Minutes < 10) Minutes = "0" + Minutes;
 
-        cl1.innerHTML = Hour + ":" + Minutes;
+        if (dvoet) {
+          dvoet = false;
+          cl1.innerHTML = Hour + '<span style="opacity: 0">:</span>' + Minutes;
+        }
+        else {
+          dvoet = true;
+          cl1.innerHTML = Hour + ":" + Minutes;
+        }
+
         cl2.innerHTML = day + "." + month + "." + now.getFullYear();
         req.open(
           "GET",
@@ -75,6 +87,8 @@ token = "123";
 
         tb.innerHTML = t;
         th.innerHTML = h;
+        tb2.innerHTML = t;
+        th2.innerHTML = h;
 
         if (t < 18) tb.style.color = "#0036ff";
         else if (t >= 18 && t <= 20) tb.style.color = "#7a96ff";
@@ -86,4 +100,15 @@ token = "123";
         if (h <= 15) th.style.color = "#ff5f45";
         else if (h > 15 && h <= 40) th.style.color = "#ffffff";
         else if (h > 40) th.style.color = "#109ef7";
+
+        if (t < 18) tb2.style.color = "#0036ff";
+        else if (t >= 18 && t <= 20) tb2.style.color = "#7a96ff";
+        else if (t > 20 && t <= 24) tb2.style.color = "#ffffff";
+        else if (t > 24 && t <= 26) tb2.style.color = "#ffaf7a";
+        else if (t > 26 && t <= 26.5) tb2.style.color = "#ff5f45";
+        else if (t > 26.5) tb2.style.color = "#f71010";
+
+        if (h <= 15) th2.style.color = "#ff5f45";
+        else if (h > 15 && h <= 40) th2.style.color = "#ffffff";
+        else if (h > 40) th2.style.color = "#109ef7";
       }

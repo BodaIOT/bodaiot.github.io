@@ -200,6 +200,13 @@ body {
   width: 138px;
   margin-right: 15px;
 }
+.tempM2 {
+  height: 97px;
+  width: 138px; 
+  margin-left: 0vw;
+  margin-top: 20vh;
+  scale: 1.7;
+}
 .timeM {
   height: 97px;
   width: 138px;
@@ -278,97 +285,16 @@ body {
   height: 100%;
 }
 
-@media (max-width: 1000px) {
-  .t2 {
-    scale: 1.45;
-  }
+.mobile {
+  display: none;
 }
-@media (max-width: 900px) {
-  .t2 {
-    scale: 1.25;
-  }
-  .s3 {
-    scale: unset;
-    width: 90%;
-    position: relative;
-  }
-  .s1 {
-    width: 98%;
-    background-color: rgb(255 255 255);
-  }
-}
-@media (max-width: 780px) {
-  .t2 {
-    scale: 1.05;
-  }
-}
-@media (max-width: 660px) {
-  .t2 {
-    scale: 0.75;
-  }
-}
-@media (max-width: 620px) {
-  .rad.timeM.bs {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-  .rad {
-    background: url(./gr.png) center/cover no-repeat;
-  }
-  .t2 {
-    display: flex;
-    top: 0;
-  }
-  .t2 tbody {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .t2-tr {
-    display: flex;
-    flex-direction: column;
-  }
-  .rad.tempM.bs {
-    width: 100%;
-  }
-  .timeM4 {
-    position: relative;
-    top: unset;
-    scale: 1.3;
-  }
-  div#ww_3917d5ed2bc7e {
-    width: 100%;
-    max-width: unset;
-  }
-  tbody .t2-tr:last-child th {
-    width: 100% !important;
-  }
-  tbody .t2-tr:last-child {
-    flex-direction: column-reverse;
-  }
-  th {
-    margin: 10px 0;
-  }
-}
-@media (max-width: 600px) {
-  .t2 {
-    scale: 0.65;
-  }
-}
+
 @media (max-width: 540px) {
-  .t2 {
-    scale: 1;
-    width: 95%;
+  .allC {
+    display: none;
   }
-  .s3 {
-    margin-bottom: 25px;
-  }
-}
-@media (max-width: 620px) {
-  .inl {
-    scale: 2;
+  .mobile {
+    display: block;
   }
 }
 
@@ -383,9 +309,12 @@ body {
   scrollbar-width: var(--scrollbarWidth);
   scrollbar-color: var(--scrollbarThumbColor) var(--scrollbarBgColor);
 }
-::-webkit-scrollbar
-{width: 1px;height: 1px;}
 
+*::-webkit-scrollbar
+{
+  width: var(--scrollbarWidth);
+  height: var(--scrollbarWidth);
+}
 *::-webkit-scrollbar-track {
   background: var(--scrollbarBgColor);
   border-radius: var(--scrollbarBorderRadius);
