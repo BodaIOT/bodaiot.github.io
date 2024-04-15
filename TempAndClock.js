@@ -36,7 +36,7 @@ token = "123";
       Minutes = 0;
       month = 0;
 
-      dvoet = true;
+      dvoet = false;
 
       if (day % 3 == 0) document.getElementById("body").classList.add("b2");
       else if (day % 2 == 0)
