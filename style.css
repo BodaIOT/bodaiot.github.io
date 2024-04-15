@@ -48,17 +48,18 @@ a {
 
 .desc {
   color: white;
-    text-align: left;
-    max-height: 112px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    position: relative;
-    display: none;
-    border-radius: 15px;
-    padding: 4px;
-    top: -98px;
-    margin: -10px;
+  text-align: left;
+  height: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  position: relative;
+  display: none;
+  border-radius: 15px;
+  padding: 4px;
+  top: 0px;
+  margin: -10px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .wrap {
@@ -143,6 +144,10 @@ a {
 
 .wrap:hover .desc {
   display: block;
+}
+
+.wrap:hover .title {
+  display: none;
   background-color: rgba(0, 0, 0, 0.3);
 }
 

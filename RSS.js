@@ -4,8 +4,8 @@ const smallTextSize = 19;
 const normalTextSize = 22;
 const bigTextSize = 25;
 
-const smallDescSize = 12;
-const bigDescSize = 14;
+const smallDescSize = 17;
+const bigDescSize = 20;
 
 $.ajax({
 	url: "https://api.rss2json.com/v1/api.json?rss_url=" + RSS_URL,
