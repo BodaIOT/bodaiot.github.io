@@ -16,7 +16,6 @@ links.forEach(link => {
 		url: "https://api.rss2json.com/v1/api.json?rss_url=" + link,
 		dataType: "json",
 		success: function (result) {
-			console.log("RSS" + j);
 			RSS = document.getElementById("RSS" + j);
 			j++;
 			result = result.items;
@@ -44,7 +43,6 @@ links.forEach(link => {
 				}
 				if (element.title.length > 87){
 					cs = smallTextSize;
-					console.log("small");
 				}
 	
 				cds = smallDescSize;
