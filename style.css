@@ -298,7 +298,7 @@ body {
   }
 }
 
-/* Скроллбар */
+/* Скроллбар 
 :root {
   --scrollbarBgColor: rgb(65 65 65 / 5%);
     --scrollbarThumbColor: rgb(255 255 255 / 6%);
@@ -328,4 +328,22 @@ body {
     var(--scrollbarThumbColor) 0%,
     var(--scrollbarThumbColorSecond) 90%
   );
+}
+
+*/
+::-webkit-scrollbar
+{
+width: 7px;
+height: 5px;
+}
+::-webkit-scrollbar-track-piece
+{
+background-color: rgba(125, 125, 125, 0.2);
+-webkit-border-radius: 1px;
+}
+::-webkit-scrollbar-thumb
+{
+height: 5px;
+background-color: rgb(255 255 255 / 10%); 
+-webkit-border-radius: 1px;
 }
