@@ -23,7 +23,11 @@ links.forEach(link => {
 			result.forEach(element => {date = element.pubDate;
 				hours = date[11] + date[12];
 				hours = parseInt(hours) + 3;
-				hours = hours + "";
+				if (hours < 10)
+					hours = " " + hours;
+				else
+					hours = hours + "";
+
 				date = date.replaceAt(11, hours[0]);
 				date = date.replaceAt(12, hours[1]);
 
