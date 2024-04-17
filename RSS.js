@@ -21,6 +21,7 @@ links.forEach(link => {
 			result = result.items;
 			console.log(result);
 			result.forEach(element => {date = element.pubDate;
+				// добавление даты
 				hours = date[11] + date[12];
 				hours = parseInt(hours) + 3;
 				if (hours < 10)
@@ -35,18 +36,16 @@ links.forEach(link => {
 				date = date.replaceAt(7, ".");
 				date = date.slice(0, 16);
 				date = date.slice(0, 10) + " — " + date.slice(10, 16);
+				//
 
-	
 				desc = element.description.replace("[…]", "") + "<br>" + date;
-				cs = 0;
+
+				cs = smallTextSize;
 				if (element.title.length <= 75){
 					cs = bigTextSize;
 				}
-				if (element.title.length > 75 && element.title.length <= 87){
+				else if (element.title.length > 75 && element.title.length <= 87){
 					cs = normalTextSize;
-				}
-				if (element.title.length > 87){
-					cs = smallTextSize;
 				}
 	
 				cds = smallDescSize;
@@ -54,12 +53,14 @@ links.forEach(link => {
 					cds = bigDescSize;
 				}
 	
+				title = titleHighlighted(element.title);
+
 				RSS.innerHTML += `
 				<a target="_blank" href="` + element.link + `" style="none">
 				<div class="wrap wrap--1">
 					<div class="container container--1" style="background: linear-gradient(0deg, rgb(0 0 0 / 92%) 48%, rgb(0 0 0 / 48%) 100%), url(` + element.enclosure.link + `); background-size: cover;">
 					<div class="desc" style="font-size:` + cds + `px;">` + desc + `</div>
-					<div class="title" style="font-size:` + cs + `px;">` + element.title + `</div>
+					<div class="title" style="font-size:` + cs + `px;">` + title + `</div>
 					</div>
 				</div>
 				</a>
@@ -78,4 +79,57 @@ links.forEach(link => {
 
 String.prototype.replaceAt = function(index, replacement) {
 	return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+}
+
+function titleHighlighted(s) {
+	console.log(s);
+	answer = "";
+	flag = false;
+
+	for (let i = 0; i < s.length; i++) {
+		if (isCharacterALetter(s[i]) && flag == false){
+			flag = true;
+			answer += '<span class="titleHighlighted">' + s[i];
+		}
+		else if (isCharacterALetter(s[i]) && flag == true){
+			answer += s[i];
+		}
+		else if (s[i] == " " && flag == true){
+			flag = false;
+			answer += '</span>' + s[i];
+		}
+		else if (isCharacterALetter(s[i]) == false){
+			answer += s[i];
+		}
+	}
+	
+	answer2 = "";
+	flag = false;
+	for (let i = 0; i < answer.length; i++) {
+		if (isCharacterNumber(answer[i]) && flag == false){
+			flag = true;
+			answer2 += '<span class="titleNumbers">' + answer[i];
+		}
+		else if (isCharacterNumber(answer[i]) && flag == true){
+			answer2 += answer[i];
+		}
+		else if (answer[i] == " " && flag == true){
+			flag = false;
+			answer2 += '</span>' + answer[i];
+		}
+		else if (isCharacterNumber(answer[i]) == false){
+			answer2 += answer[i];
+		}
+	}
+
+	console.log(answer2);
+	return answer2;
+}
+
+function isCharacterALetter(char) {
+	return (/[a-zA-Z]/).test(char)
+}
+
+function isCharacterNumber(char) {
+	return (/[0-9]/).test(char)
 }

@@ -46,6 +46,14 @@ a {
   top: 105px;
 }
 
+.titleHighlighted {
+  color: rgb(237 155 204);
+}
+
+.titleNumbers{
+  color: rgb(255 131 181);
+}
+
 .desc {
   color: white;
   text-align: left;
