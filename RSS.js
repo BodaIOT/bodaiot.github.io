@@ -123,8 +123,28 @@ function titleHighlighted(s) {
 		}
 	}
 
-	console.log(answer2);
-	return answer2;
+	answer3 = "";
+	flag = false;
+	for (let i = 0; i < answer2.length; i++) {
+		if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "«" || answer2[i] == '"') && flag == false){
+			if (answer2[i - 1] != "=" && answer2[i + 1] != ">") {
+				flag = true;
+				answer3 += '<span class="titleHighlighted">' + answer2[i];
+			}
+		}
+		else if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "»" || answer2[i] == '"') && flag == true){
+			if (answer2[i - 1] != "=" && answer2[i + 1] != ">") {
+				flag = false;
+				answer3 += answer2[i] + '</span>';
+			}
+		}
+		else {
+			answer3 += answer2[i];
+		}
+	}
+
+	console.log(answer3);
+	return answer3;
 }
 
 function isCharacterALetter(char) {
