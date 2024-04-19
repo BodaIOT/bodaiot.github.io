@@ -17,57 +17,71 @@ links.forEach(link => {
 		dataType: "json",
 		success: function (result) {
 			RSS = document.getElementById("RSS" + j);
-			j++;
-			result = result.items;
-			console.log(result);
-			result.forEach(element => {date = element.pubDate;
-				// добавление даты
-				hours = date[11] + date[12];
-				hours = parseInt(hours) + 3;
-				if (hours < 10)
-					hours = " " + hours;
-				else
-					hours = hours + "";
+			if (RSS != null)
+			{
+				j++;
+				result = result.items;
+				console.log(result);
+				result.forEach(element => {
+					date = element.pubDate;
+					// добавление даты
+					hours = date[11] + date[12];
+					hours = parseInt(hours) + 3;
+					if (hours < 10)
+						hours = " " + hours;
+					else
+						hours = hours + "";
 
-				date = date.replaceAt(11, hours[0]);
-				date = date.replaceAt(12, hours[1]);
+					date = date.replaceAt(11, hours[0]);
+					date = date.replaceAt(12, hours[1]);
 
-				date = date.replaceAt(4, ".");
-				date = date.replaceAt(7, ".");
-				date = date.slice(0, 16);
-				date = date.slice(0, 10) + " — " + date.slice(10, 16);
-				//
+					date = date.replaceAt(4, ".");
+					date = date.replaceAt(7, ".");
+					date = date.slice(0, 16);
+					date = date.slice(0, 10) + " — " + date.slice(10, 16);
+					//
 
-				desc = element.description.replace("[…]", "") + "<br>" + date;
+					desc = element.description.replace("[…]", "") + "<br>" + date;
 
-				cs = smallTextSize;
-				if (element.title.length <= 73){
-					cs = bigTextSize;
-				}
-				else if (element.title.length > 73 && element.title.length <= 87){
-					cs = normalTextSize;
-				}
-	
-				cds = smallDescSize;
-				if (element.description.length <= 225){
-					cds = bigDescSize;
-				}
-	
-				title = titleHighlighted(element.title);
+					cs = smallTextSize;
+					if (element.title.length <= 73){
+						cs = bigTextSize;
+					}
+					else if (element.title.length > 73 && element.title.length <= 87){
+						cs = normalTextSize;
+					}
+		
+					cds = smallDescSize;
+					if (element.description.length <= 225){
+						cds = bigDescSize;
+					}
+		
+					title = titleHighlighted(element.title);
 
-				RSS.innerHTML += `
-				<a target="_blank" href="` + element.link + `" style="none">
-				<div class="wrap wrap--1">
-					<div class="container container--1" style="background: linear-gradient(0deg, rgb(0 0 0 / 92%) 48%, rgb(0 0 0 / 48%) 100%), url(` + element.enclosure.link + `); background-size: cover;">
-					<div class="desc" style="font-size:` + cds + `px;">` + desc + `</div>
-					<div class="title" style="font-size:` + cs + `px;">` + title + `</div>
+					RSS.innerHTML += `
+					<a target="_blank" href="` + element.link + `" style="none">
+					<div class="wrap wrap--1">
+						<div class="container container--1" style="background: linear-gradient(0deg, rgb(0 0 0 / 92%) 48%, rgb(0 0 0 / 48%) 100%), url(` + element.enclosure.link + `); background-size: cover;">
+						<div class="desc" style="font-size:` + cds + `px;">` + desc + `</div>
+						<div class="title" style="font-size:` + cs + `px;">` + title + `</div>
+						</div>
 					</div>
-				</div>
-				</a>
-				`
-				
-			});
-	
+					</a>
+					`
+					
+				});
+			}
+			else{
+				result = result.items;
+				news = document.getElementById("news");
+
+				result.slice(0,2).forEach(element => {
+					title = titleHighlighted(element.title);
+					news.innerHTML += title + "<br><br><br><br>";
+				})
+
+				console.log("hjkhjkkhk");
+			}
 			
 		},
 		error: function (error) {
