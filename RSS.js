@@ -101,6 +101,10 @@ function titleHighlighted(s) {
 	answer = "";
 	flag = false;
 
+	while (s.includes("&amp;#039;")){
+		s = s.replace("&amp;#039;", "'");
+	}
+		
 	for (let i = 0; i < s.length; i++) {
 		if (isCharacterALetter(s[i]) && flag == false){
 			flag = true;
