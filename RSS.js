@@ -132,7 +132,7 @@ function titleHighlighted(s) {
 		else if (isCharacterNumber(answer[i]) && flag == true){
 			answer2 += answer[i];
 		}
-		else if (answer[i] == " " && flag == true){
+		else if ((answer[i] == " " || isCharacterALetter(answer[i]) == true || answer[i] == "<") && flag == true){
 			flag = false;
 			answer2 += '</span>' + answer[i];
 		}
