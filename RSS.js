@@ -44,10 +44,10 @@ links.forEach(link => {
 					desc = element.description.replace("[…]", "") + "<br>" + date;
 
 					cs = smallTextSize;
-					if (element.title.length <= 73){
+					if (element.title.length < 73){
 						cs = bigTextSize;
 					}
-					else if (element.title.length > 73 && element.title.length <= 87){
+					else if (element.title.length >= 73 && element.title.length <= 87){
 						cs = normalTextSize;
 					}
 		
