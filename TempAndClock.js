@@ -30,6 +30,7 @@ token = "123";
       th = document.getElementById("h");
       tb2 = document.getElementById("t2");
       th2 = document.getElementById("h2");
+      rassvet = document.getElementById("rassvet");
       zakat = document.getElementById("zakat");
 
       now = new Date();
@@ -63,9 +64,25 @@ token = "123";
         raszak = req3.responseText;
         raszak = JSON.parse(raszak)
 
-        var current = raszak.results.sunset.split(":");
+        var day_length = raszak.results.day_length.split(":");
+        var current2 = raszak.results.sunset.split(":");
+
+        var zakH = parseInt(current2[0], 10) + 15;
+        var zakM = parseInt(current2[1], 10);
+
+        var zakInMinutes = zakH * 60 + zakM;
+        var rasInMinutes = zakInMinutes - ((parseInt(day_length[0], 10)) * 60 + parseInt(day_length[1], 10)) + 3;
+
+        var rasH = Math.floor(rasInMinutes / 60);
+        var rasM = rasInMinutes % 60;
         
-        zakat.innerHTML = (parseInt(current[0], 10) + 12) + ":" + (parseInt(current[1], 10) - 4);
+        zakM = zakM - 4;
+
+        console.log("Рассвет: " + rasH + ":" + rasM);
+        console.log("Закат: " + zakH + ":" + zakM);
+
+        rassvet.innerHTML = rasH + ":" + rasM;
+        zakat.innerHTML = zakH + ":" + zakM;
       }
 
       function UpdateF() {

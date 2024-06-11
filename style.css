@@ -249,8 +249,14 @@ body {
   position: relative;
   top: 3px;
 }
-.hi2 {
+.rasIcon {
   width: 33px;
+  height: 34px;
+  position: relative;
+  top: 3px;
+}
+.zakIcon {
+  width: 32px;
   height: 34px;
   position: relative;
   top: 3px;
