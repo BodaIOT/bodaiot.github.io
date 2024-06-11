@@ -22,7 +22,7 @@
   border-spacing: 12px;
   top: 35px;
   position: absolute;
-  left: 27%;
+  left: 25%;
 }
 .t2-container {    
   height: 335px;
@@ -223,6 +223,12 @@ body {
 .timeM {
   height: 97px;
   width: 138px;
+  margin-right: 15px;
+}
+.zakatM {
+  height: 97px;
+  width: 138px;
+  margin-right: 19px;
 }
 .timeM2 {
   font-size: 250%;
@@ -239,6 +245,12 @@ body {
 }
 .hi {
   width: 23px;
+  height: 34px;
+  position: relative;
+  top: 3px;
+}
+.hi2 {
+  width: 33px;
   height: 34px;
   position: relative;
   top: 3px;

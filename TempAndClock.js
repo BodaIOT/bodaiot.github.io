@@ -22,6 +22,7 @@ token = "123";
 
       req = new XMLHttpRequest();
       req2 = new XMLHttpRequest();
+      req3 = new XMLHttpRequest();
 
       cl1 = document.getElementById("clock");
       cl2 = document.getElementById("clock2");
@@ -29,6 +30,7 @@ token = "123";
       th = document.getElementById("h");
       tb2 = document.getElementById("t2");
       th2 = document.getElementById("h2");
+      zakat = document.getElementById("zakat");
 
       now = new Date();
       day = now.getDate();
@@ -44,8 +46,27 @@ token = "123";
       else document.getElementById("body").classList.add("b1");
 
       UpdateF();
+      UpdateF2();
 
       setInterval(UpdateF, 990);
+      setInterval(UpdateF2, 15000);
+
+      function UpdateF2() {
+
+        req3.open(
+          "GET",
+          "https://api.sunrise-sunset.org/json?lat=59.83383934590533&lng=30.509177029682704",
+          false
+        );
+        req3.send(null);
+
+        raszak = req3.responseText;
+        raszak = JSON.parse(raszak)
+
+        var current = raszak.results.sunset.split(":");
+        
+        zakat.innerHTML = (parseInt(current[0], 10) + 12) + ":" + current[1];
+      }
 
       function UpdateF() {
         now = new Date();
