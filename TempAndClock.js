@@ -65,7 +65,7 @@ token = "123";
 
         var current = raszak.results.sunset.split(":");
         
-        zakat.innerHTML = (parseInt(current[0], 10) + 12) + ":" + current[1];
+        zakat.innerHTML = (parseInt(current[0], 10) + 12) + ":" + (parseInt(current[1], 10) - 4);
       }
 
       function UpdateF() {
