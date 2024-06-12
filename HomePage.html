@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body id="body">
+    <div id="cover"><div class="FullCenter">Загрузка</div></div>
     <center>
       <form
         id="fc"
@@ -225,7 +226,7 @@
         </div>
       </span>
     </center>
-
+    
     <script src="TempAndClock.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -235,5 +236,10 @@
     <script src="RSS.js"></script>
     <script src="horizontalScrolling.js"></script>
     <script src="Todoist.js"></script>
+    <script>
+      $(window).on('load', function() {
+        $("#cover").hide();
+      });
+    </script>
   </body>
 </html>
