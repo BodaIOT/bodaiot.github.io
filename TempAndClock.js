@@ -1,7 +1,8 @@
 token = "123";
 
-      if (localStorage.getItem("token")) {
+      if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist")) {
         console.log(localStorage.getItem("token"));
+        console.log(localStorage.getItem("tokenTodoist"));
         elem = document.getElementById("fc");
         elem.parentNode.removeChild(elem);
       } else {
@@ -11,9 +12,14 @@ token = "123";
           .getElementById("submitB")
           .addEventListener("click", function (e) {
             console.log(document.getElementById("token").value);
+            console.log(document.getElementById("tokenTodoist").value);
             localStorage.setItem(
               "token",
               document.getElementById("token").value
+            );
+            localStorage.setItem(
+              "tokenTodoist",
+              document.getElementById("tokenTodoist").value
             );
           });
       }
