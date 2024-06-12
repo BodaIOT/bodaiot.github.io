@@ -56,7 +56,7 @@ token = "123";
       UpdateF2();
 
       setInterval(UpdateF, 990);
-      setInterval(UpdateF2, 15000);
+      setInterval(UpdateF2, 1000 * 60 * 240);
 
       function UpdateF2() {
 
