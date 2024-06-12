@@ -13,8 +13,14 @@ j = 1;
 
 links.forEach(link => {
 	$.ajax({
-		url: "https://api.rss2json.com/v1/api.json?rss_url=" + link,
-		dataType: "json",
+		url: 'https://api.rss2json.com/v1/api.json',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            rss_url: link,
+            api_key: 'shumz9hrtaravuvrbypfkyqlfyh6iehhdudyjnxj', // put your api key here
+            count: 10
+        },
 		success: function (result) {
 			RSS = document.getElementById("RSS" + j);
 			if (RSS != null)

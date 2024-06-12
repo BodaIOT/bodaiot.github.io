@@ -14,15 +14,25 @@
         class="s3"
         style="margin: 0 0 100px 0; color: red; background-color: red"
       >
-        <input
-          autocomplete="on"
-          class="s1"
-          name="token"
-          id="token"
-          placeholder="ВВЕДИТЕ ТОКЕН СЮДА"
-          required="required"
-          type="text"
-        />
+      <input
+        autocomplete="on"
+        class="s1"
+        name="token"
+        id="token"
+        placeholder="ВВЕДИТЕ ТОКЕН ТЕМПЕРАТУРЫ СЮДА"
+        required="required"
+        type="text"
+      />
+      <br>
+      <input
+        autocomplete="on"
+        class="s1"
+        name="tokenTodoist"
+        id="tokenTodoist"
+        placeholder="ВВЕДИТЕ ТОКЕН ТУДУИСТА СЮДА"
+        required="required"
+        type="text"
+      />
         <button class="s2" type="submit" id="submitB">
           <img width="28px" height="auto" src="./s.png" alt="" />
         </button>
@@ -155,6 +165,20 @@
                   ></script>
                 </div>
               </th>
+              <th>
+                <div class="todoist bs">
+                  <div id="tasks1" class="tasks">
+                    <span>Сегодня:</span><hr align="center" width="100%" size="1" color="#fff">
+                  </div>
+                </div>
+              </th>
+              <th>
+                <div class="todoist bs">
+                  <div id="tasks2" class="tasks">
+                    <span>Завтра:</span><hr align="center" width="100%" size="1" color="#fff">
+                  </div>
+                </div>
+              </th>
             </tr>
           </table>
         </div>
@@ -200,5 +224,6 @@
     ></script>
     <script src="RSS.js"></script>
     <script src="horizontalScrolling.js"></script>
+    <script src="Todoist.js"></script>
   </body>
 </html>

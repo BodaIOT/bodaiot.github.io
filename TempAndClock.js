@@ -68,7 +68,7 @@ token = "123";
         req3.send(null);
 
         raszak = req3.responseText;
-        raszak = JSON.parse(raszak)
+        raszak = JSON.parse(raszak);
 
         var day_length = raszak.results.day_length.split(":");
         var current2 = raszak.results.sunset.split(":");

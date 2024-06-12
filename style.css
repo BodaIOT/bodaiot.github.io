@@ -19,10 +19,10 @@
 }
 
 .t2 {
-  border-spacing: 12px;
+  border-spacing: 6px;
   top: 35px;
   position: absolute;
-  left: 25%;
+  left: 16.9%;
 }
 .t2-container {    
   height: 335px;
@@ -212,6 +212,20 @@ body {
   height: 97px;
   width: 138px;
   margin-right: 15px;
+}
+.tasks {
+  padding: 10px;
+}
+.task {
+  font-size: 12px;
+}
+.todoist {
+  text-align: left;
+  border-radius: 7px;
+  background-image: url(./gr.png);
+  background-position: center;
+  height: 216px;
+  width: 138px;
 }
 .tempM2 {
   height: 97px;
