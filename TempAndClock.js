@@ -1,8 +1,9 @@
 token = "123";
 
-      if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist")) {
+      if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist") && localStorage.getItem("tokenCoord")) {
         console.log(localStorage.getItem("token"));
         console.log(localStorage.getItem("tokenTodoist"));
+        console.log(localStorage.getItem("tokenCoord"));
         elem = document.getElementById("fc");
         elem.parentNode.removeChild(elem);
       } else {
@@ -21,10 +22,15 @@ token = "123";
               "tokenTodoist",
               document.getElementById("tokenTodoist").value
             );
+            localStorage.setItem(
+              "tokenCoord",
+              document.getElementById("tokenCoord").value
+            );
           });
       }
 
       token = localStorage.getItem("token");
+      tokenCoord = localStorage.getItem("tokenCoord");
 
       req = new XMLHttpRequest();
       req2 = new XMLHttpRequest();
@@ -62,7 +68,7 @@ token = "123";
 
         req3.open(
           "GET",
-          "https://api.sunrise-sunset.org/json?lat=59.83383934590533&lng=30.509177029682704",
+          "https://api.sunrise-sunset.org/json?" + tokenCoord,
           false
         );
         req3.send(null);
