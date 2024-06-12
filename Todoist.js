@@ -63,30 +63,48 @@ function UpdateF() {
     console.log(answer);
 
     console.log(" --- Задачи на сегодня: --- ");
+    todayTasks = [];
 
     answer.forEach(element => {
         if (element.due != null) {
             if (element.due.date != null) {
                 if (element.due.date == today) {
-                    console.log(element);
-                    tasks1.innerHTML += '<span class="task">' + element.content + '</span><hr align="center" width="100%" size="1" color="#fff">';
+                    todayTasks.push(element.content);
                 }
             }
         }  
     });
 
+    for (let i = 0; i < todayTasks.length; i++) { 
+        if (i != todayTasks.length - 1)
+            tasks1.innerHTML += '<span class="task">' + todayTasks[i] + '</span><hr align="center" width="100%" size="1" color="#fff">';
+        else
+            tasks1.innerHTML += '<span class="task">' + todayTasks[i] + '</span>';
+    }
+
+    console.log(todayTasks);
+
     console.log(" --- Задачи на завтра: --- ");
+    tomorrowTasks = [];
 
     answer.forEach(element => {
         if (element.due != null) {
             if (element.due.date != null) {
                 if (element.due.date == tomorrow) {
-                    console.log(element.content);
-                    tasks2.innerHTML += '<span class="task">' + element.content + '</span><hr align="center" width="100%" size="1" color="#fff">';
+                    tomorrowTasks.push(element.content);
                 }
             }
         }  
     });
+
+    for (let i = 0; i < tomorrowTasks.length; i++) { 
+        if (i != todayTasks.length - 1)
+            tasks2.innerHTML += '<span class="task">' + tomorrowTasks[i] + '</span><hr align="center" width="100%" size="1" color="#fff">';
+        else
+        tasks2.innerHTML += '<span class="task">' + tomorrowTasks[i] + '</span>';
+    }
+
+    console.log(todayTasks);
 
     console.log("---------------- задачи  кончились ----------------------");
 }

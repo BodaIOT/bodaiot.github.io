@@ -214,10 +214,10 @@ body {
   margin-right: 15px;
 }
 .tasks {
-  padding: 10px;
+  padding: 5px;
 }
 .task {
-  font-size: 12px;
+  font-size: 11px;
 }
 .todoist {
   text-align: left;
@@ -226,6 +226,7 @@ body {
   background-position: center;
   height: 216px;
   width: 138px;
+  overflow: hidden;
 }
 .tempM2 {
   height: 97px;
