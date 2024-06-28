@@ -98,7 +98,7 @@ function UpdateF() {
     });
 
     for (let i = 0; i < tomorrowTasks.length; i++) { 
-        if (i != todayTasks.length - 1)
+        if (i != tomorrowTasks.length - 1)
             tasks2.innerHTML += '<span class="task">' + tomorrowTasks[i] + '</span><hr align="center" width="100%" size="1" color="#fff">';
         else
         tasks2.innerHTML += '<span class="task">' + tomorrowTasks[i] + '</span>';
