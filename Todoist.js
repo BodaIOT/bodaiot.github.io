@@ -75,6 +75,8 @@ function UpdateF() {
         }  
     });
 
+    tasks1.innerHTML = '';
+
     for (let i = 0; i < todayTasks.length; i++) { 
         if (i != todayTasks.length - 1)
             tasks1.innerHTML += '<span class="task">' + todayTasks[i] + '</span><hr align="center" width="100%" size="1" color="#fff">';
@@ -96,6 +98,8 @@ function UpdateF() {
             }
         }  
     });
+
+    tasks2.innerHTML = '';
 
     for (let i = 0; i < tomorrowTasks.length; i++) { 
         if (i != tomorrowTasks.length - 1)
