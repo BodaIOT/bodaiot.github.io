@@ -84,7 +84,7 @@ token = "123";
         var rasH = Math.floor(rasInMinutes / 60);
         var rasM = rasInMinutes % 60;
         
-        zakM = zakM - 4;
+        zakM = zakM;
 
         console.log("Рассвет: " + rasH + ":" + rasM);
         console.log("Закат: " + zakH + ":" + zakM);
