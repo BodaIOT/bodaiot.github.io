@@ -89,13 +89,17 @@ token = "123";
         else 
           rasM0 = rasM;
         
-        zakM = zakM;
+        if (zakM < 10)
+          zakM0 = "0" + zakM;
+        else 
+          zakM0 = zakM;  
+        
 
         console.log("Рассвет: " + rasH + ":" + rasM0);
-        console.log("Закат: " + zakH + ":" + zakM);
+        console.log("Закат: " + zakH + ":" + zakM0);
 
-        rassvet.innerHTML = rasH + ":" + rasM;
-        zakat.innerHTML = zakH + ":" + zakM;
+        rassvet.innerHTML = rasH + ":" + rasM0;
+        zakat.innerHTML = zakH + ":" + zakM0;
       }
 
       function UpdateF() {
