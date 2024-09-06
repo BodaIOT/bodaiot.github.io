@@ -83,10 +83,15 @@ token = "123";
 
         var rasH = Math.floor(rasInMinutes / 60);
         var rasM = rasInMinutes % 60;
+
+        if (rasM < 10)
+          rasM0 = "0" + rasM;
+        else 
+          rasM0 = rasM;
         
         zakM = zakM;
 
-        console.log("Рассвет: " + rasH + ":" + rasM);
+        console.log("Рассвет: " + rasH + ":" + rasM0);
         console.log("Закат: " + zakH + ":" + zakM);
 
         rassvet.innerHTML = rasH + ":" + rasM;
