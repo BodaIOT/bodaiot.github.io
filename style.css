@@ -250,6 +250,15 @@ body {
   margin-top: 20vh;
   scale: 1.7;
 }
+
+.MyYouTubeVideo{
+  position: absolute;
+  top: 28px;
+  right: 463px;
+  border: solid 14px black;
+  background-color: black;
+  display: block;
+}
 .timeM {
   height: 97px;
   width: 138px;

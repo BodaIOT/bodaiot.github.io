@@ -6,6 +6,7 @@
     <title>Home Page</title>
     <link rel="icon" type="image/x-icon" href="./icon.png" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
   <body id="body">
     <div id="cover"><div class="FullCenter">Загрузка</div></div>
@@ -230,6 +231,50 @@
       </span>
     </center>
     
+    <div id="my_video" class="MyYouTubeVideo">
+      <iframe id="youtube_video" width="600" height="340" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- YouTube start -->
+    <script>
+      var channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
+      var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
+      $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
+      var link = data.items[0].link;
+      var id = link.substr(link.indexOf("=")+1);
+      $("#youtube_video").attr("src","https://youtube.com/embed/" + id + "?controls=1&showinfo=0&rel=0&enablejsapi=1");
+      });
+
+      $(document).ready(function() {
+          var my_video = document.getElementById("my_video");
+          var my_video = my_video.getElementsByTagName("iframe")[0].contentWindow;
+        
+          let today = new Date();
+          console.log("Сейчас часов: " + today.getHours());
+
+          if (today.getHours > 7 && today.getHours < 10)
+          {
+            setTimeout(() => {
+                my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
+            }, 1000);
+          }
+          else{
+            document.getElementById("my_video").style.display = "none";
+          }
+      
+          /* pause
+          $("#pause_video").on("click", function() {
+          
+              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
+              
+          });
+          */
+  
+      });
+      
+  </script>
+    <!-- YouTube end -->
+
     <script src="TempAndClock.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
