@@ -231,12 +231,20 @@
       </span>
     </center>
     
+    
+    <!-- YouTube start -->
+    <div id="videoBackground" class="videoBackground"></div>
     <div id="my_video" class="MyYouTubeVideo">
-      <iframe id="youtube_video" width="600" height="340" frameborder="0" allowfullscreen></iframe>
+      <iframe id="youtube_video" width="1200" height="680" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- YouTube start -->
+    <div id="my_video_button" class="MyYouTubeVideoBUTTON">
+      StopGame: утренние новости
+    </div>
+
     <script>
+      var videoShowing = false;
+
       var channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
       var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
       $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
@@ -254,24 +262,41 @@
 
           if (today.getHours > 7 && today.getHours < 10)
           {
+            videoShowing = true;
             setTimeout(() => {
                 my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
             }, 1000);
           }
           else{
+            videoShowing = false;
             document.getElementById("my_video").style.display = "none";
+            document.getElementById("videoBackground").style.display = "none";
           }
-      
-          /* pause
-          $("#pause_video").on("click", function() {
-          
-              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
-              
-          });
-          */
   
+          var my_video_button = document.getElementById("my_video_button");
+          my_video_button.onclick = function(){
+            if (videoShowing === true)
+            {
+              document.getElementById("my_video").style.display = "none";
+              document.getElementById("videoBackground").style.display = "none";
+              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
+            }
+            else {
+              document.getElementById("my_video").style.display = "block";
+              document.getElementById("videoBackground").style.display = "block";
+              setTimeout(() => {
+                  my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
+              }, 100);
+            }
+            videoShowing = !videoShowing;
+          }
+          document.getElementById("videoBackground").onclick = function(){
+              document.getElementById("my_video").style.display = "none";
+              document.getElementById("videoBackground").style.display = "none";
+              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
+            videoShowing = false;
+          }
       });
-      
   </script>
     <!-- YouTube end -->
 
