@@ -260,8 +260,9 @@
           let today = new Date();
           console.log("Сейчас часов: " + today.getHours());
 
-          if (today.getHours > 7 && today.getHours < 10)
+          if (today.getHours() > 7 && today.getHours() < 10)
           {
+            console.log("Show video");
             videoShowing = true;
             setTimeout(() => {
                 my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
