@@ -7,6 +7,7 @@
     <title>Timer</title>
     <style>
         body {
+            font-family: system-ui;
             background: rgb(40, 40, 40);
         }
         .outer {
@@ -24,6 +25,7 @@
             z-index: 10;
             color: rgb(223, 223, 223);
             transition: all 0.3s ease-in-out;
+            font-family: fantasy;
         }
         .deleteTimeObj{
             display: block;
@@ -89,10 +91,33 @@
         .deadlineText {
             color: rgb(128, 128, 128);
         }
+        .homePage{
+            display: block;
+            top: 20px;
+            position: absolute;
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            width: 85px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            border-radius: 12px;
+            padding: 3px 13px;
+            cursor: pointer;
+            background: #474747;
+            transition: all 0.1s ease-in-out;
+            border: 0px;
+        }
+        .homePage:hover{
+            background: #8a8a8a;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body id="body">
-	<canvas></canvas>
+    <a href="https://bodaiot.github.io/HomePage.html"><div class="homePage">Home Page</div></a>
     <div class="pauseButton" id="pauseObj"></div>
     <div class="outer">
         <div class="timer" id="timer"></div>
