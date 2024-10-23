@@ -291,12 +291,12 @@
                 if (diff2 >= 59 * 60 * 1000 && diff2 <= 60 * 60 * 1000 && (was_one_hour == "false" || was_one_hour == null)) {
                     was_one_hour = true;
                     localStorage.setItem("was_one_hour", "true");
-                    Notify("http://192.168.0.107:5000/Работать%20осталось%201%20час")
+                    Notify("https://diemonic.cloudpub.ru/Работать%20осталось%201%20час")
                 }
                 else if (diff2 >= 14 * 60 * 1000 && diff2 <= 15 * 60 * 1000 && (was_15_minutes == "false" || was_15_minutes == null)) {
                     was_15_minutes = true;
                     localStorage.setItem("was_15_minutes", "true");
-                    Notify("http://192.168.0.107:5000/Работать%20осталось%2015%20минут")
+                    Notify("https://diemonic.cloudpub.ru/Работать%20осталось%2015%20минут")
                 }
                 else if (diff2 <= 0 && (was_over == "false" || was_over == null)) {
                     was_over = true;
@@ -308,7 +308,7 @@
                         element.setAttribute('href', 'timer_out.png');
                     });
                     console.log("timer over");
-                    Notify("http://192.168.0.107:5000/Конец%20рабочего%20дня")
+                    Notify("https://diemonic.cloudpub.ru/Конец%20рабочего%20дня")
                 }
 
                 Visual(diff2);
