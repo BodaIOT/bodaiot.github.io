@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="timer.png" />
+    <title>Timer</title>
+    <style>
+        body {
+            background: rgb(40, 40, 40);
+        }
+        .outer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .timer {
+            width: 50vw;
+            font-size: 100px;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            z-index: 10;
+            color: rgb(223, 223, 223);
+            transition: all 0.3s ease-in-out;
+        }
+        .deleteTimeObj{
+            display: block;
+            border-radius: 12px;
+            position: absolute;
+            padding: 3px 13px;
+            left: 20%;
+            bottom: 20px;
+            cursor: pointer;
+            background: #474747;
+            border: 0px;
+            color: rgb(255, 255, 255);
+            transition: all 0.1s ease-in-out;
+        }
+        .deleteTimeObj:hover{
+            background: #8a8a8a;
+            transform: scale(1.1);
+        }
+        .timerHover {
+            transform: scale(1.1);
+            color: rgb(255, 255, 255);
+        }
+        .bodyHover{
+            background-color: rgb(97, 0, 0);
+        }
+        .pauseButton {
+            background-color: rgba(141, 78, 78, 0);
+            width: 50vw;
+            height: 50vh;
+            font-size: 100px;
+            transform: translate(50%, -50%);
+            top: 50%;
+            right: 50%;
+            position: absolute;
+            z-index: 20;
+            cursor: pointer;
+        }
+        .msc {
+            font-size: 70px;
+            color: rgb(80, 80, 80);
+        }
+        .realTime {
+            bottom: 20px;
+            right: 20%;
+            position: absolute;
+            font-size: 16px;
+            color: rgb(190 190 190);
+            text-align: center;
+        }
+        .deadline {
+            display: block;
+            bottom: 20px;
+            position: absolute;
+            font-size: 16px;
+            color: rgb(190 190 190);
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .deadlineText {
+            color: rgb(128, 128, 128);
+        }
+    </style>
+</head>
+<body id="body">
+	<canvas></canvas>
+    <div class="pauseButton" id="pauseObj"></div>
+    <div class="outer">
+        <div class="timer" id="timer"></div>
+    </div>
+    <div id="realTime" class="realTime"></div>
+        <div class="deadline"><span id="deadlineText" class="deadlineText">истекает в: </span><span id="deadline"></span></div>
+    <div class="deleteTimeObj" id="deleteTimeObj">сбросить</div>
+</body>
+    <script>
+        const timer_hours = 0;
+        const timer_minutes = 2;
+        const timer_seconds = 0;
+
+        const delay_in_milliseconds = 500;
+
+        // --------------------
+
+        const end_time_key = "end_time_key";
+        const is_pause_key = "is_pause_key";
+        const pause_start_key = "pause_start_key";
+
+        var render = true;
+        var timer = document.getElementById("timer");
+        var realTime = document.getElementById("realTime");
+        var deadline = document.getElementById("deadline");
+        var deadlineText = document.getElementById("deadlineText");
+
+        var end_time = localStorage.getItem(end_time_key);
+        var is_pause = localStorage.getItem(is_pause_key);
+        var pause_start = localStorage.getItem(pause_start_key);
+
+        var was_one_hour = localStorage.getItem("was_one_hour");
+        var was_15_minutes = localStorage.getItem("was_15_minutes");
+        var was_over = localStorage.getItem("was_over");
+
+        if (was_over == "true"){
+            document.getElementById("body").classList.add("bodyHover");
+        }
+
+        console.log("current_time from storage: " + end_time);
+        console.log("is_pause from storage: " + is_pause);
+        console.log("pause_start from storage: " + pause_start);
+
+        console.log("was_one_hour from storage " + was_one_hour);
+        console.log("was_15_minutes from storage " + was_15_minutes);
+        console.log("was_over from storage " + was_over);
+
+        if (end_time == null || is_pause == null || pause_start == null){
+            deleteTime();
+        }
+
+        end_time = new Date(end_time);
+        pause_start = new Date(pause_start);
+
+        SetEndTimeVisual();
+
+        pauseObj.onclick = TogglePause;
+        pauseObj.addEventListener('mouseover', function() {
+            timer.classList.add("timerHover");
+        })
+        pauseObj.addEventListener('mouseout', function() {
+            timer.classList.remove("timerHover");
+        })
+
+        document.addEventListener("visibilitychange", function(){
+            if (document.hidden) {
+                render = false;
+            }
+            else {
+                render = true;
+            }
+        });
+
+        SetTime();
+
+        deleteTimeObj.onclick = deleteTime;
+
+        setInterval(UpdateTimer, delay_in_milliseconds);
+
+        function UpdateTimer() 
+        {
+            SetRealTimeVisual();
+
+            if (is_pause == "false"){
+                SetTime();
+            }
+        }
+
+        function deleteTime()
+        {
+            document.getElementById("body").classList.remove("bodyHover");
+
+            var now = new Date();
+            localStorage.setItem(pause_start_key, now);
+            now.setMilliseconds(now.getMilliseconds() + (timer_hours * 60 * 60 + timer_minutes * 60 + timer_seconds) * 1000);
+
+            console.log("deleteTime, next time: " + now);
+
+            localStorage.setItem(end_time_key, now);
+            localStorage.setItem(is_pause_key, "true");
+
+            end_time = new Date(localStorage.getItem(end_time_key));
+            is_pause = localStorage.getItem(is_pause_key);
+            pause_start = new Date(localStorage.getItem(pause_start_key));
+
+            localStorage.setItem("was_one_hour", "false");
+            localStorage.setItem("was_15_minutes", "false");
+            localStorage.setItem("was_over", "false");
+
+            was_one_hour = "false";
+            was_15_minutes = "false";
+            was_over = "false";
+
+            deadlineText.innerHTML = "истекает в: ";
+
+            SetEndTimeVisual();
+            SetTime();
+        }
+
+        function TogglePause(){
+            console.log("TogglePause");
+            if (is_pause == "true") {
+                pause_start = new Date(localStorage.getItem(pause_start_key));
+                if (pause_start == "-")
+                    return;
+                end_time = new Date(localStorage.getItem(end_time_key));
+                localStorage.setItem(pause_start_key, "-");
+                console.log("Выключаем паузу. она была с " + pause_start + " до " + new Date());
+                var deff = new Date() - pause_start;
+                end_time.setMilliseconds(end_time.getMilliseconds() + deff);
+                console.log("Продлили таймер до " + end_time);
+                is_pause = "false";
+                localStorage.setItem(end_time_key, end_time);
+                localStorage.setItem(is_pause_key, "false");
+                SetEndTimeVisual();
+            }
+            else if (was_over == "false") {
+                console.log("поставили паузу ");
+                document.title = "[" + document.title + "]";
+                is_pause = "true";
+                localStorage.setItem(is_pause_key, "true");
+                localStorage.setItem(pause_start_key, new Date());
+                SetEndTimeVisual();
+            }
+        }
+
+        function SetTime(){
+            if (is_pause == "false"){
+                var diff2 = end_time - new Date();
+
+                if (diff2 >= 59 * 60 * 1000 && diff2 <= 60 * 60 * 1000 && (was_one_hour == "false" || was_one_hour == null)) {
+                    was_one_hour = true;
+                    localStorage.setItem("was_one_hour", "true");
+                    Notify("http://192.168.0.107:5000/Работать%20осталось%201%20час")
+                }
+                else if (diff2 >= 14 * 60 * 1000 && diff2 <= 15 * 60 * 1000 && (was_15_minutes == "false" || was_15_minutes == null)) {
+                    was_15_minutes = true;
+                    localStorage.setItem("was_15_minutes", "true");
+                    Notify("http://192.168.0.107:5000/Работать%20осталось%2015%20минут")
+                }
+                else if (diff2 <= 0 && (was_over == "false" || was_over == null)) {
+                    was_over = true;
+                    localStorage.setItem("was_over", "true");
+                    document.getElementById("body").classList.add("bodyHover");
+                    deadlineText.innerHTML = "истек в ";
+                    var list = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+                    list.forEach(function(element) {
+                        element.setAttribute('href', 'timer_out.png');
+                    });
+                    console.log("timer over");
+                    Notify("http://192.168.0.107:5000/Конец%20рабочего%20дня")
+                }
+
+                Visual(diff2);
+            }
+            else {
+                var pause_start_c = new Date(localStorage.getItem(pause_start_key));
+                var end_time_c = new Date(localStorage.getItem(end_time_key));
+                var deff_c = new Date() - pause_start_c;
+                end_time_c.setMilliseconds(end_time_c.getMilliseconds() + deff_c);
+
+                var diff2 = end_time_c - new Date();
+                Visual(diff2);
+            }
+        }
+
+        function Visual(diff2){
+            var days = Math.floor(diff2 / 1000 / 60 / 60 / 24);
+            var hours = Math.floor(diff2 / 1000 / 60 / 60) % 24;
+
+            if (diff2 < 0){
+                hours = hours + 1;
+                hours = Math.abs(hours);
+            }
+            var minutes = Math.floor(diff2 / 1000 / 60) % 60;
+            if (diff2 < 0){
+                minutes = minutes + 1;
+                minutes = Math.abs(minutes);
+            }
+            if (minutes < 10)
+                minutes = "0" + minutes;
+            var seconds = Math.floor(diff2 / 1000) % 60;
+            if (diff2 < 0){
+                seconds = seconds + 1;
+                seconds = Math.abs(seconds);
+            }
+            if (seconds < 10)
+                seconds = "0" + seconds;
+            var milliseconds = Math.floor(diff2 / 1000 * 60) % 60;
+            if (diff2 < 0){
+                milliseconds = milliseconds + 1;
+                milliseconds = Math.abs(milliseconds);
+            }
+            if (milliseconds < 10)
+                milliseconds = "0" + milliseconds;
+
+            if (was_over == true)
+                document.title = "!!!" + hours + ":" + minutes + ":" + seconds + "!!!";
+            else if (is_pause == "true")
+                document.title = "[" + hours + ":" + minutes + ":" + seconds + "]";
+            else
+                document.title = hours + ":" + minutes + ":" + seconds;
+
+            if (render)
+                timer.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="msc">' + milliseconds + "</span>";
+        }
+
+        function SetEndTimeVisual(){
+            var hoursET = end_time.getHours();
+            var minutesET = end_time.getMinutes();
+            if (minutesET < 10)
+                minutesET = "0" + minutesET;
+            var secondsET = end_time.getSeconds();
+            if (secondsET < 10)
+                secondsET = "0" + secondsET;
+            deadline.innerHTML = hoursET + ":" + minutesET + ":" + secondsET;
+        }
+
+        function SetRealTimeVisual(){
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var day = now.getDate();
+            var month = now.getMonth() + 1;
+            var year = now.getFullYear();
+            if (hours < 10)
+                hours = "0" + hours;
+            if (minutes < 10)
+                minutes = "0" + minutes;
+            if (seconds < 10)
+                seconds = "0" + seconds;
+            if (day < 10)
+                day = "0" + day;
+            if (month < 10)
+                month = "0" + month;
+            if (year < 10)
+                year = "0" + year;
+            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + "<br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
+        }
+
+        function Notify(theUrl)
+        {
+            try{
+                var audio = new Audio('Notify.wav');
+                audio.play();
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false );
+                xmlHttp.send( null );
+                return xmlHttp.responseText;
+            } catch (err) {
+                console.log("send");
+            }
+        }
+    </script>
+</html>
