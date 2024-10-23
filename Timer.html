@@ -29,6 +29,14 @@
             font-family: fantasy;
             letter-spacing: 3px;
         }
+        .timerHover {
+            transform: scale(1.1) !important;
+            color: rgb(255, 255, 255) !important;
+        }
+        .timerPause {
+            transform: scale(0.9);
+            color: rgb(133, 133, 133);
+        }
         .deleteTimeObj{
             display: block;
             border-radius: 12px;
@@ -45,10 +53,6 @@
         .deleteTimeObj:hover{
             background: #8a8a8a;
             transform: scale(1.1);
-        }
-        .timerHover {
-            transform: scale(1.1);
-            color: rgb(255, 255, 255);
         }
         .bodyHover{
             background-color: rgb(97, 0, 0);
@@ -125,7 +129,7 @@
         <div class="timer" id="timer"></div>
     </div>
     <div id="realTime" class="realTime"></div>
-        <div class="deadline"><span id="deadlineText" class="deadlineText">истекает в: </span><span id="deadline"></span></div>
+    <div class="deadline"><span id="deadlineText" class="deadlineText">истекает в: </span><span id="deadline"></span></div>
     <div class="deleteTimeObj" id="deleteTimeObj">сбросить</div>
 </body>
     <script>
@@ -173,6 +177,9 @@
 
         end_time = new Date(end_time);
         pause_start = new Date(pause_start);
+
+        if (is_pause == "true")
+            timer.classList.add("timerPause");
 
         SetEndTimeVisual();
 
@@ -233,6 +240,8 @@
             was_15_minutes = "false";
             was_over = "false";
 
+            timer.classList.add("timerPause");
+
             deadlineText.innerHTML = "истекает в: ";
 
             SetEndTimeVisual();
@@ -252,6 +261,7 @@
                 end_time.setMilliseconds(end_time.getMilliseconds() + deff);
                 console.log("Продлили таймер до " + end_time);
                 is_pause = "false";
+                timer.classList.remove("timerPause");
                 localStorage.setItem(end_time_key, end_time);
                 localStorage.setItem(is_pause_key, "false");
                 SetEndTimeVisual();
@@ -260,9 +270,11 @@
                 console.log("поставили паузу ");
                 document.title = "[" + document.title + "]";
                 is_pause = "true";
+                timer.classList.add("timerPause");
                 localStorage.setItem(is_pause_key, "true");
                 localStorage.setItem(pause_start_key, new Date());
                 SetEndTimeVisual();
+                SetTime();
             }
         }
 
@@ -343,8 +355,12 @@
             else
                 document.title = hours + ":" + minutes + ":" + seconds;
 
-            if (render)
-                timer.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="msc">' + milliseconds + "</span>";
+            if (render){
+                if (is_pause == "false")
+                    timer.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="msc">' + milliseconds + "</span>";
+                else
+                    timer.innerHTML = "[" + hours + ":" + minutes + ":" + seconds + ' <span class="msc">' + milliseconds + "</span>" + "]";
+            }
         }
 
         function SetEndTimeVisual(){
