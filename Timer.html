@@ -9,6 +9,7 @@
         body {
             font-family: system-ui;
             background: rgb(40, 40, 40);
+            font-variant-numeric: tabular-nums;
         }
         .outer {
             position: absolute;
@@ -26,6 +27,7 @@
             color: rgb(223, 223, 223);
             transition: all 0.3s ease-in-out;
             font-family: fantasy;
+            letter-spacing: 3px;
         }
         .deleteTimeObj{
             display: block;
@@ -376,6 +378,7 @@
                 month = "0" + month;
             if (year < 10)
                 year = "0" + year;
+
             realTime.innerHTML = hours + ":" + minutes + ":" + seconds + "<br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
         }
 
