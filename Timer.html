@@ -250,6 +250,11 @@
 
             deadlineText.innerHTML = "истекает в: ";
 
+            var list = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+            list.forEach(function(element) {
+                element.setAttribute('href', 'timer.png');
+            });
+
             SetEndTimeVisual();
             SetTime();
         }
