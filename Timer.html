@@ -51,6 +51,9 @@
             color: rgb(255, 255, 255);
             transition: all 0.1s ease-in-out;
             box-shadow: rgb(17 17 17) 5px 5px 10px;
+            width: 75px;
+            text-align: center;
+            z-index: 200;
         }
         .deleteTimeObj:hover{
             background: #8a8a8a;
@@ -125,6 +128,41 @@
             background: #8a8a8a;
             transform: scale(1.1);
         }
+        .inputTime {
+            height: 17px;
+            width: 70px;
+            font-size: 15px;
+            background-color: #474747;
+            border: 0px;
+            color: white;
+            text-align: center;
+        }
+        .inputTimeObj {
+            width: 75px;
+            display: none;
+            border-radius: 12px;
+            position: absolute;
+            padding: 3px 13px;
+            left: 20%;
+            bottom: 60px;
+            background: #474747;
+            border: 0px;
+            color: rgb(255, 255, 255);
+            transition: all 0.1s ease-in-out;
+            box-shadow: rgb(17 17 17) 5px 5px 10px;
+            z-index: 200;
+        }
+        .inputButton {
+            position: absolute;
+            left: 18%;
+            bottom: 0px;
+            height: 100px;
+            width: 160px;
+            z-index: 100;
+        }
+        .inputTimeObjHover {
+            display: block !important;
+        }
     </style>
 </head>
 <body id="body">
@@ -135,26 +173,28 @@
     </div>
     <div id="realTime" class="realTime"></div>
     <div class="deadline"><span id="deadlineText" class="deadlineText">истекает в: </span><span id="deadline"></span></div>
+    <div class="inputButton" id="inputButton"></div>
+    <div class="inputTimeObj" id="inputTimeObj"><center><input class="inputTime" type="text" id="time" name="time"/></center></div>
     <div class="deleteTimeObj" id="deleteTimeObj">сбросить</div>
 </body>
     <script>
-        const timer_hours = 8;
-        const timer_minutes = 0;
-        const timer_seconds = 0;
-
         const delay_in_milliseconds = 500;
 
         // --------------------
 
-        const end_time_key = "end_time_key";
-        const is_pause_key = "is_pause_key";
-        const pause_start_key = "pause_start_key";
+        const end_time_key = "end_time_key_1";
+        const is_pause_key = "is_pause_key_1";
+        const pause_start_key = "pause_start_key_1";
+        const time_text_key = "time_text_key_1";
 
         var render = true;
         var timer = document.getElementById("timer");
         var realTime = document.getElementById("realTime");
         var deadline = document.getElementById("deadline");
         var deadlineText = document.getElementById("deadlineText");
+        var inputButton = document.getElementById("inputButton");
+        var inputTimeObj = document.getElementById("inputTimeObj");
+        var time = document.getElementById("time");
 
         var end_time = localStorage.getItem(end_time_key);
         var is_pause = localStorage.getItem(is_pause_key);
@@ -163,6 +203,8 @@
         var was_one_hour = localStorage.getItem("was_one_hour");
         var was_15_minutes = localStorage.getItem("was_15_minutes");
         var was_over = localStorage.getItem("was_over");
+
+        time.value = localStorage.getItem(time_text_key);
 
         if (was_over == "true"){
             document.getElementById("body").classList.add("bodyHover");
@@ -176,7 +218,7 @@
         console.log("was_15_minutes from storage " + was_15_minutes);
         console.log("was_over from storage " + was_over);
 
-        if (end_time == null || is_pause == null || pause_start == null){
+        if (end_time == null || is_pause == null || pause_start == null || time.value == null){
             deleteTime();
         }
 
@@ -196,13 +238,36 @@
             timer.classList.remove("timerHover");
         })
 
+        inputButton.addEventListener('mouseover', function() {
+            inputTimeObj.classList.add("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        inputButton.addEventListener('mouseout', function() {
+            inputTimeObj.classList.remove("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        inputTimeObj.addEventListener('mouseover', function() {
+            inputTimeObj.classList.add("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        inputTimeObj.addEventListener('mouseout', function() {
+            inputTimeObj.classList.remove("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        deleteTimeObj.addEventListener('mouseover', function() {
+            inputTimeObj.classList.add("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        deleteTimeObj.addEventListener('mouseout', function() {
+            inputTimeObj.classList.remove("inputTimeObjHover");
+            localStorage.setItem(time_text_key, time.value);
+        })
+        
         document.addEventListener("visibilitychange", function(){
-            if (document.hidden) {
+            if (document.hidden) 
                 render = false;
-            }
-            else {
+            else 
                 render = true;
-            }
         });
 
         SetTime();
@@ -223,7 +288,31 @@
 
         function deleteTime()
         {
+            if (time.value == null || time.value == "null" || time.value == "")
+                time.value = "8:00:00"
+            else
+                time.value = localStorage.getItem(time_text_key);
+
+            localStorage.setItem(time_text_key, time.value);
+            
             document.getElementById("body").classList.remove("bodyHover");
+
+            if (time.value.includes('.'))
+                var nums = time.value.split('.');
+            else if (time.value.includes(','))
+                var nums = time.value.split(',');
+            else if (time.value.includes('|'))
+                var nums = time.value.split('|');
+            else if (time.value.includes(':'))
+                var nums = time.value.split(':');
+            else if (time.value.includes(';'))
+                var nums = time.value.split(';');
+
+            var timer_hours = Number(nums[0]);
+            var timer_minutes = Number(nums[1]);
+            var timer_seconds = Number(nums[2]);
+
+            console.log("setting timer: " + timer_hours + ":" + timer_minutes + ":" + timer_seconds)
 
             var now = new Date();
             localStorage.setItem(pause_start_key, now);
@@ -411,11 +500,13 @@
 
         function Notify(theUrl)
         {
+            theUrl = "https://httpstat.us/408";
             try{
                 var audio = new Audio('Notify.wav');
                 audio.play();
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", theUrl, false );
+                oxmlHttp.timeout = 3000;
                 xmlHttp.send( null );
                 return xmlHttp.responseText;
             } catch (err) {
