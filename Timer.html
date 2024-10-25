@@ -498,20 +498,27 @@
             realTime.innerHTML = hours + ":" + minutes + ":" + seconds + "<br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
         }
 
-        function Notify(theUrl)
+        async function Notify(theUrl)
         {
-            theUrl = "https://httpstat.us/408";
-            try{
+            try {
                 var audio = new Audio('Notify.wav');
                 audio.play();
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", theUrl, false );
-                oxmlHttp.timeout = 3000;
-                xmlHttp.send( null );
-                return xmlHttp.responseText;
-            } catch (err) {
-                console.log("send");
+                var m = replaceAll(theUrl, "%20", " ")
+                m = replaceAll(m, "https://diemonic.cloudpub.ru/", " (Notify) --- ")
+                console.log(m)
+                let response = await fetch(theUrl, { signal: AbortSignal.timeout(3000),  mode: 'no-cors' });
             }
+            catch (error){
+                console.error("Не удалось отправить уведомление: " + error);
+            }
+        }
+
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
         }
     </script>
 </html>
