@@ -163,6 +163,9 @@
         .inputTimeObjHover {
             display: block !important;
         }
+        .millisecondsRealTime {
+            font-size: 13px;
+        }
     </style>
 </head>
 <body id="body">
@@ -479,6 +482,7 @@
             var hours = now.getHours();
             var minutes = now.getMinutes();
             var seconds = now.getSeconds();
+            var Milliseconds = now.getMilliseconds();
             var day = now.getDate();
             var month = now.getMonth() + 1;
             var year = now.getFullYear();
@@ -488,6 +492,10 @@
                 minutes = "0" + minutes;
             if (seconds < 10)
                 seconds = "0" + seconds;
+            if (Milliseconds < 10)
+                Milliseconds = "00" + Milliseconds;
+            if (Milliseconds >= 10 && Milliseconds < 100)
+                Milliseconds = "0" + Milliseconds;
             if (day < 10)
                 day = "0" + day;
             if (month < 10)
@@ -495,7 +503,7 @@
             if (year < 10)
                 year = "0" + year;
 
-            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + "<br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
+            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="millisecondsRealTime">' + Milliseconds + "</span><br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
         }
 
         async function Notify(theUrl)
@@ -518,7 +526,7 @@
         }
 
         function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); 
         }
     </script>
 </html>
