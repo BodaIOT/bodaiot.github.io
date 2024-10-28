@@ -227,6 +227,7 @@
 
         end_time = new Date(end_time);
         pause_start = new Date(pause_start);
+        var difference_for_end_time_update = 0;
 
         if (is_pause == "true")
             timer.classList.add("timerPause");
@@ -286,6 +287,9 @@
 
             if (is_pause == "false"){
                 SetTime();
+            }
+            else {
+                SetEndTimeVisual();
             }
         }
 
@@ -451,6 +455,8 @@
             if (milliseconds < 10)
                 milliseconds = "0" + milliseconds;
 
+            difference_for_end_time_update = diff2;
+
             if (was_over == true)
                 document.title = "!!!" + hours + ":" + minutes + ":" + seconds + "!!!";
             else if (is_pause == "true")
@@ -467,14 +473,29 @@
         }
 
         function SetEndTimeVisual(){
-            var hoursET = end_time.getHours();
-            var minutesET = end_time.getMinutes();
-            if (minutesET < 10)
-                minutesET = "0" + minutesET;
-            var secondsET = end_time.getSeconds();
-            if (secondsET < 10)
-                secondsET = "0" + secondsET;
-            deadline.innerHTML = hoursET + ":" + minutesET + ":" + secondsET;
+            if (is_pause == "true" && was_over == "false"){
+                var nowU = new Date();
+                difference_for_end_time_update = Math.abs(difference_for_end_time_update);
+                nowU.setTime(nowU.getTime() + difference_for_end_time_update);
+                var hours = nowU.getHours();
+                var minutes = nowU.getMinutes();
+                var seconds = nowU.getSeconds();
+                if (minutes < 10)
+                    minutes = "0" + minutes;
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+                deadline.innerHTML = hours + ":" + minutes + ":" + seconds;
+            }
+            else if (was_over == "false"){
+                var hoursET = end_time.getHours();
+                var minutesET = end_time.getMinutes();
+                if (minutesET < 10)
+                    minutesET = "0" + minutesET;
+                var secondsET = end_time.getSeconds();
+                if (secondsET < 10)
+                    secondsET = "0" + secondsET;
+                deadline.innerHTML = hoursET + ":" + minutesET + ":" + secondsET;
+            }
         }
 
         function SetRealTimeVisual(){
@@ -486,8 +507,6 @@
             var day = now.getDate();
             var month = now.getMonth() + 1;
             var year = now.getFullYear();
-            if (hours < 10)
-                hours = "0" + hours;
             if (minutes < 10)
                 minutes = "0" + minutes;
             if (seconds < 10)
