@@ -250,9 +250,9 @@
       var channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
       var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
       $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
-      var link = data.items[0].link;
-      var id = link.substr(link.indexOf("=")+1);
-      $("#youtube_video").attr("src","https://youtube.com/embed/" + id + "?controls=1&showinfo=0&rel=0&enablejsapi=1");
+        var link = data.items[0].link;
+        var id = link.substr(link.indexOf("=")+1);
+        $("#youtube_video").attr("src","https://youtube.com/embed/" + id + "?controls=1&showinfo=0&rel=0&enablejsapi=1");
       });
 
       $(document).ready(function() {
@@ -265,7 +265,7 @@
           let today = new Date();
           console.log("Сейчас часов: " + today.getHours());
 
-          if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
+          if (true || news == "true") // if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
           {
             console.log("Show video");
             videoShowing = true;
