@@ -231,6 +231,10 @@
       </span>
     </center>
 
+    <div id="my_video_button" class="MyYouTubeVideoBUTTON">
+      StopGame: утренние новости
+    </div>
+
     <a href="https://bodaiot.github.io/Timer.html">
       <div id="timerButton" class="timerButton">
         <img src="timer.png" alt="" width="27px">
@@ -243,6 +247,9 @@
       var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
       var video_url_embed = "";
       var video_url = "";
+
+      document.getElementById("my_video_button").onclick = function(){ OpenVideo(); };
+
       $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
         var link = data.items[0].link;
         var id = link.substr(link.indexOf("=")+1);
@@ -258,10 +265,13 @@
           console.log("Сейчас часов: " + today.getHours());
           if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
           {
-            console.log(video_url);
-            window.open(video_url, '_blank');
+            OpenVideo();
           }
       });
+
+      function OpenVideo(){
+        window.open(video_url, '_blank');
+      }
   </script>
     <!-- YouTube end -->
 

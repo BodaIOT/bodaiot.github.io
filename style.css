@@ -250,32 +250,11 @@ body {
   margin-top: 20vh;
   scale: 1.7;
 }
-.MyYouTubeVideo{
-  position: absolute;
-  top: 101px;
-  right: 342px;
-  border: solid 14px black;
-  background-color: black;
-  display: block;
-  z-index: 100;
-  scale: 1.15;
-}
-.videoBackground{
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 90;
-}
-.videoBackground:hover{
-  cursor: pointer;
-}
+
 .MyYouTubeVideoBUTTON{
   position: absolute;
   top: 387px;
-  right: 715px;
+  right: 726px;
   border: solid 2px #858585;
   background-image: url(./gr.png);
   display: block;
@@ -289,7 +268,7 @@ body {
 .timerButton{
   position: absolute;
   top: 387px;
-  right: 732px;
+  right: 594px;
   border: solid 2px #858585;
   background-image: url(./gr.png);
   display: block;
