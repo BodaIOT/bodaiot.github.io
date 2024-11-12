@@ -14,20 +14,19 @@ j = 1;
 links.forEach(link => {
 	$.ajax({
 		url: 'https://api.rss2json.com/v1/api.json',
-        method: 'GET',
-        dataType: 'json',
-        data: {
-            rss_url: link,
-            api_key: 'shumz9hrtaravuvrbypfkyqlfyh6iehhdudyjnxj', // put your api key here
-            count: 10
-        },
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			rss_url: link,
+			api_key: 'shumz9hrtaravuvrbypfkyqlfyh6iehhdudyjnxj', // put your api key here
+			count: 10
+		},
 		success: function (result) {
 			RSS = document.getElementById("RSS" + j);
-			if (RSS != null)
-			{
+			if (RSS != null) {
 				j++;
 				result = result.items;
-				console.log(result);
+				//console.log(result);
 				result.forEach(element => {
 					date = element.pubDate;
 					// добавление даты
@@ -50,18 +49,18 @@ links.forEach(link => {
 					desc = element.description.replace("[…]", "") + "<br>" + date;
 
 					cs = smallTextSize;
-					if (element.title.length < 73){
+					if (element.title.length < 73) {
 						cs = bigTextSize;
 					}
-					else if (element.title.length >= 73 && element.title.length <= 87){
+					else if (element.title.length >= 73 && element.title.length <= 87) {
 						cs = normalTextSize;
 					}
-		
+
 					cds = smallDescSize;
-					if (element.description.length <= 225){
+					if (element.description.length <= 225) {
 						cds = bigDescSize;
 					}
-		
+
 					title = titleHighlighted(element.title);
 
 					RSS.innerHTML += `
@@ -74,78 +73,78 @@ links.forEach(link => {
 					</div>
 					</a>
 					`
-					
+
 				});
 			}
-			else{
+			else {
 				result = result.items;
 				news = document.getElementById("news");
 
-				result.slice(0,2).forEach(element => {
+				result.slice(0, 2).forEach(element => {
 					title = titleHighlighted(element.title);
 					news.innerHTML += title + "<br><br><br><br>";
 				})
 
-				console.log("hjkhjkkhk");
+				//console.log("hjkhjkkhk");
 			}
-			
+
 		},
 		error: function (error) {
-			  console.log("НЕ УДАЛОСЬ ПРОЧЕСТЬ RSS!!!");
+			console.log("НЕ УДАЛОСЬ ПРОЧЕСТЬ RSS!!!");
 		}
 	});
-	
+
 });
 
-String.prototype.replaceAt = function(index, replacement) {
+String.prototype.replaceAt = function (index, replacement) {
 	return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
 
 function titleHighlighted(s) {
-	console.log(s);
-	console.log(s.length);
+	//console.log(s);
+	//console.log(s.length);
 	answer = "";
 	flag = false;
 
-	while (s.includes("&amp;#039;")){
+	while (s.includes("&amp;#039;")) {
 		s = s.replace("&amp;#039;", "'");
 	}
-	while (s.includes("&amp;amp;")){
+	while (s.includes("&amp;amp;")) {
 		s = s.replace("&amp;amp;", "&");
 	}
-		
+
 	for (let i = 0; i < s.length; i++) {
-		if (isCharacterALetter(s[i]) && flag == false){
+		if (isCharacterALetter(s[i]) && flag == false) {
 			flag = true;
 			answer += '<span class="titleHighlighted">' + s[i];
 		}
-		else if (isCharacterALetter(s[i]) && flag == true){
+		else if (isCharacterALetter(s[i]) && flag == true) {
 			answer += s[i];
 		}
-		else if (s[i] == " " && flag == true){
+		else if (s[i] == " " && flag == true) {
 			flag = false;
 			answer += '</span>' + s[i];
 		}
-		else if (isCharacterALetter(s[i]) == false){
+		else if (isCharacterALetter(s[i]) == false) {
 			answer += s[i];
 		}
 	}
-	
+
 	answer2 = "";
 	flag = false;
 	for (let i = 0; i < answer.length; i++) {
-		if (isCharacterNumber(answer[i]) && flag == false){
+		if (isCharacterNumber(answer[i]) && flag == false) {
 			flag = true;
 			answer2 += '<span class="titleNumbers">' + answer[i];
 		}
-		else if (isCharacterNumber(answer[i]) && flag == true){
+		else if (isCharacterNumber(answer[i]) && flag == true) {
 			answer2 += answer[i];
 		}
-		else if ((answer[i] == " " || isCharacterALetter(answer[i]) == true || answer[i] == "<") && flag == true){
+		else if ((answer[i] == " " || isCharacterALetter(answer[i]) == true || answer[i] == "<") && flag == true) {
 			flag = false;
 			answer2 += '</span>' + answer[i];
 		}
-		else if (isCharacterNumber(answer[i]) == false){
+		else if (isCharacterNumber(answer[i]) == false) {
 			answer2 += answer[i];
 		}
 	}
@@ -153,13 +152,13 @@ function titleHighlighted(s) {
 	answer3 = "";
 	flag = false;
 	for (let i = 0; i < answer2.length; i++) {
-		if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "«" || answer2[i] == '"') && flag == false){
+		if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "«" || answer2[i] == '"') && flag == false) {
 			if (answer2[i - 1] != "=" && answer2[i + 1] != ">") {
 				flag = true;
 				answer3 += '<span class="titleHighlighted">' + answer2[i];
 			}
 		}
-		else if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "»" || answer2[i] == '"') && flag == true){
+		else if ((answer2[i] == "'" || answer2[i] == "`" || answer2[i] == "»" || answer2[i] == '"') && flag == true) {
 			if (answer2[i - 1] != "=" && answer2[i + 1] != ">") {
 				flag = false;
 				answer3 += answer2[i] + '</span>';
