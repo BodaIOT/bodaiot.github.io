@@ -256,13 +256,16 @@
       });
 
       $(document).ready(function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          var news = urlParams.get('news');
+          console.log("news", news);
           var my_video = document.getElementById("my_video");
           var my_video = my_video.getElementsByTagName("iframe")[0].contentWindow;
         
           let today = new Date();
           console.log("Сейчас часов: " + today.getHours());
 
-          if (today.getHours() > 7 && today.getHours() < 10)
+          if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
           {
             console.log("Show video");
             videoShowing = true;
