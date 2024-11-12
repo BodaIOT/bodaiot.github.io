@@ -289,14 +289,22 @@ body {
 .timerButton{
   position: absolute;
   top: 387px;
-  right: 607px;
+  right: 732px;
   border: solid 2px #858585;
   background-image: url(./gr.png);
   display: block;
   border-radius: 19px;
-  padding: 12px;
+  padding: 7px;
   color: #fff;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
+
+.timerButtonText{
+  margin: 4px;
+}
+
 .timerButton:hover{
   scale: 1.1;
   cursor: pointer;

@@ -230,77 +230,36 @@
         </div>
       </span>
     </center>
-    
-    <!-- YouTube start -->
-    <div id="videoBackground" class="videoBackground"></div>
-    <div id="my_video" class="MyYouTubeVideo">
-      <iframe id="youtube_video" width="1200" height="680" frameborder="0" allowfullscreen></iframe>
-    </div>
 
-    <div id="my_video_button" class="MyYouTubeVideoBUTTON">
-      StopGame: утренние новости
-    </div>
-    <a href="https://bodaiot.github.io/Timer.html">><div id="timerButton" class="timerButton">
-      Таймер
-    </div></a>
+    <a href="https://bodaiot.github.io/Timer.html">
+      <div id="timerButton" class="timerButton">
+        <img src="timer.png" alt="" width="27px">
+        <div class="timerButtonText">Таймер</div>
+      </div>
+    </a>
 
     <script>
-      var videoShowing = false;
-
       var channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
       var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
+      var video_url_embed = "";
+      var video_url = "";
       $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
         var link = data.items[0].link;
         var id = link.substr(link.indexOf("=")+1);
-        $("#youtube_video").attr("src","https://youtube.com/embed/" + id + "?controls=1&showinfo=0&rel=0&enablejsapi=1&origin=bodaiot.github.io");
+        video_url = "https://www.youtube.com/watch?v=" + id;
       });
 
-      $(document).ready(function() {
+      $(window).on('load', function() {
           const urlParams = new URLSearchParams(window.location.search);
           var news = urlParams.get('news');
           console.log("news", news);
-          var my_video = document.getElementById("my_video");
-          var my_video = my_video.getElementsByTagName("iframe")[0].contentWindow;
         
           let today = new Date();
           console.log("Сейчас часов: " + today.getHours());
-
-          if (true || news == "true") // if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
+          if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
           {
-            console.log("Show video");
-            videoShowing = true;
-            setTimeout(() => {
-                my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
-            }, 1000);
-          }
-          else{
-            videoShowing = false;
-            document.getElementById("my_video").style.display = "none";
-            document.getElementById("videoBackground").style.display = "none";
-          }
-  
-          var my_video_button = document.getElementById("my_video_button");
-          my_video_button.onclick = function(){
-            if (videoShowing === true)
-            {
-              document.getElementById("my_video").style.display = "none";
-              document.getElementById("videoBackground").style.display = "none";
-              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
-            }
-            else {
-              document.getElementById("my_video").style.display = "block";
-              document.getElementById("videoBackground").style.display = "block";
-              setTimeout(() => {
-                  my_video.postMessage('{"event": "command", "func": "playVideo", "args": ""}', "*");
-              }, 100);
-            }
-            videoShowing = !videoShowing;
-          }
-          document.getElementById("videoBackground").onclick = function(){
-              document.getElementById("my_video").style.display = "none";
-              document.getElementById("videoBackground").style.display = "none";
-              my_video.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}', "*");
-            videoShowing = false;
+            console.log(video_url);
+            window.open(video_url, '_blank');
           }
       });
   </script>
