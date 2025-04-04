@@ -451,9 +451,61 @@
         .hiddenNumber {
             visibility: hidden;
         }
+
+        .settingsPopap{
+            background-color: #0f0f0f96;
+            color: #fff;
+            z-index: 1000000;
+            border-radius: 30px;
+            position: absolute;
+            transform: translate(50%, 50%);
+            width: 50%;
+            height: 50%;
+            visibility: hidden;
+        }
+        .settings {
+            padding: 50px;
+        }
+        .settingsOpenButton {
+            color: #fff;
+            position: absolute;
+            font-size: 25px;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+        }
+        .settingsOpenButton:hover {
+            scale: 1.3;
+        }
+        .settingsCloseButton {
+            position: absolute;
+            font-size: 25px;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+        }
     </style>
 </head>
 <body id="body">
+    <div class="settingsOpenButton" id="settingsOpenButton">X</div>
+
+    <div class="settingsPopap" id="settingsPopap">
+        <div class="settings">
+            <input
+                type="text"
+                id="urlNotifyInput"
+                name="urlNotifyInput"
+                maxlength="50"
+                size="30" 
+            />
+            <br>
+            <div id="testUrlNotify" style="cursor: pointer;">test Url Notify</div>
+            <br><br><br>
+            <div id="saveSettings" style="cursor: pointer;">save settings</div>
+        </div>
+        <div class="settingsCloseButton" id="settingsCloseButton">X</div>
+    </div>
+
     <a href="https://bodaiot.github.io/HomePage.html"><div class="homePage">Home Page</div></a>
 
     <div class="clockDiv">
@@ -513,6 +565,10 @@
         const time_text_key = "time_text_key_1";
 
         const numbers_enabled = "numbers_enabled";
+
+        let settingsOpenButton = document.getElementById("settingsOpenButton");
+        let settingsCloseButton = document.getElementById("settingsCloseButton");
+        let settingsPopap = document.getElementById("settingsPopap");
 
         let render = true;
         let timer = document.getElementById("timer");
@@ -575,6 +631,24 @@
         SetEndTimeVisual();
 
         clockAnalog.onclick = ToggleNumbers;
+
+        settingsOpenButton.onclick = function(){ 
+            settingsPopap.style.visibility = "visible";
+        };
+        settingsCloseButton.onclick = function(){ 
+            settingsPopap.style.visibility = "hidden";
+        };
+
+        document.getElementById("urlNotifyInput").value = localStorage.getItem("url_settings");
+
+        document.getElementById("saveSettings").onclick = function(){ 
+            localStorage.setItem("url_settings", document.getElementById("urlNotifyInput").value);
+            alert("Сохранено!");
+        };
+
+        document.getElementById("testUrlNotify").onclick = function(){ 
+            Notify(localStorage.getItem("url_settings") + "TestSetUrlNotifyinTimer");
+        };
 
         pauseObj.onclick = TogglePause;
         pauseObj.addEventListener('mouseover', function() {
@@ -758,12 +832,12 @@
                 if (diff2 >= 59 * 60 * 1000 && diff2 <= 60 * 60 * 1000 && (was_one_hour == "false" || was_one_hour == null)) {
                     was_one_hour = true;
                     localStorage.setItem("was_one_hour", "true");
-                    Notify("https://diemonic.cloudpub.ru/Работать%20осталось%201%20час")
+                    Notify(localStorage.getItem("url_settings") + "Работать%20осталось%201%20час")
                 }
                 else if (diff2 >= 14 * 60 * 1000 && diff2 <= 15 * 60 * 1000 && (was_15_minutes == "false" || was_15_minutes == null)) {
                     was_15_minutes = true;
                     localStorage.setItem("was_15_minutes", "true");
-                    Notify("https://diemonic.cloudpub.ru/Работать%20осталось%2015%20минут")
+                    Notify(localStorage.getItem("url_settings") + "Работать%20осталось%2015%20минут")
                 }
                 else if (diff2 <= 0 && (was_over == "false" || was_over == null)) {
                     was_over = true;
@@ -775,7 +849,7 @@
                         element.setAttribute('href', 'timer_out.png');
                     });
                     console.log("timer over");
-                    Notify("https://diemonic.cloudpub.ru/Конец%20рабочего%20дня")
+                    Notify(localStorage.getItem("url_settings") + "Конец%20рабочего%20дня")
                 }
 
                 Visual(diff2);
@@ -907,7 +981,6 @@
                 var audio = new Audio('Notify.wav');
                 audio.play();
                 var m = replaceAll(theUrl, "%20", " ")
-                m = replaceAll(m, "https://diemonic.cloudpub.ru/", " (Notify) --- ")
                 console.log(m)
                 let response = await fetch(theUrl, { signal: AbortSignal.timeout(3000),  mode: 'no-cors' });
             }
