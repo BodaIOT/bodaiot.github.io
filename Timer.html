@@ -167,6 +167,10 @@
         .millisecondsRealTime {
             font-size: 13px;
         } 
+        a {
+            text-decoration: none;
+            color: rgb(190 190 190);
+        }
 
         
         .clockDiv {
@@ -1008,7 +1012,7 @@
             if (year < 10)
                 year = "0" + year;
 
-            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="millisecondsRealTime">' + Milliseconds + "</span><br>" + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year;
+            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="millisecondsRealTime">' + Milliseconds + '</span><br><a href="https://time.is/calendar" target="_blank">' + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year + "</a>";
         }
 
         async function Notify(theUrl)
