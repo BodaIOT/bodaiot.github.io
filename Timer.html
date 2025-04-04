@@ -505,10 +505,21 @@
             background-size: 800% 800%;
             animation: animationBackGr 20s ease infinite;
         }
+        .animationBack2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            /*background: linear-gradient(135deg, #ff00623b, #000000, #ff00623b);*/
+            background: linear-gradient(-45deg, #282828, #282828, rgb(255, 0, 85), #282828, #282828);
+            background-size: 800% 800%;
+            animation: animationBackGr 2s ease infinite;
+        }
     </style>
 </head>
 <body id="body">
-    <div class="animationBack"></div>
+    <div class="animationBack" id="animationBack"></div>
 
     <div class="settingsOpenButton" id="settingsOpenButton"><img width="40px" style="filter: brightness(0.4);" src="settingsIcon.svg" alt=""></div>
 
@@ -765,7 +776,8 @@
 
             localStorage.setItem(time_text_key, time.value);
             
-            document.getElementById("body").classList.remove("bodyHover");
+            document.getElementById("animationBack").classList.remove("animationBack2");
+            document.getElementById("animationBack").classList.add("animationBack");
 
             if (time.value.includes('.'))
                 var nums = time.value.split('.');
@@ -865,7 +877,8 @@
                 else if (diff2 <= 0 && (was_over == "false" || was_over == null)) {
                     was_over = true;
                     localStorage.setItem("was_over", "true");
-                    document.getElementById("body").classList.add("bodyHover");
+                    document.getElementById("animationBack").classList.remove("animationBack");
+                    document.getElementById("animationBack").classList.add("animationBack2");
                     deadlineText.innerHTML = "истек в ";
                     var list = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
                     list.forEach(function(element) {
