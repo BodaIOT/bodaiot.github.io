@@ -169,6 +169,13 @@
         } 
 
         
+        .clockDiv {
+            transform: translate(50%, 60%);
+            top: 0%;
+            z-index: 1;
+            right: 50%;
+            position: absolute;
+        }
         .clock {
             width: 12vw;
             height: 12vw;
@@ -178,14 +185,17 @@
                             inset -4px -4px 10px rgba(67,67,67,0.5),
                             4px 4px 10px rgba(0,0,0,0.3);
             border-radius: 50%;
-            margin: 50px auto;
-            transform: translate(50%, 40%);
-            top: 0%;
             z-index: 1;
-            right: 50%;
-            position: absolute;
             padding: 1rem;
             cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .clock:hover {
+            scale: 1.02;
+            box-shadow: -4px -4px 10px rgba(255, 0, 106, 0.5),
+                            inset 4px 4px 10px rgba(0,0,0,0.5),
+                            inset -4px -4px 10px rgba(67, 67, 67, 0.5),
+                            4px 4px 10px rgba(0,0,0,0.3);
         }
 
         .outer-clock-face {
@@ -310,7 +320,7 @@
             height: 3px;
             width: 50%;
             z-index: 1;
-            background: #c21818c2;
+            background: rgba(255, 0, 106, 1);
         }
 
         .hand.hour-hand {
@@ -446,29 +456,31 @@
 <body id="body">
     <a href="https://bodaiot.github.io/HomePage.html"><div class="homePage">Home Page</div></a>
 
-    <div class="clock" id="clockAnalog">
-        <div class="outer-clock-face"> 
-            <div class="markingNumber number number1"><div class="numberCell rotateNumer1">1</div></div> 
-            <div class="markingNumber number number2"><div class="numberCell rotateNumer2">2</div></div> 
-            <div class="markingNumber number number3"><div class="numberCell rotateNumer3">3</div></div> 
-            <div class="markingNumber number number4"><div class="numberCell rotateNumer4">4</div></div> 
-            <div class="markingNumber number number5"><div class="numberCell rotateNumer5">5</div></div> 
-            <div class="markingNumber number number6"><div class="numberCell rotateNumer6">6</div></div> 
-            <div class="markingNumber number number7"><div class="numberCell rotateNumer7">7</div></div> 
-            <div class="markingNumber number number8"><div class="numberCell rotateNumer8">8</div></div> 
-            <div class="markingNumber number number9"><div class="numberCell rotateNumer9">9</div></div> 
-            <div class="markingNumber number number10"><div class="numberCell rotateNumer10">10</div></div> 
-            <div class="markingNumber number number11"><div class="numberCell rotateNumer11">11</div></div> 
-            <div class="markingNumber number number12"><div class="numberCell rotateNumer12">12</div></div> 
-            <div class="marking marking-one"></div>
-            <div class="marking marking-two"></div>
-            <div class="marking marking-three"></div>
-            <div class="marking marking-four"></div>
-            <div class="hand target-hand"></div>
-            <div class="inner-clock-face">
-                <div class="hand hour-hand"></div>
-                <div class="hand min-hand"></div>
-                <div class="hand second-hand"></div>
+    <div class="clockDiv">
+        <div class="clock" id="clockAnalog">
+            <div class="outer-clock-face"> 
+                <div class="markingNumber number number1"><div class="numberCell rotateNumer1">1</div></div> 
+                <div class="markingNumber number number2"><div class="numberCell rotateNumer2">2</div></div> 
+                <div class="markingNumber number number3"><div class="numberCell rotateNumer3">3</div></div> 
+                <div class="markingNumber number number4"><div class="numberCell rotateNumer4">4</div></div> 
+                <div class="markingNumber number number5"><div class="numberCell rotateNumer5">5</div></div> 
+                <div class="markingNumber number number6"><div class="numberCell rotateNumer6">6</div></div> 
+                <div class="markingNumber number number7"><div class="numberCell rotateNumer7">7</div></div> 
+                <div class="markingNumber number number8"><div class="numberCell rotateNumer8">8</div></div> 
+                <div class="markingNumber number number9"><div class="numberCell rotateNumer9">9</div></div> 
+                <div class="markingNumber number number10"><div class="numberCell rotateNumer10">10</div></div> 
+                <div class="markingNumber number number11"><div class="numberCell rotateNumer11">11</div></div> 
+                <div class="markingNumber number number12"><div class="numberCell rotateNumer12">12</div></div> 
+                <div class="marking marking-one"></div>
+                <div class="marking marking-two"></div>
+                <div class="marking marking-three"></div>
+                <div class="marking marking-four"></div>
+                <div class="hand target-hand"></div>
+                <div class="inner-clock-face">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand min-hand"></div>
+                    <div class="hand second-hand"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -616,13 +628,9 @@
             const items = document.querySelectorAll('.number');
 
             if (localStorage.getItem(numbers_enabled) == "true")
-            {
                 items.forEach(item => item.classList.add("hiddenNumber"));
-            }
             else
-            {
                 items.forEach(item => item.classList.remove("hiddenNumber"));
-            }
         }
 
         function ToggleNumbers(){
