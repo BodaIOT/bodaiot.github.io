@@ -189,6 +189,7 @@
             padding: 1rem;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
+            background: #282828;
         }
         .clock:hover {
             scale: 1.02;
@@ -485,9 +486,30 @@
             top: 20px;
             right: 20px;
         }
+        @keyframes animationBackGr {
+            0% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .animationBack {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            /*background: linear-gradient(135deg, #ff00623b, #000000, #ff00623b);*/
+            background: linear-gradient(-45deg, #282828, #282828, rgb(43, 31, 35), #282828, #282828);
+            background-size: 800% 800%;
+            animation: animationBackGr 20s ease infinite;
+        }
     </style>
 </head>
 <body id="body">
+    <div class="animationBack"></div>
+
     <div class="settingsOpenButton" id="settingsOpenButton"><img width="40px" style="filter: brightness(0.4);" src="settingsIcon.svg" alt=""></div>
 
     <div class="settingsPopap" id="settingsPopap">
@@ -500,9 +522,9 @@
                 size="30" 
             />
             <br>
-            <div id="testUrlNotify" style="cursor: pointer;">test Url Notify</div>
+            <div id="testUrlNotify" style="cursor: pointer;">протестировать Url Notify</div>
             <br><br><br>
-            <div id="saveSettings" style="cursor: pointer;">save settings</div>
+            <div id="saveSettings" style="cursor: pointer;">сохранить настройки</div>
         </div>
         <div class="settingsCloseButton" id="settingsCloseButton">X</div>
     </div>
