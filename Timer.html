@@ -13,7 +13,7 @@
         }
         .outer {
             position: absolute;
-            top: 50%;
+            top: 65%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -65,10 +65,10 @@
         .pauseButton {
             background-color: rgba(141, 78, 78, 0);
             width: 70vw;
-            height: 40vh;
+            height: 30vh;
             font-size: 100px;
             transform: translate(50%, -50%);
-            top: 50%;
+            top: 65%;
             right: 50%;
             position: absolute;
             z-index: 20;
@@ -115,6 +115,7 @@
             margin-right: auto;
             left: 0;
             right: 0;
+            z-index: 100;
             text-align: center;
             border-radius: 12px;
             padding: 3px 13px;
@@ -165,11 +166,313 @@
         }
         .millisecondsRealTime {
             font-size: 13px;
+        } 
+
+        
+        .clock {
+            width: 12vw;
+            height: 12vw;
+            border: 7px solid #282828;
+            box-shadow: -4px -4px 10px rgba(67,67,67,0.5),
+                            inset 4px 4px 10px rgba(0,0,0,0.5),
+                            inset -4px -4px 10px rgba(67,67,67,0.5),
+                            4px 4px 10px rgba(0,0,0,0.3);
+            border-radius: 50%;
+            margin: 50px auto;
+            transform: translate(50%, 40%);
+            top: 0%;
+            z-index: 1;
+            right: 50%;
+            position: absolute;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .outer-clock-face {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background: #282828;
+            /*overflow: hidden;*/
+        }
+
+        .outer-clock-face::after {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            transform: rotate(90deg)
+        }
+
+        .outer-clock-face::before,
+        .outer-clock-face::after,
+        .outer-clock-face .marking{
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background: #a0e4a6;
+            z-index: 0;
+            left: 49%;
+        }
+
+        .outer-clock-face .marking {
+            background: #bdbdcb;
+            width: 3px;
+        }
+
+        .outer-clock-face .markingNumber {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: calc(100% + 120px);
+            background: none;
+            width: 3px;
+            z-index: 0;
+            left: 49%;
+            top: -60px;
+        }
+
+        .outer-clock-face .marking.marking-one {
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            transform: rotate(30deg);
+            color: #fff;
+        }
+
+        .outer-clock-face .marking.marking-one {
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            transform: rotate(30deg);
+            color: #fff;
+        }
+
+        .outer-clock-face .marking.marking-two {
+            -webkit-transform: rotate(60deg);
+            -moz-transform: rotate(60deg);
+            transform: rotate(60deg);
+            color: #fff;
+        }
+
+        .outer-clock-face .marking.marking-three {
+            -webkit-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            transform: rotate(120deg);
+            color: #fff;
+        }
+
+        .outer-clock-face .marking.marking-four {
+            -webkit-transform: rotate(150deg);
+            -moz-transform: rotate(150deg);
+            transform: rotate(150deg);
+            color: #fff;
+        }
+
+        .inner-clock-face {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: #282828;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            z-index: 1;
+        }
+
+        .inner-clock-face::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 18px;
+            margin-left: -9px;
+            margin-top: -6px;
+            background: #4d4b63;
+            z-index: 11;
+        }
+
+        .hand {
+            width: 50%;
+            right: 50%;
+            height: 6px;
+            position: absolute;
+            top: 50%;
+            border-radius: 6px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .target-hand {
+            height: 3px;
+            width: 50%;
+            z-index: 1;
+            background: #c21818c2;
+        }
+
+        .hand.hour-hand {
+            width: 30%;
+            z-index: 3;
+            background: #4986c2;
+        }
+
+        .hand.min-hand {
+            height: 3px;
+            z-index: 10;
+            background: #61afff;
+            width: 40%;
+        }
+
+        .hand.second-hand {
+            background: #ffffff;
+            width: 45%;
+            height: 2px;
+        }
+
+        .outer-clock-face .number {
+            color: #fff;
+            position: absolute;
+        }
+
+        .outer-clock-face .number1 {
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            transform: rotate(30deg);
+        }
+        .outer-clock-face .number2 {
+            -webkit-transform: rotate(60deg);
+            -moz-transform: rotate(60deg);
+            transform: rotate(60deg);
+        }
+        .outer-clock-face .number3 {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+        .outer-clock-face .number4 {
+            -webkit-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            transform: rotate(120deg);
+        }
+        .outer-clock-face .number5 {
+            -webkit-transform: rotate(150deg);
+            -moz-transform: rotate(150deg);
+            transform: rotate(150deg);
+        }
+        .outer-clock-face .number6 {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+        .outer-clock-face .number7 {
+            -webkit-transform: rotate(210deg);
+            -moz-transform: rotate(210deg);
+            transform: rotate(210deg);
+        }
+        .outer-clock-face .number8 {
+            -webkit-transform: rotate(240deg);
+            -moz-transform: rotate(240deg);
+            transform: rotate(240deg);
+        }
+        .outer-clock-face .number9 {
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            transform: rotate(270deg);
+        }
+        .outer-clock-face .number10 {
+            -webkit-transform: rotate(300deg);
+            -moz-transform: rotate(300deg);
+            transform: rotate(300deg);
+        }
+        .outer-clock-face .number11 {
+            -webkit-transform: rotate(330deg);
+            -moz-transform: rotate(330deg);
+            transform: rotate(330deg);
+        }
+        .outer-clock-face .number12 {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        .numberCell {
+            position: absolute;
+            left: -6px;
+            font-size: 18px;
+        }
+        .rotateNumer1 {
+            transform: rotate(-30deg);
+        }
+        .rotateNumer2 {
+            transform: rotate(-60deg);
+        }
+        .rotateNumer3 {
+            transform: rotate(-90deg);
+        }
+        .rotateNumer4 {
+            transform: rotate(-120deg);
+        }
+        .rotateNumer5 {
+            transform: rotate(-150deg);
+        }
+        .rotateNumer6 {
+            transform: rotate(-180deg);
+        }
+        .rotateNumer7 {
+            transform: rotate(-210deg);
+        }
+        .rotateNumer8 {
+            transform: rotate(-240deg);
+        }
+        .rotateNumer9 {
+            transform: rotate(-270deg);
+        }
+        .rotateNumer10 {
+            transform: rotate(-300deg);
+        }
+        .rotateNumer11 {
+            transform: rotate(-330deg);
+        }
+        .rotateNumer12 {
+            transform: rotate(0deg);
+        }
+        .hiddenNumber {
+            visibility: hidden;
         }
     </style>
 </head>
 <body id="body">
     <a href="https://bodaiot.github.io/HomePage.html"><div class="homePage">Home Page</div></a>
+
+    <div class="clock" id="clockAnalog">
+        <div class="outer-clock-face"> 
+            <div class="markingNumber number number1"><div class="numberCell rotateNumer1">1</div></div> 
+            <div class="markingNumber number number2"><div class="numberCell rotateNumer2">2</div></div> 
+            <div class="markingNumber number number3"><div class="numberCell rotateNumer3">3</div></div> 
+            <div class="markingNumber number number4"><div class="numberCell rotateNumer4">4</div></div> 
+            <div class="markingNumber number number5"><div class="numberCell rotateNumer5">5</div></div> 
+            <div class="markingNumber number number6"><div class="numberCell rotateNumer6">6</div></div> 
+            <div class="markingNumber number number7"><div class="numberCell rotateNumer7">7</div></div> 
+            <div class="markingNumber number number8"><div class="numberCell rotateNumer8">8</div></div> 
+            <div class="markingNumber number number9"><div class="numberCell rotateNumer9">9</div></div> 
+            <div class="markingNumber number number10"><div class="numberCell rotateNumer10">10</div></div> 
+            <div class="markingNumber number number11"><div class="numberCell rotateNumer11">11</div></div> 
+            <div class="markingNumber number number12"><div class="numberCell rotateNumer12">12</div></div> 
+            <div class="marking marking-one"></div>
+            <div class="marking marking-two"></div>
+            <div class="marking marking-three"></div>
+            <div class="marking marking-four"></div>
+            <div class="hand target-hand"></div>
+            <div class="inner-clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand min-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="pauseButton" id="pauseObj"></div>
     <div class="outer">
         <div class="timer" id="timer"></div>
@@ -185,29 +488,54 @@
 
         // --------------------
 
+        const secondHand = document.querySelector('.second-hand');
+        const minsHand = document.querySelector('.min-hand');
+        const hourHand = document.querySelector('.hour-hand');
+        const targetHand = document.querySelector('.target-hand');
+
+        let clockAnalog = document.getElementById("clockAnalog");
+
         const end_time_key = "end_time_key_1";
         const is_pause_key = "is_pause_key_1";
         const pause_start_key = "pause_start_key_1";
         const time_text_key = "time_text_key_1";
 
-        var render = true;
-        var timer = document.getElementById("timer");
-        var realTime = document.getElementById("realTime");
-        var deadline = document.getElementById("deadline");
-        var deadlineText = document.getElementById("deadlineText");
-        var inputButton = document.getElementById("inputButton");
-        var inputTimeObj = document.getElementById("inputTimeObj");
-        var time = document.getElementById("time");
+        const numbers_enabled = "numbers_enabled";
 
-        var end_time = localStorage.getItem(end_time_key);
-        var is_pause = localStorage.getItem(is_pause_key);
-        var pause_start = localStorage.getItem(pause_start_key);
+        let render = true;
+        let timer = document.getElementById("timer");
+        let realTime = document.getElementById("realTime");
+        let deadline = document.getElementById("deadline");
+        let deadlineText = document.getElementById("deadlineText");
+        let inputButton = document.getElementById("inputButton");
+        let inputTimeObj = document.getElementById("inputTimeObj");
+        let time = document.getElementById("time");
 
-        var was_one_hour = localStorage.getItem("was_one_hour");
-        var was_15_minutes = localStorage.getItem("was_15_minutes");
-        var was_over = localStorage.getItem("was_over");
+        let end_time = localStorage.getItem(end_time_key);
+        let is_pause = localStorage.getItem(is_pause_key);
+        let pause_start = localStorage.getItem(pause_start_key);
+
+        let was_one_hour = localStorage.getItem("was_one_hour");
+        let was_15_minutes = localStorage.getItem("was_15_minutes");
+        let was_over = localStorage.getItem("was_over");
 
         time.value = localStorage.getItem(time_text_key);
+
+        function setDateAnalog() {
+            const now = new Date();
+
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const mins = now.getMinutes();
+            const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+            minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+            const hour = now.getHours();
+            const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+            hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+        }
 
         if (was_over == "true"){
             document.getElementById("body").classList.add("bodyHover");
@@ -233,6 +561,8 @@
             timer.classList.add("timerPause");
 
         SetEndTimeVisual();
+
+        clockAnalog.onclick = ToggleNumbers;
 
         pauseObj.onclick = TogglePause;
         pauseObj.addEventListener('mouseover', function() {
@@ -276,13 +606,41 @@
 
         SetTime();
         SetRealTimeVisual();
+        UpdateNumbersVisual();
 
         deleteTimeObj.onclick = deleteTime;
 
         setInterval(UpdateTimer, delay_in_milliseconds);
 
+        function UpdateNumbersVisual(){
+            const items = document.querySelectorAll('.number');
+
+            if (localStorage.getItem(numbers_enabled) == "true")
+            {
+                items.forEach(item => item.classList.add("hiddenNumber"));
+            }
+            else
+            {
+                items.forEach(item => item.classList.remove("hiddenNumber"));
+            }
+        }
+
+        function ToggleNumbers(){
+            if (localStorage.getItem(numbers_enabled) == undefined || localStorage.getItem(numbers_enabled) == null){
+                localStorage.setItem(numbers_enabled, "false");
+            }
+
+            if (localStorage.getItem(numbers_enabled) == "true")
+                localStorage.setItem(numbers_enabled, "false");
+            else
+                localStorage.setItem(numbers_enabled, "true");
+
+            UpdateNumbersVisual();
+        }
+
         function UpdateTimer() 
         {
+            setDateAnalog();
             SetRealTimeVisual();
 
             if (is_pause == "false"){
@@ -474,26 +832,36 @@
 
         function SetEndTimeVisual(){
             if (is_pause == "true" && was_over == "false"){
-                var nowU = new Date();
+                let nowU = new Date();
                 difference_for_end_time_update = Math.abs(difference_for_end_time_update);
                 nowU.setTime(nowU.getTime() + difference_for_end_time_update);
-                var hours = nowU.getHours();
-                var minutes = nowU.getMinutes();
-                var seconds = nowU.getSeconds();
+                let hours = nowU.getHours();
+                let minutes = nowU.getMinutes();
+                let seconds = nowU.getSeconds();
+
+                let hourDegrees = ((hours / 12) * 360) + ((minutes/60)*30) + 90;
+                targetHand.style.transform = `rotate(${hourDegrees}deg)`;
+
                 if (minutes < 10)
                     minutes = "0" + minutes;
                 if (seconds < 10)
                     seconds = "0" + seconds;
+
                 deadline.innerHTML = hours + ":" + minutes + ":" + seconds;
             }
             else if (was_over == "false"){
-                var hoursET = end_time.getHours();
-                var minutesET = end_time.getMinutes();
+                let hoursET = end_time.getHours();
+                let minutesET = end_time.getMinutes();
+                
+                let hourDegrees = ((hoursET / 12) * 360) + ((minutesET/60)*30) + 90;
+                targetHand.style.transform = `rotate(${hourDegrees}deg)`;
+
                 if (minutesET < 10)
                     minutesET = "0" + minutesET;
-                var secondsET = end_time.getSeconds();
+                    let secondsET = end_time.getSeconds();
                 if (secondsET < 10)
                     secondsET = "0" + secondsET;
+
                 deadline.innerHTML = hoursET + ":" + minutesET + ":" + secondsET;
             }
         }
