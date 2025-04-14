@@ -463,9 +463,9 @@
             z-index: 1000000;
             border-radius: 30px;
             position: absolute;
-            transform: translate(50%, 50%);
+            transform: translate(50%, 20%);
             width: 50%;
-            height: 50%;
+            height: 70%;
             visibility: hidden;
         }
         .settings {
@@ -535,9 +535,17 @@
                 name="urlNotifyInput"
                 maxlength="50"
                 size="30" 
-            />
+            /><span> - адрес запросов</span>
             <br>
             <div id="testUrlNotify" style="cursor: pointer;">протестировать Url Notify</div>
+            <br><br><br>
+            <input
+                type="text"
+                id="urlCalendarInput"
+                name="urlCalendarInput"
+                maxlength="50"
+                size="30" 
+            /><span> - эта ссылка будет открываться при нажатии на дату в правом нижнем углу</span>
             <br><br><br>
             <div id="saveSettings" style="cursor: pointer;">сохранить настройки</div>
             <br><br><br>
@@ -545,7 +553,7 @@
                 Слева снизу кнопка сброса - позволяет сбросить таймер до заданного значения (и ставит на паузу). 
                 Нажимая на таймер, его можно поставить на паузу. Нажимая на циферблат, можно включать или выключать отображение цифр.
                 На циферблате красная метка указывает, когда таймер закончится, и внизу страницы указывается это время. 
-                Справа снизу текущее время и дата, при нажатии на дату откроется календарь.
+                Справа снизу текущее время и дата, при нажатии на дату откроется календарь (ссылку на него можно задать выше).
                 На вкладке отображается время до конца таймера.
                 После окончания таймера время начинает увеличиваться, а фон начинает переливаться ярким цветом - меняется иконка на вкладке.
                 Можно задать адрес, по которому будет проходить запрос за час, за 15 минут и в момент конца таймера - адрес будет вызываться как 
@@ -691,10 +699,15 @@
             settingsPopap.style.visibility = "hidden";
         };
 
+        if (localStorage.getItem("url_calendar_settings") == null || localStorage.getItem("url_calendar_settings") == undefined || localStorage.getItem("url_calendar_settings") == "")
+            localStorage.setItem("url_calendar_settings", "https://time.is/calendar");
+
         document.getElementById("urlNotifyInput").value = localStorage.getItem("url_settings");
+        document.getElementById("urlCalendarInput").value = localStorage.getItem("url_calendar_settings");
 
         document.getElementById("saveSettings").onclick = function(){ 
             localStorage.setItem("url_settings", document.getElementById("urlNotifyInput").value);
+            localStorage.setItem("url_calendar_settings", document.getElementById("urlCalendarInput").value);
             alert("Сохранено!");
         };
 
@@ -1026,7 +1039,8 @@
             if (year < 10)
                 year = "0" + year;
 
-            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="millisecondsRealTime">' + Milliseconds + '</span><br><a href="https://time.is/calendar" target="_blank">' + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year + "</a>";
+            realTime.innerHTML = hours + ":" + minutes + ":" + seconds + ' <span class="millisecondsRealTime">' 
+                + Milliseconds + '</span><br><a href="' + localStorage.getItem("url_calendar_settings") + '" target="_blank">' + day + "." + month + " (" + now.toLocaleString('default', { month: 'long' }) + ")." + year + "</a>";
         }
 
         async function Notify(theUrl)
