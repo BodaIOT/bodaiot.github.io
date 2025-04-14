@@ -546,6 +546,8 @@
                 maxlength="50"
                 size="30" 
             /><span> - эта ссылка будет открываться при нажатии на дату в правом нижнем углу</span>
+            <br><br>
+            <div id="homePageSetting" style="cursor: pointer;">показывать кнопку HomePage</div>
             <br><br><br>
             <div id="saveSettings" style="cursor: pointer;">сохранить настройки</div>
             <br><br><br>
@@ -566,7 +568,7 @@
         <div class="settingsCloseButton" id="settingsCloseButton">X</div>
     </div>
 
-    <a href="https://bodaiot.github.io/HomePage.html"><div class="homePage">Home Page</div></a>
+    <a href="https://bodaiot.github.io/HomePage.html"><div id="HomePageButton" class="homePage">Home Page</div></a>
 
     <div class="clockDiv">
         <div class="clock" id="clockAnalog">
@@ -702,12 +704,34 @@
         if (localStorage.getItem("url_calendar_settings") == null || localStorage.getItem("url_calendar_settings") == undefined || localStorage.getItem("url_calendar_settings") == "")
             localStorage.setItem("url_calendar_settings", "https://spb.hh.ru/calendar");
 
+        if (localStorage.getItem("home_page_button_setting") == null || localStorage.getItem("home_page_button_setting") == undefined || localStorage.getItem("home_page_button_setting") == "")
+            localStorage.setItem("home_page_button_setting", "false");
+
         document.getElementById("urlNotifyInput").value = localStorage.getItem("url_settings");
         document.getElementById("urlCalendarInput").value = localStorage.getItem("url_calendar_settings");
 
+        if (localStorage.getItem("home_page_button_setting") == "true")
+            document.getElementById("HomePageButton").classList.remove("hiddenNumber");
+        else
+            document.getElementById("HomePageButton").classList.add("hiddenNumber");
+
+        document.getElementById("homePageSetting").onclick = function(){ 
+            if (localStorage.getItem("home_page_button_setting") == "true")
+            {
+                document.getElementById("HomePageButton").classList.add("hiddenNumber");
+                localStorage.setItem("home_page_button_setting", "false");
+            }
+            else
+            {
+                document.getElementById("HomePageButton").classList.remove("hiddenNumber");
+                localStorage.setItem("home_page_button_setting", "true");
+            }
+        };
+        
         document.getElementById("saveSettings").onclick = function(){ 
             localStorage.setItem("url_settings", document.getElementById("urlNotifyInput").value);
             localStorage.setItem("url_calendar_settings", document.getElementById("urlCalendarInput").value);
+
             alert("Сохранено!");
         };
 
