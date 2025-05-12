@@ -548,6 +548,14 @@
             /><span> - эта ссылка будет открываться при нажатии на дату в правом нижнем углу</span>
             <br><br>
             <div id="homePageSetting" style="cursor: pointer;">показывать кнопку HomePage</div>
+            <br><br>
+            <input
+                type="number"
+                id="delay_in_millisecondsInput"
+                name="delay_in_millisecondsInput"
+                maxlength="4"
+                size="30" 
+            /><span> - период обновления таймеров (миллисекунды, 500 по умолчанию)</span>
             <br><br><br>
             <div id="saveSettings" style="cursor: pointer;">сохранить настройки</div>
             <br><br><br>
@@ -610,8 +618,6 @@
     <div class="deleteTimeObj" id="deleteTimeObj">сбросить</div>
 </body>
     <script>
-        const delay_in_milliseconds = 500;
-
         // --------------------
 
         const secondHand = document.querySelector('.second-hand');
@@ -651,22 +657,6 @@
 
         time.value = localStorage.getItem(time_text_key);
 
-        function setDateAnalog() {
-            const now = new Date();
-
-            const seconds = now.getSeconds();
-            const secondsDegrees = ((seconds / 60) * 360) + 90;
-            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-
-            const mins = now.getMinutes();
-            const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
-            minsHand.style.transform = `rotate(${minsDegrees}deg)`;
-
-            const hour = now.getHours();
-            const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
-            hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-        }
-
         if (was_over == "true"){
             document.getElementById("body").classList.add("bodyHover");
         }
@@ -690,7 +680,28 @@
         if (is_pause == "true")
             timer.classList.add("timerPause");
 
-        SetEndTimeVisual();
+        if (localStorage.getItem("url_calendar_settings") == null || localStorage.getItem("url_calendar_settings") == undefined || localStorage.getItem("url_calendar_settings") == "")
+            localStorage.setItem("url_calendar_settings", "https://spb.hh.ru/calendar");
+
+        if (localStorage.getItem("home_page_button_setting") == null || localStorage.getItem("home_page_button_setting") == undefined || localStorage.getItem("home_page_button_setting") == "")
+            localStorage.setItem("home_page_button_setting", "false");
+
+        if (localStorage.getItem("delay_in_milliseconds_setting") == null || localStorage.getItem("home_page_button_setting") == undefined || localStorage.getItem("home_page_button_setting") == "")
+            localStorage.setItem("delay_in_milliseconds_setting", 500);
+
+        document.getElementById("urlNotifyInput").value = localStorage.getItem("url_settings");
+        document.getElementById("urlCalendarInput").value = localStorage.getItem("url_calendar_settings");
+        document.getElementById("delay_in_millisecondsInput").value = localStorage.getItem("delay_in_milliseconds_setting");
+        document.getElementById("homePageSetting").innerHTML = "показывать кнопку HomePage - " + localStorage.getItem("home_page_button_setting");
+
+        if (localStorage.getItem("home_page_button_setting") == "true")
+            document.getElementById("HomePageButton").classList.remove("hiddenNumber");
+        else
+            document.getElementById("HomePageButton").classList.add("hiddenNumber");
+
+        let delay_in_milliseconds = Number(localStorage.getItem("delay_in_milliseconds_setting"));
+
+        //#region OnClicks
 
         clockAnalog.onclick = ToggleNumbers;
 
@@ -700,21 +711,6 @@
         settingsCloseButton.onclick = function(){ 
             settingsPopap.style.visibility = "hidden";
         };
-
-        if (localStorage.getItem("url_calendar_settings") == null || localStorage.getItem("url_calendar_settings") == undefined || localStorage.getItem("url_calendar_settings") == "")
-            localStorage.setItem("url_calendar_settings", "https://spb.hh.ru/calendar");
-
-        if (localStorage.getItem("home_page_button_setting") == null || localStorage.getItem("home_page_button_setting") == undefined || localStorage.getItem("home_page_button_setting") == "")
-            localStorage.setItem("home_page_button_setting", "false");
-
-        document.getElementById("urlNotifyInput").value = localStorage.getItem("url_settings");
-        document.getElementById("urlCalendarInput").value = localStorage.getItem("url_calendar_settings");
-        document.getElementById("homePageSetting").innerHTML = "показывать кнопку HomePage - " + localStorage.getItem("home_page_button_setting");
-
-        if (localStorage.getItem("home_page_button_setting") == "true")
-            document.getElementById("HomePageButton").classList.remove("hiddenNumber");
-        else
-            document.getElementById("HomePageButton").classList.add("hiddenNumber");
 
         document.getElementById("homePageSetting").onclick = function(){ 
             if (localStorage.getItem("home_page_button_setting") == "true")
@@ -735,7 +731,17 @@
             localStorage.setItem("url_settings", document.getElementById("urlNotifyInput").value);
             localStorage.setItem("url_calendar_settings", document.getElementById("urlCalendarInput").value);
 
+            let delay_in_millisecondsInput = Number(document.getElementById("delay_in_millisecondsInput").value);
+
+            if (delay_in_millisecondsInput > 1000)
+                delay_in_millisecondsInput = 1000;
+            else if (delay_in_millisecondsInput < 1)
+                delay_in_millisecondsInput = 1;
+
+            localStorage.setItem("delay_in_milliseconds_setting", delay_in_millisecondsInput);
+
             alert("Сохранено!");
+            location.reload(true);
         };
 
         document.getElementById("testUrlNotify").onclick = function(){ 
@@ -782,6 +788,9 @@
                 render = true;
         });
 
+        //#endregion
+
+        SetEndTimeVisual();
         SetTime();
         SetRealTimeVisual();
         UpdateNumbersVisual();
@@ -789,6 +798,22 @@
         deleteTimeObj.onclick = deleteTime;
 
         setInterval(UpdateTimer, delay_in_milliseconds);
+
+        function setDateAnalog() {
+            const now = new Date();
+
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const mins = now.getMinutes();
+            const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+            minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+            const hour = now.getHours();
+            const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+            hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+        }
 
         function UpdateNumbersVisual(){
             const items = document.querySelectorAll('.number');
