@@ -726,6 +726,8 @@
                 document.getElementById("HomePageButton").classList.remove("hiddenNumber");
                 localStorage.setItem("home_page_button_setting", "true");
             }
+            
+            document.getElementById("homePageSetting").innerHTML = "показывать кнопку HomePage - " + localStorage.getItem("home_page_button_setting");
         };
         
         document.getElementById("saveSettings").onclick = function(){ 
