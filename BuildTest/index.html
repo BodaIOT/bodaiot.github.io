@@ -12,11 +12,7 @@
     <script>
       function SyncFilesCallFromU() {
         Module.FS.syncfs(true, function(err) {
-            if (err) {
-                unityInstance.SendMessage(gameObjectName, callbackMethod, "ERROR: " + err);
-            } else {
-                unityInstance.SendMessage(gameObjectName, callbackMethod, "SUCCESS");
-            }
+           
         });
       }
     </script>
