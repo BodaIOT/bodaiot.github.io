@@ -35,7 +35,11 @@
         productVersion: "2.0.9",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
+      }, (progress) => {
+            console.log(progress)
+        }).then((unityInstance) => {
+            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', "YNDX_CNST_TestUserDevYandex");
+        });
     </script>
   </body>
 </html>
