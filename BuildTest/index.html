@@ -52,6 +52,7 @@
             console.log(progress)
         }).then((unityInstance) => {
             unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', "YNDX_CNST_TestUserDevYandex");
+            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', "dev");
         });
     </script>
   </body>
