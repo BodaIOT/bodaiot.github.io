@@ -25,6 +25,9 @@
         document.body.style.textAlign = "left";
       }
 
+      Module.onRuntimeInitialized = function() {
+        console.log("ну допустим")
+      };
 
       Module.FS.syncfs(true, function(err) {
         if (err) 
