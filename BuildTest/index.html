@@ -63,8 +63,50 @@
     <div class="background none_select" id="background"></div>
 
     <canvas id="unity-canvas" tabindex="-1" class="UnCanvas"></canvas>
+
+    <script>
+      window.startUnityLoadingTime = Date.now();
+
+      window.SendStatisticsEvent = (eventName, args) => {
+        console.log("📜 [SB][STATS] send stats event: " + eventName, args);
+        return;
+
+        const yandexID = !YANDEX_BUILD ? "it's tg user" : (window.yandexPlayerNotSigned != undefined && window.yandexPlayerNotSigned != null ? window.yandexPlayerNotSigned?.getUniqueID() : "not set");
+
+        const eventData = {
+          ...args,
+          profile_id: window.profile_id,
+          tg_id: !YANDEX_BUILD ? window.tg_id : "it's yandex user",
+          yandex_id: yandexID,
+          is_yandex_user: YANDEX_BUILD,
+          device_info_from_yandex: 
+            YANDEX_BUILD && window.ysdk != undefined && window.ysdk != null ? window.ysdk.deviceInfo._type : "not set"
+        };
+
+        if (IS_DEV || IS_PROD_TESTING || import.meta.env.DEV
+          || yandexID.includes("ZjA5BzcvsfkBBAkGdIpOxGplyOOE+CK6kWP3vUD3+3M=")
+          || yandexID.includes("T3JfddWIaFuBMVGDncgxLFvWyXOStkmTz5+IffA/Nf4=")) 
+        {
+          console.log("📜 [SB][STATS] send stats event (DEV): " + eventName, eventData);
+        }
+        else
+        {
+          console.log("📜 [SB][STATS] send stats event: " + eventName, eventData);
+        }
+
+        if (!IS_DEV && !IS_PROD_TESTING && !import.meta.env.DEV
+          && !yandexID.includes("ZjA5BzcvsfkBBAkGdIpOxGplyOOE+CK6kWP3vUD3+3M=")
+          && !yandexID.includes("T3JfddWIaFuBMVGDncgxLFvWyXOStkmTz5+IffA/Nf4=")) 
+        {
+          gtag('event', eventName, eventData);
+          ym(100649050,'reachGoal',eventName, eventData);
+        }
+      };
+    </script>
+
     <script src="Build/test.loader.js"></script>
     <script src="Resizer.js"></script>
+    <script src="CallFromUnity.js"></script>
 
     <script>
       resize();
@@ -82,11 +124,11 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       }, (progress) => {
-            console.log(progress)
-        }).then((unityInstance) => {
-            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
-            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
-        });
+        //console.log(progress)
+      }).then((unityInstance) => {
+        unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
+        unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
+      });
 
     </script>
   </body>
