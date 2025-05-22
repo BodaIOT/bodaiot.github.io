@@ -1,9 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Solitaire Bet</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-control" content="max-age=0, no-cache, no-store, must-revalidate, proxy-revalidate">
+  <meta http-equiv="Pragma" content="max-age=0, no-cache, no-store, must-revalidate, proxy-revalidate"/>
+  <meta http-equiv="Expires" content="0"/>
+
+  <title>Solitaire Bet</title>
+
+  <link rel="icon" href="Images/favicon.png">
+    <style>
+      body { 
+        background-color: #014C28;
+        background-image: url("Images/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        position: fixed;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .UnCanvas {
+        /*background-image: url("Images/Loading.png");*/
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: fixed; 
+        left: 50%; 
+        top: 50%; 
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        opacity: 0;
+        display: none;
+      }
+      .none_select {
+        user-select: none;
+        pointer-events: none;
+      }
+      .background {
+        z-index: 9999;
+        background-color: #014C28;
+        background-image: url("Images/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: fixed;
+        height: 100vh;
+        width: 400vw;
+        opacity: 0;
+        display: none;
+        left: -100%;
+        user-select: none;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <div class="background none_select" id="background"></div>
