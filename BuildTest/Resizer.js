@@ -272,7 +272,7 @@ function resizeBuild() {
     }
     else if (c <= aspectRatioQuad) { // horizontal
 
-        background.style.top = "1000vh";
+        background.style.top = "0";
 
         canvas.style.height = height + "px";
         canvas.style.width = height * aspectRatioQuad + "px";
