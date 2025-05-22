@@ -25,17 +25,7 @@
         document.body.style.textAlign = "left";
       }
 
-      Module.onRuntimeInitialized = function() {
-        console.log("ну допустим")
-      };
 
-      Module.FS.syncfs(true, function(err) {
-        if (err) 
-        {
-          console.error('Ошибка синхронизации Module.FS.syncfs: ', err);
-        } 
-        else 
-        {
           createUnityInstance(document.querySelector("#unity-canvas"), {
             arguments: [],
             dataUrl: "Build/test.data",
@@ -54,8 +44,22 @@
                 unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
                 unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
             });
+
+      /*
+      Module.onRuntimeInitialized = function() {
+        console.log("ну допустим")
+      };
+
+      Module.FS.syncfs(true, function(err) {
+        if (err) 
+        {
+          console.error('Ошибка синхронизации Module.FS.syncfs: ', err);
+        } 
+        else 
+        {
         }
       });
+      */
     </script>
   </body>
 </html>
