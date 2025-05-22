@@ -1282,10 +1282,10 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  8486752: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 8486807: ($0) => { performance.now = function() { return $0; }; },  
- 8486855: ($0) => { performance.now = function() { return $0; }; },  
- 8486903: () => { performance.now = Module['emscripten_get_now_backup']; }
+  8486736: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 8486791: ($0) => { performance.now = function() { return $0; }; },  
+ 8486839: ($0) => { performance.now = function() { return $0; }; },  
+ 8486887: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -7939,10 +7939,6 @@ var ASM_CONSTS = {
   function _SendStatisticsTournamentStartedToJS(tournamentId) {
         var convertedText = UTF8ToString(tournamentId);
         SendStatisticsTournamentStartedFromU(convertedText);
-     }
-
-  function _SyncFilesToJS() {
-        SyncFilesCallFromU();
      }
 
   var webSocketState = {instances:{},lastId:0,onOpen:null,onMesssage:null,onError:null,onClose:null,debug:false};
@@ -17684,7 +17680,6 @@ var wasmImports = {
   "SecondTutorialEndedToJS": _SecondTutorialEndedToJS,
   "SendStatisticsMatchEndedToJS": _SendStatisticsMatchEndedToJS,
   "SendStatisticsTournamentStartedToJS": _SendStatisticsTournamentStartedToJS,
-  "SyncFilesToJS": _SyncFilesToJS,
   "WebSocketAddSubProtocol": _WebSocketAddSubProtocol,
   "WebSocketAllocate": _WebSocketAllocate,
   "WebSocketClose": _WebSocketClose,
