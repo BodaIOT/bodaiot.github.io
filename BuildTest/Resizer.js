@@ -148,11 +148,11 @@ function resize() {
     resizeBuild();
 
     try {
-        body = document.getElementById("resizer");
+        body = document.getElementById("body");
     }
     catch (error) { return; }
 
-    if (body == undefined || body == null || YANDEX_BUILD == undefined) {
+    if (body == undefined || body == null) {
         return;
     }
 
@@ -223,29 +223,9 @@ function resize() {
 
         body.style.zoom = zoom;
 
-        if (YANDEX_BUILD) {
-            let probablyWidth = height / aspectRatioBot;
-
-            body.style.width = probablyWidth + "px";
-
-            let widthNumber = Number(body.style.width.toString().slice(0, -2)) * parseFloat(zoom);
-
-            if (widthNumber > window.innerWidth) {
-                body.style.width = "100" + HorizontalUnits;
-                body.style.height = "100" + VerticalUnits;
-                body.style.transform = "none";
-            }
-            else {
-
-                body.style.height = "100" + VerticalUnits;
-                body.style.transform = "translate(" + ((width / 2) / parseFloat(zoom) - ((widthNumber) / 2) / parseFloat(zoom) + 1) + "px, 0px)";
-            }
-        }
-        else {
-            body.style.width = "100" + HorizontalUnits;
-            body.style.height = "100" + VerticalUnits;
-            body.style.transform = "none";
-        }
+        body.style.width = "100" + HorizontalUnits;
+        body.style.height = "100" + VerticalUnits;
+        body.style.transform = "none";
     }
     else if (c < aspectRatioBot) {
         /*
