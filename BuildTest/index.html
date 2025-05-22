@@ -6,8 +6,11 @@
     <title>Unity Web Player | Solitaire Bet</title>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=700 height=1600 tabindex="-1" style="width: 700px; height: 1600px; background: #014C28"></canvas>
+    <div class="background none_select" id="background"></div>
+
+    <canvas id="unity-canvas" tabindex="-1" class="UnCanvas"></canvas>
     <script src="Build/test.loader.js"></script>
+    <script src="Resizer.js"></script>
 
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -24,7 +27,7 @@
 
         document.body.style.textAlign = "left";
       }
-      
+
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
         dataUrl: "Build/test.data",
