@@ -24,42 +24,26 @@
 
         document.body.style.textAlign = "left";
       }
+      
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/test.data",
+        frameworkUrl: "Build/test.framework.js",
+        codeUrl: "Build/test.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "PMFTopJoyGames",
+        productName: "Solitaire Bet",
+        productVersion: "4.0.0",
+        //autoSyncPersistentDataPath: true
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }, (progress) => {
+            console.log(progress)
+        }).then((unityInstance) => {
+            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
+            unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
+        });
 
-
-          createUnityInstance(document.querySelector("#unity-canvas"), {
-            arguments: [],
-            dataUrl: "Build/test.data",
-            frameworkUrl: "Build/test.framework.js",
-            codeUrl: "Build/test.wasm",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "PMFTopJoyGames",
-            productName: "Solitaire Bet",
-            productVersion: "4.0.0",
-            //autoSyncPersistentDataPath: true
-            // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-          }, (progress) => {
-                console.log(progress)
-            }).then((unityInstance) => {
-                unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
-                unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
-            });
-
-      /*
-      Module.onRuntimeInitialized = function() {
-        console.log("ну допустим")
-      };
-
-      Module.FS.syncfs(true, function(err) {
-        if (err) 
-        {
-          console.error('Ошибка синхронизации Module.FS.syncfs: ', err);
-        } 
-        else 
-        {
-        }
-      });
-      */
     </script>
   </body>
 </html>

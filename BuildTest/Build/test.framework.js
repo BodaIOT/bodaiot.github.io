@@ -1282,10 +1282,10 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  8486752: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 8486807: ($0) => { performance.now = function() { return $0; }; },  
- 8486855: ($0) => { performance.now = function() { return $0; }; },  
- 8486903: () => { performance.now = Module['emscripten_get_now_backup']; }
+  8486464: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 8486519: ($0) => { performance.now = function() { return $0; }; },  
+ 8486567: ($0) => { performance.now = function() { return $0; }; },  
+ 8486615: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -1649,6 +1649,10 @@ var ASM_CONSTS = {
 
   function _FirstTutorialEndedToJS() {
         SendStatisticsFirstTutorialEndedFromU();
+     }
+
+  function _FirstTutorialReadyToJS() {
+        FirstTutorialReadyCallFromU();
      }
 
   function _FirstTutorialStartedToJS() {
@@ -17580,6 +17584,7 @@ function checkIncomingModuleAPI() {
 var wasmImports = {
   "BuildLoadingEndedToJS": _BuildLoadingEndedToJS,
   "FirstTutorialEndedToJS": _FirstTutorialEndedToJS,
+  "FirstTutorialReadyToJS": _FirstTutorialReadyToJS,
   "FirstTutorialStartedToJS": _FirstTutorialStartedToJS,
   "GetJSLoadTimeInfo": _GetJSLoadTimeInfo,
   "GetJSMemoryInfo": _GetJSMemoryInfo,
@@ -18391,11 +18396,11 @@ var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = createExportWrapper("dyn
 /** @type {function(...*):?} */
 var dynCall_jjii = Module["dynCall_jjii"] = createExportWrapper("dynCall_jjii");
 /** @type {function(...*):?} */
-var dynCall_viiiiiifii = Module["dynCall_viiiiiifii"] = createExportWrapper("dynCall_viiiiiifii");
-/** @type {function(...*):?} */
 var dynCall_fi = Module["dynCall_fi"] = createExportWrapper("dynCall_fi");
 /** @type {function(...*):?} */
 var dynCall_viiffii = Module["dynCall_viiffii"] = createExportWrapper("dynCall_viiffii");
+/** @type {function(...*):?} */
+var dynCall_viiiiiifii = Module["dynCall_viiiiiifii"] = createExportWrapper("dynCall_viiiiiifii");
 /** @type {function(...*):?} */
 var dynCall_viidi = Module["dynCall_viidi"] = createExportWrapper("dynCall_viidi");
 /** @type {function(...*):?} */
@@ -19669,10 +19674,32 @@ function invoke_iiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
   }
 }
 
+function invoke_viiffii(index,a1,a2,a3,a4,a5,a6) {
+  var sp = stackSave();
+  try {
+    dynCall_viiffii(index,a1,a2,a3,a4,a5,a6);
+  } catch(e) {
+    stackRestore(sp);
+    if (!(e instanceof EmscriptenEH)) throw e;
+    _setThrew(1, 0);
+  }
+}
+
 function invoke_viiiiiifii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
   var sp = stackSave();
   try {
     dynCall_viiiiiifii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9);
+  } catch(e) {
+    stackRestore(sp);
+    if (!(e instanceof EmscriptenEH)) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiif(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    return dynCall_iiif(index,a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (!(e instanceof EmscriptenEH)) throw e;
@@ -19695,28 +19722,6 @@ function invoke_fiifi(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
     return dynCall_fiifi(index,a1,a2,a3,a4);
-  } catch(e) {
-    stackRestore(sp);
-    if (!(e instanceof EmscriptenEH)) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viiffii(index,a1,a2,a3,a4,a5,a6) {
-  var sp = stackSave();
-  try {
-    dynCall_viiffii(index,a1,a2,a3,a4,a5,a6);
-  } catch(e) {
-    stackRestore(sp);
-    if (!(e instanceof EmscriptenEH)) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iiif(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    return dynCall_iiif(index,a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (!(e instanceof EmscriptenEH)) throw e;
@@ -20208,10 +20213,10 @@ function invoke_viiiji(index,a1,a2,a3,a4,a5,a6) {
   }
 }
 
-function invoke_jjii(index,a1,a2,a3,a4) {
+function invoke_vji(index,a1,a2,a3) {
   var sp = stackSave();
   try {
-    return dynCall_jjii(index,a1,a2,a3,a4);
+    dynCall_vji(index,a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (!(e instanceof EmscriptenEH)) throw e;
@@ -20219,10 +20224,10 @@ function invoke_jjii(index,a1,a2,a3,a4) {
   }
 }
 
-function invoke_vji(index,a1,a2,a3) {
+function invoke_jjii(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
-    dynCall_vji(index,a1,a2,a3);
+    return dynCall_jjii(index,a1,a2,a3,a4);
   } catch(e) {
     stackRestore(sp);
     if (!(e instanceof EmscriptenEH)) throw e;
