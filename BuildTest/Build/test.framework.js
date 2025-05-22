@@ -7942,6 +7942,13 @@ var ASM_CONSTS = {
      }
 
   function _SyncJSConfigFilesCall() {
+          if (typeof Module !== 'undefined') {
+              if (!Module.FS) {
+                  Module.FS = FS;
+              }
+              console.log("FS initialized!");
+          }
+     
           if (typeof Module !== 'undefined' && Module.FS) {
               Module.FS.syncfs(false, function(err) {
                   if (err) console.error("Sync failed:", err);
