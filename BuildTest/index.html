@@ -67,7 +67,7 @@
     <script>
       window.startUnityLoadingTime = Date.now();
 
-      window.SendStatisticsEvent = (eventName, args) => {
+      window.SendStatisticsEvent = function(eventName, args) {
         console.log("📜 [SB][STATS] send stats event: " + eventName, args);
         return;
 
@@ -75,15 +75,12 @@
 
         const eventData = {
           ...args,
-          profile_id: window.profile_id,
-          tg_id: !YANDEX_BUILD ? window.tg_id : "it's yandex user",
           yandex_id: yandexID,
-          is_yandex_user: YANDEX_BUILD,
           device_info_from_yandex: 
             YANDEX_BUILD && window.ysdk != undefined && window.ysdk != null ? window.ysdk.deviceInfo._type : "not set"
         };
 
-        if (IS_DEV || IS_PROD_TESTING || import.meta.env.DEV
+        if (IS_DEV || IS_PROD_TESTING 
           || yandexID.includes("ZjA5BzcvsfkBBAkGdIpOxGplyOOE+CK6kWP3vUD3+3M=")
           || yandexID.includes("T3JfddWIaFuBMVGDncgxLFvWyXOStkmTz5+IffA/Nf4=")) 
         {
@@ -94,7 +91,7 @@
           console.log("📜 [SB][STATS] send stats event: " + eventName, eventData);
         }
 
-        if (!IS_DEV && !IS_PROD_TESTING && !import.meta.env.DEV
+        if (!IS_DEV && !IS_PROD_TESTING
           && !yandexID.includes("ZjA5BzcvsfkBBAkGdIpOxGplyOOE+CK6kWP3vUD3+3M=")
           && !yandexID.includes("T3JfddWIaFuBMVGDncgxLFvWyXOStkmTz5+IffA/Nf4=")) 
         {
@@ -126,6 +123,7 @@
       }, (progress) => {
         //console.log(progress)
       }).then((unityInstance) => {
+        resize();
         unityInstance.SendMessage('BaseSceneSetup', 'JS_SetPlayerID', 'YNDX_CNST_TestUserDevYandex');
         unityInstance.SendMessage('BaseSceneSetup', 'JS_SetToken', 'dev');
       });
