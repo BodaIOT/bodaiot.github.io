@@ -7,6 +7,9 @@ function CallFromU(parametr) {
     else if (parametr == "FirstMoveCardInTutorial") {
         window.SendStatisticsEvent("funnel_first_move_card_in_tutorial", {});
     }
+    else if (parametr == "funnel_first_launch") {
+        window.SendStatisticsEvent("funnel_first_launch", {});
+    }
     else if (parametr == "FirstTutorialTimerOver") {
         window.SendStatisticsEvent("first_tutorial_timer_over", {});
     }
@@ -85,6 +88,7 @@ function SendStatisticsSecondTutorialEndedFromU(playerPrize, playerPlace) {
         window.SendStatisticsEvent("funnel_tutor_complete_2", { "event_funnel_complete": "funnel_tutor_complete_2" });
     }
 }
+
 function SendStatisticsTournamentStartedFromU(tournamentType) {
     tournamentType = tournamentType.toString();
 
