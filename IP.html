@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: #1f1f1f;
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 22px;
+            line-height: 0;
+            color: #fff;
+        }
+
+        .container
+        {
+            border-radius: 20px;
+            background-color: #3b3b3b;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .secondLine{
+            display: flex;
+            align-items: center;
+        }
+        
+        .marginLeft{
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <table>
+            <tr>
+                <td class="secondLine">
+                    <img id="pic" src="" style="width: 32px;"></img>
+                    <span class="marginLeft">
+                        <span id="city">dfgdfg</span>     , <span id="country">dfgdfg</span>
+                    </span>
+                </td>
+                <td id="ip"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function httpGet(theUrl)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        }
+
+        var res = httpGet('http://ip-api.com/json/?fields=61439');
+
+        res = JSON.parse(res);
+
+        document.getElementById("pic").src = "https://flagsapi.com/" + res.countryCode +  "/flat/64.png";
+
+        console.log(res);
+        console.log(res.city);
+        console.log(res.query);
+        console.log(res.country);
+
+        document.getElementById("country").innerHTML = res.country;
+        document.getElementById("city").innerHTML = res.city;
+        document.getElementById("ip").innerHTML = res.query;
+    </script>
+</body>
+</html>
