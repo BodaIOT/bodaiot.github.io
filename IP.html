@@ -47,6 +47,26 @@
             width: max-content;
             margin-left: auto;
             margin-right: auto;
+            background: #474747;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .mbutton
+        {
+            border-radius: 20px;
+            background-color: #3b3b3b;
+            padding: 20px;
+            cursor: pointer;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+            background: #474747;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .mbutton:hover{
+            background: #8a8a8a;
+            transform: scale(1.1);
         }
 
         table{
@@ -79,6 +99,9 @@
                     </tr>
                 </table>
             </div>
+            <div class="mbutton" id="mbutton">
+                обновить
+            </div>
         </div>
     </div>
 
@@ -105,6 +128,9 @@
 
             document.getElementById("country").innerHTML = res.country;
         
+            document.getElementById("mbutton").onclick = function() {
+                location.reload();
+            }
     </script>
 </body>
 </html>
