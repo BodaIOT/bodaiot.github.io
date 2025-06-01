@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GET IP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" type="image/x-icon" href="ip-address.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body{
             background-color: #1f1f1f;
@@ -23,60 +25,62 @@
         {
             border-radius: 20px;
             background-color: #3b3b3b;
-            padding: 20px;
+            padding: 6px;
             margin: 10px;
         }
 
-        .secondLine{
-            display: flex;
-            align-items: center;
+        table{
+            border-spacing: 11px; 
+            margin-top: 4px;
+            margin-bottom: -10px;
         }
-        
-        .marginLeft{
-            margin-left: 10px;
-        }
-
     </style>
 </head>
 <body>
     <div class="container" id="container">
         <table>
             <tr>
-                <td class="secondLine">
-                    <img id="pic" src="" style="width: 32px;"></img>
-                    <span class="marginLeft">
-                        <span id="city">dfgdfg</span>     , <span id="country">dfgdfg</span>
-                    </span>
+                <td>
+
                 </td>
-                <td id="ip"></td>
+                <td id="ip">
+                    ждем
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img id="pic" src="" style="width: 32px;     margin-top: 4px;"></img>
+                </td>
+                <td>
+                        <span id="city">ждем</span>, <span id="country">ждем</span>
+                </td>
             </tr>
         </table>
     </div>
 
     <script>
-        
-        function httpGet(theUrl)
-        {
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+            xmlHttp.open( "GET", "https://ipinfo.io/?token=6967822328973f", false ); // false for synchronous request
             xmlHttp.send( null );
-            return xmlHttp.responseText;
-        }
 
-        var res = httpGet('https://api.2ip.io/asn/16509?token=xyz');
+            console.log(xmlHttp.responseText);
 
-        res = JSON.parse(res);
+            var res = JSON.parse(xmlHttp.responseText);
+            
+            document.getElementById("pic").src = "https://flagsapi.com/" + res.country +  "/flat/64.png";
+            document.getElementById("city").innerHTML = res.city;
+            document.getElementById("ip").innerHTML = res.ip;
 
-        document.getElementById("pic").src = "https://flagsapi.com/" + res.countryCode +  "/flat/64.png";
+            var xmlHttp = new XMLHttpRequest();
 
-        console.log(res);
-        console.log(res.city);
-        console.log(res.query);
-        console.log(res.country);
+            xmlHttp.open( "GET", "https://api.ipinfo.io/lite/" + res.ip + "?token=6967822328973f", false ); // false for synchronous request
+            xmlHttp.send( null );
 
-        document.getElementById("country").innerHTML = res.country;
-        document.getElementById("city").innerHTML = res.city;
-        document.getElementById("ip").innerHTML = res.query;
+            console.log(xmlHttp.responseText);
+            res = JSON.parse(xmlHttp.responseText);
+
+            document.getElementById("country").innerHTML = res.country;
+        
     </script>
 </body>
 </html>
