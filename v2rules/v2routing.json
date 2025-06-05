@@ -2,7 +2,7 @@
   "version": "RUv1",
   "routingItems": [
     {
-      "remarks": "GENERAL DIEMONIC",
+      "remarks": "GENERAL_DIEMONIC",
       "domainStrategy": "IPOnDemand",
       "url": "https://bodaiot.github.io/v2rules/v2rules.json"
     }
