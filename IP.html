@@ -73,8 +73,8 @@
         }
 
         table{
-            border-spacing: 11px; 
-            margin-top: 4px;
+            border-spacing: 11px;
+            margin-top: -8px;
             margin-bottom: -10px;
         }
     </style>
@@ -84,7 +84,7 @@
         <div class="container2">
             <div class="container" id="container">
                 <table>
-                    <tr>
+                    <tr style="height: 32px;">
                         <td>
 
                         </td>
@@ -92,9 +92,17 @@
                             ждем
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="height: 0px;">
                         <td>
-                            <img id="pic" src="ip-address.png" style="width: 32px; margin-top: 4px;"></img>
+                            
+                        </td>
+                        <td>
+                                <span id="provider">ждем</span>
+                        </td>
+                    </tr>
+                    <tr style="height: 15px;">
+                        <td>
+                            <img id="pic" src="ip-address.png" style="width: 32px; height: 32px; margin-top: 4px;"></img>
                         </td>
                         <td>
                                 <span id="city">ждем</span>, <span id="country">ждем</span>
@@ -130,6 +138,7 @@
             res = JSON.parse(xmlHttp.responseText);
 
             document.getElementById("country").innerHTML = res.country;
+            document.getElementById("provider").innerHTML = res.as_domain;
         
             document.getElementById("mbutton").onclick = function() {
                 location.reload();
