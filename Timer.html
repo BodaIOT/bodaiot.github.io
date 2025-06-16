@@ -567,9 +567,9 @@
                 На вкладке отображается время до конца таймера.
                 После окончания таймера время начинает увеличиваться, а фон начинает переливаться ярким цветом - меняется иконка на вкладке.
                 Можно задать адрес, по которому будет проходить запрос за час, за 15 минут и в момент конца таймера - адрес будет вызываться как 
-                <span style="color: red;">https://вашадрес/</span>Конец%20рабочего%20дня или 
-                <span style="color: red;">https://вашадрес/</span>Работать%20осталось%2015%20минут или
-                <span style="color: red;">https://вашадрес/</span>Работать%20осталось%201%20час 
+                <span style="color: red;">https://вашадрес/</span>EndOfTheWorkingDay или 
+                <span style="color: red;">https://вашадрес/</span>Work15Minutes или
+                <span style="color: red;">https://вашадрес/</span>Work1Hour 
                 (вместо красно вставьте ваш адрес, %20 - символы пробела, если не используете - оставьте пустым)
             </p>
         </div>
@@ -950,12 +950,12 @@
                 if (diff2 >= 59 * 60 * 1000 && diff2 <= 60 * 60 * 1000 && (was_one_hour == "false" || was_one_hour == null)) {
                     was_one_hour = true;
                     localStorage.setItem("was_one_hour", "true");
-                    Notify(localStorage.getItem("url_settings") + "Работать%20осталось%201%20час")
+                    Notify(localStorage.getItem("url_settings") + "Work1Hour")
                 }
                 else if (diff2 >= 14 * 60 * 1000 && diff2 <= 15 * 60 * 1000 && (was_15_minutes == "false" || was_15_minutes == null)) {
                     was_15_minutes = true;
                     localStorage.setItem("was_15_minutes", "true");
-                    Notify(localStorage.getItem("url_settings") + "Работать%20осталось%2015%20минут")
+                    Notify(localStorage.getItem("url_settings") + "Work15Minutes")
                 }
                 else if (diff2 <= 0 && (was_over == "false" || was_over == null)) {
                     was_over = true;
@@ -968,7 +968,7 @@
                         element.setAttribute('href', 'timer_out.png');
                     });
                     console.log("timer over");
-                    Notify(localStorage.getItem("url_settings") + "Конец%20рабочего%20дня")
+                    Notify(localStorage.getItem("url_settings") + "EndOfTheWorkingDay")
                 }
 
                 Visual(diff2);
