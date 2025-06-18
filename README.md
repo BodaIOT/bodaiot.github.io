@@ -1,41 +1,69 @@
----
-title: 'About <subject>'
-shortTitle: '<subject>'
-intro: 'Article intro. See tips for a great intro below.'
-product: "optional product callout"
-type: overview
-topics:
-  - topic
-versions:
-  - version
----
+# CatPilot
+Это программа позаоляет управлять Windows посредством VBS скриптов через локальную сеть или публичный IP (на подобии webhooks), или с помощью телеграмм бота
 
-{% comment %}
-- Follow the guidelines in https://docs.github.com/contributing/writing-for-github-docs/content-model#conceptual to write this article.
-- Great intros give readers a quick understanding of what's in the article, so they can tell whether it's relevant to them before moving ahead. For more tips, see https://docs.github.com/contributing/writing-for-github-docs/content-model
-- For product callout info, see https://github.com/github/docs/tree/main/content#product
-- For product version instructions, see https://github.com/github/docs/tree/main/content#versioning
-- Remove these comments from your article file when you're done writing.
-{% endcomment %}
+![Static Badge](https://img.shields.io/badge/diemonic1-CatPilot-CatPilot)
+![GitHub top language](https://img.shields.io/github/languages/top/diemonic1/CatPilot)
+![GitHub](https://img.shields.io/github/license/diemonic1/CatPilot)
+![GitHub Repo stars](https://img.shields.io/github/stars/diemonic1/CatPilot)
+![GitHub issues](https://img.shields.io/github/issues/diemonic1/CatPilot)
 
-## A section here
+## Как использовать
+У вас должны быть установлены [зависимости проекта](https://github.com/OkulusDev/Oxygen#зависимости)
 
-{% comment %}
-Write one or two paragraphs about the main idea of your topic, as a summary.
-Make sure you don't have any content that isn't preceded by a header, or it won't be linkable in our table of contents.
-{% endcomment %}
+1. Клонирование репозитория 
 
-## Another section here
+```
+git clone https://github.com/OkulusDev/Oxygen.git
+ываваыва
+```
 
-{% comment %}
-Write one or two paragraphs about another element of your topic.
-Keep adding headers and sections until you've completed your article.
-{% endcomment %}
+2. Переход в директорию Oxygen
 
-## Further reading
+```cd Oxygen```
 
-{% comment %}
-Optionally, include a bulleted list of related articles the user can reference to extend the concepts covered in this article. Consider linking to procedural articles or tutorials that help the user use the information in your article.
-{% endcomment %}
+3. Создание виртуального окружения
 
-- [Article title](article-URL)
+```python3 -m venv venv```
+
+4. Активация виртуального окружения
+
+```source venv/bin/activate```
+
+5. Установка зависимостей
+
+```pip3 install -r requirements.txt```
+
+6. Запуск скрипта для демонстрации возможностей Oxygen
+
+```python3 oxygen.py --help```
+
+<!--Пользовательская документация-->
+## Документация
+Пользовательскую документацию можно получить по [этой ссылке](./docs/ru/index.md).
+
+[Релизы программы]: https://github.com/OkulusDev/Oxygen/releases
+
+<!--Поддержка-->
+## Поддержка
+Если у вас возникли сложности или вопросы по использованию пакета, создайте 
+[обсуждение](https://github.com/OkulusDev/Oxygen/issues/new/choose) в данном репозитории или напишите на электронную почту <bro.alexeev@inbox.com>.
+
+<!--зависимости-->
+## Зависимости
+Эта программа зависит от интепретатора Python версии 3.7 или выше, PIP 23.2.1 или выше. Если вы заметили, что он данное ПО можно запустить на версии ниже, или он не работает на какой-либо версии, то напишите в [поддержку](https://github.com/OkulusDev/Oxygen#поддержка)
+
+<!--описание коммитов-->
+## Описание коммитов
+| Название | Описание                                                        |
+|----------|-----------------------------------------------------------------|
+| build	   | Сборка проекта или изменения внешних зависимостей               |
+| sec      | Безопасность, уязвимости                                        |
+| ci       | Настройка CI и работа со скриптами                              |
+| docs	   | Обновление документации                                         |
+| feat	   | Добавление нового функционала                                   |
+| fix	   | Исправление ошибок                                              |
+| perf	   | Изменения направленные на улучшение производительности          |
+| refactor | Правки кода без исправления ошибок или добавления новых функций |
+| revert   | Откат на предыдущие коммиты                                     |
+| style	   | Правки по кодстайлу (табы, отступы, точки, запятые и т.д.)      |
+| test	   | Добавление тестов                                               |
