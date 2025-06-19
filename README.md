@@ -170,3 +170,11 @@ WShell.Run "rundll32.exe powrprof.dll,SetSuspendState Sleep"
 |         + |
 |      None |
 
+## Автозапуск программы
+Чтобы программа автоматически запускалась при старте Windows, создайте ярлык программы CatPilot.exe и поместите его в папку автозагрузки Windows
+```
+C:\Users\Имя_пользователя\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+```
+
+## Быстрое открытие ссылки
+
