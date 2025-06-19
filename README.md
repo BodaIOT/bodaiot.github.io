@@ -7,7 +7,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/diemonic1/CatPilot)
 ![GitHub issues](https://img.shields.io/github/issues/diemonic1/CatPilot)
 
-Link to the sample section: [Link Text](#Какписатьскрипты).
+Link to the sample section: [Link Text](#Как-писать-скрипты).
 
 ## Как писать скрипты   
 VBS позволяет реализовать большинство полезных скриптов. Вот обыкновенный шаблон для скрипта:   
