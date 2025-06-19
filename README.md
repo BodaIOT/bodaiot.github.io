@@ -7,13 +7,20 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/diemonic1/CatPilot)
 ![GitHub issues](https://img.shields.io/github/issues/diemonic1/CatPilot)
 
+[Documentation on english](#Documentation-on-english)
+
+[Документация на русском языке](#Документация-на-русском-языке)
+
+# Documentation on english
+
+# Документация на русском языке
+
 [Как писать скрипты](#Как-писать-скрипты)
 
 [Дополнительные нажатия клавиш](#Дополнительные-нажатия-клавиш)
 
 [Готовые примеры скриптов](#Готовые-примеры-скриптов)
 
-# Документация на русском языке
 ## Как писать скрипты   
 VBS позволяет реализовать большинство полезных скриптов. Вот обыкновенный шаблон для скрипта:   
 ```
