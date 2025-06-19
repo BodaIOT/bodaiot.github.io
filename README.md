@@ -7,7 +7,8 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/diemonic1/CatPilot)
 ![GitHub issues](https://img.shields.io/github/issues/diemonic1/CatPilot)
 
-Link to the sample section: [Link Text](#Как-писать-скрипты).
+[Как писать скрипты](#Как-писать-скрипты).
+[Примеры](#Примеры).
 
 # Документация на русском языке
 ## Как писать скрипты   
