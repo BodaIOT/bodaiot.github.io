@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="notify">Notify Me</button>
+</body>
+<script>
+    const Notifybtn = document.querySelector(".notify");
+    const sendNotification = ()=>{
+        if(!("Notification" in window)){
+            throw new Error("Your browser does not support push notification");
+        }
+        Notification.requestPermission().then((Permission)=>{
+            setTimeout(() => { 
+                console.log(Permission);
+                new Notification('Простой тест');
+            }, 3000);
+        })
+    };
+    Notifybtn.addEventListener("click", sendNotification);
+</script>
+</html>
