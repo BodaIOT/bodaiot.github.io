@@ -254,19 +254,17 @@
         var link = data.items[0].link;
         var id = link.substr(link.indexOf("=")+1);
         video_url = "https://www.youtube.com/watch?v=" + id;
-      });
 
-      $(window).on('load', function() {
-          const urlParams = new URLSearchParams(window.location.search);
-          var news = urlParams.get('news');
-          console.log("news", news);
-        
-          let today = new Date();
-          console.log("Сейчас часов: " + today.getHours());
-          if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
-          {
-            OpenVideo();
-          }
+        const urlParams = new URLSearchParams(window.location.search);
+        var news = urlParams.get('news');
+        console.log("news", news);
+      
+        let today = new Date();
+        console.log("Сейчас часов: " + today.getHours());
+        if ((today.getHours() > 7 && today.getHours() < 10) || news == "true")
+        {
+          OpenVideo();
+        }
       });
 
       function OpenVideo(){
