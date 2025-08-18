@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_keyword": [
+        "chatgpt",
+        "pornhub",
+        "openai",
+        "youtrack.cloud"
+      ]
+    }
+  ]
+}
