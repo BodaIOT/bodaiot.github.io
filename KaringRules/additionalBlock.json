@@ -2,11 +2,6 @@
   "version": 4,
   "rules": [
     {
-      "domain": [
-        "zyrnbh.xyz"
-      ]
-    },
-    {
       "domain_keyword": [
         "zyrnbh"
       ]
