@@ -2,17 +2,11 @@
   "version": 3,
   "rules": [
     {
-      "domain": [
-        "www.speedtest.net"
-      ]
-    },
-    {
       "domain_keyword": [
         "chatgpt",
         "pornhub",
         "openai",
         "youtrack.cloud",
-        "speedtest",
         "southparkz"
       ]
     }
