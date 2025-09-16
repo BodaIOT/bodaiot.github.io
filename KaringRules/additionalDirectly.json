@@ -6,7 +6,9 @@
         "vk",
         "steampipe",
         "cdn.steampipe",
-        "freetp.ru"
+        "freetp.ru",
+        "bugakos.ru",
+        "dtf.ru"
       ],
       "protocol": [
         "bittorrent"
