@@ -3,7 +3,13 @@
   "rules": [
     {
       "domain_keyword": [
-        "vk"
+        "vk",
+        "steampipe",
+        "cdn.steampipe",
+        "freetp.ru"
+      ],
+      "protocol": [
+        "bittorrent"
       ]
     }
   ]
