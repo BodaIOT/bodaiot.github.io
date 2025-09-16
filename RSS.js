@@ -112,6 +112,9 @@ function titleHighlighted(s) {
 	while (s.includes("&amp;amp;")) {
 		s = s.replace("&amp;amp;", "&");
 	}
+	while (s.includes("&amp;")) {
+		s = s.replace("&amp;", "&");
+	}
 
 	for (let i = 0; i < s.length; i++) {
 		if (isCharacterALetter(s[i]) && flag == false) {
