@@ -8,7 +8,8 @@
         "cdn.steampipe",
         "freetp.ru",
         "bugakos.ru",
-        "dtf.ru"
+        "dtf.ru",
+        "freesteam"
       ],
       "protocol": [
         "bittorrent"
