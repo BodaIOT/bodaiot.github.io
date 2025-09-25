@@ -17,7 +17,8 @@
     "banWords": [
         "practicum.yandex.ru", 
         "skillfactory.ru", 
-        "AdvLabel-Text"
+        "AdvLabel-Text",
+        "алабуга"
     ],
     "stopWords": [
         "neuro_answer", 
