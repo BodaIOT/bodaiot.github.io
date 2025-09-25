@@ -20,7 +20,8 @@
         "skillfactory.ru", 
         "AdvLabel-Text",
         "алабуга",
-        "реклама"
+        "реклама",
+        "отключить рекламу"
     ],
     "stopWords": [
         "neuro_answer", 
