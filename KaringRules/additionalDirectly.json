@@ -11,7 +11,8 @@
         "dtf.ru",
         "freesteam",
         "rotorrent",
-        "translate.google.ru"
+        "translate.google.ru",
+        "yandex"
       ],
       "protocol": [
         "bittorrent"
