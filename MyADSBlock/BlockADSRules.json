@@ -12,13 +12,15 @@
         "[class*='AppMoney_wrap']"
     ],
     "elementsToCheck": [
-        "[class*='serp-item_card']"
+        "[class*='serp-item_card']",
+        "[data-testid*='page-layout_right-column_container']"
     ],
     "banWords": [
         "practicum.yandex.ru", 
         "skillfactory.ru", 
         "AdvLabel-Text",
-        "алабуга"
+        "алабуга",
+        "реклама"
     ],
     "stopWords": [
         "neuro_answer", 
