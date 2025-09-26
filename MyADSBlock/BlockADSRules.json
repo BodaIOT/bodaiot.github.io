@@ -14,7 +14,9 @@
         "[class*='AppMoneySidebar']", 
         "[class*='AppMoney_wrap']",
         "[class*='VertisAds']",
-        "[class*='afisha-profit-banner']"
+        "[class*='afisha-profit-banner']",
+        "[data-test-id*='adfox']",
+        "[data-testid*='adfox']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
