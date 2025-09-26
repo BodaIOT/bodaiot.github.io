@@ -14,7 +14,8 @@
     "elementsToCheck": [
         "[class*='serp-item_card']",
         "[data-testid*='page-layout_right-column_container']",
-        "[id*='marketfrontRecomLayout']"
+        "[id*='marketfrontRecomLayout']",
+        "[id*='heroBanner']"
     ],
     "banWords": [
         "practicum.yandex.ru", 
