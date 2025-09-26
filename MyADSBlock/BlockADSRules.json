@@ -13,7 +13,8 @@
         "[class*='topBlockWithMoney']", 
         "[class*='AppMoneySidebar']", 
         "[class*='AppMoney_wrap']",
-        "[class*='VertisAds']"
+        "[class*='VertisAds']",
+        "[class*='afisha-profit-banner']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
