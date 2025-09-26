@@ -16,8 +16,10 @@
         "[class*='AdvMastHead']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
+        "[data-testid*='afishaProfit.wrapper']",
         "[data-test-id*='adfox']",
-        "[data-test-id*='ommercialBanner']"
+        "[data-test-id*='ommercialBanner']",
+        "[data-test-id*='afishaProfit.wrapper']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
