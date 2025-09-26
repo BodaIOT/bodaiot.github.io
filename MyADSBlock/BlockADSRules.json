@@ -12,7 +12,8 @@
         "[class*='AppForecastMoney']", 
         "[class*='topBlockWithMoney']", 
         "[class*='AppMoneySidebar']", 
-        "[class*='AppMoney_wrap']"
+        "[class*='AppMoney_wrap']",
+        "[class*='VertisAds']",
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
