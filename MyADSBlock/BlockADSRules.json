@@ -13,7 +13,7 @@
         "[class*='topBlockWithMoney']", 
         "[class*='AppMoneySidebar']", 
         "[class*='AppMoney_wrap']",
-        "[class*='VertisAds']",
+        "[class*='VertisAds']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
