@@ -16,7 +16,9 @@
         "[class*='VertisAds']",
         "[class*='afisha-profit-banner']",
         "[data-test-id*='adfox']",
-        "[data-testid*='adfox']"
+        "[data-testid*='adfox']",
+        "[data-test-id*='ommercialBanner']",
+        "[data-testid*='ommercialBanner']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
