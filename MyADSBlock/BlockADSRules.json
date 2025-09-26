@@ -13,7 +13,8 @@
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
-        "[data-testid*='page-layout_right-column_container']"
+        "[data-testid*='page-layout_right-column_container']",
+        "[id*='marketfrontRecomLayout']"
     ],
     "banWords": [
         "practicum.yandex.ru", 
