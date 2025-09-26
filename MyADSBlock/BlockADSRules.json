@@ -2,9 +2,6 @@
     "elementsToDelete": [
         ".JustifierRowLayout-Incut", 
         ".banner-view",
-        "[class*='Card_bottomAdv']", 
-        "[class*='DirectFeature']",
-        "[class*='AdvMastHead']",
         "[id*='advRsyaReact']",
         "[id*='yandex-search-banner']",
         "[id*='kinopoisk-banner']",
@@ -15,14 +12,18 @@
         "[class*='AppMoney_wrap']",
         "[class*='VertisAds']",
         "[class*='afisha-profit-banner']",
-        "[data-test-id*='adfox']",
+        "[class*='Card_bottomAdv']", 
+        "[class*='DirectFeature']",
+        "[class*='AdvMastHead']",
         "[data-testid*='adfox']",
-        "[data-test-id*='ommercialBanner']",
-        "[data-testid*='ommercialBanner']"
+        "[data-testid*='ommercialBanner']",
+        "[data-test-id*='adfox']",
+        "[data-test-id*='ommercialBanner']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
         "[data-testid*='page-layout_right-column_container']",
+        "[data-test-id*='page-layout_right-column_container']",
         "[id*='marketfrontRecomLayout']",
         "[id*='heroBanner']",
         "[id*='cardRecommendationRoll']"
