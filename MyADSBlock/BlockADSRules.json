@@ -18,6 +18,7 @@
         "[class*='topBannerContainer']",
         "[class*='contentBottomBlock']",
         "[class*='ya-recommendation-widget']",
+        "[class*='content--ad']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
         "[data-testid*='afishaProfit.wrapper']",
