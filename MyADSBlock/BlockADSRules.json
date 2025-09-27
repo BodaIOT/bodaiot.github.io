@@ -14,6 +14,7 @@
         "[class*='Card_bottomAdv']", 
         "[class*='DirectFeature']",
         "[class*='AdvMastHead']",
+        "[class*='rightAdWrapper']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
         "[data-testid*='afishaProfit.wrapper']",
