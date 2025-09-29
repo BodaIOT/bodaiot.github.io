@@ -17,6 +17,8 @@
         "[class*='rightAdWrapper']",
         "[class*='topBannerContainer']",
         "[class*='contentBottomBlock']",
+        "[class*='VideoViewer-Direct_placement_before-player VideoViewer-Direct_withStore']",
+        "[class*='VideoViewer-Direct_placement_under-player VideoViewer-Direct_withStore']",
         "[class*='ya-recommendation-widget']",
         "[class*='content--ad']",
         "[data-testid*='adfox']",
