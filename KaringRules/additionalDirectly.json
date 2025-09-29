@@ -12,7 +12,8 @@
         "freesteam",
         "rotorrent",
         "translate.google.ru",
-        "yandex"
+        "yandex",
+        "hard-tm"
       ],
       "protocol": [
         "bittorrent"
