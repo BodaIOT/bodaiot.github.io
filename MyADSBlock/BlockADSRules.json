@@ -21,7 +21,7 @@
         "[class*='VideoViewer-Direct_placement_under-player VideoViewer-Direct_withStore']",
         "[class*='ya-recommendation-widget']",
         "[class*='content--ad']",
-        "[class*='ya-recommendation-widget ya-recommendation-widget-visible']",
+        "[class*='VideoViewer-Direct VideoViewer-Direct_placement_video-list VideoViewer-Direct_withStore VideoViewer-VideoListPageDirect']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
         "[data-testid*='afishaProfit.wrapper']",
