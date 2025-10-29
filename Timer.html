@@ -758,26 +758,38 @@
 
         inputButton.addEventListener('mouseover', function() {
             inputTimeObj.classList.add("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         inputButton.addEventListener('mouseout', function() {
             inputTimeObj.classList.remove("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         inputTimeObj.addEventListener('mouseover', function() {
             inputTimeObj.classList.add("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         inputTimeObj.addEventListener('mouseout', function() {
             inputTimeObj.classList.remove("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         deleteTimeObj.addEventListener('mouseover', function() {
             inputTimeObj.classList.add("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         deleteTimeObj.addEventListener('mouseout', function() {
             inputTimeObj.classList.remove("inputTimeObjHover");
+            const time_value = parseTime(time.value);
+            time.value = formatTime(time_value);
             localStorage.setItem(time_text_key, time.value);
         })
         
@@ -850,6 +862,58 @@
             }
         }
 
+        time.addEventListener('wheel', e => {
+            e.preventDefault();
+
+            let { hours, minutes, seconds } = parseTime(time.value);
+
+            if (e.deltaY < 0) {
+                // колесико вверх → +1 минута
+                minutes++;
+            } else {
+                // колесико вниз → -1 минута
+                minutes--;
+            }
+
+            // Корректируем часы/минуты
+            if (minutes >= 60) {
+                hours += Math.floor(minutes / 60);
+                minutes %= 60;
+            } else if (minutes < 0) {
+                const borrow = Math.ceil(Math.abs(minutes) / 60);
+                hours -= borrow;
+                minutes = (minutes % 60 + 60) % 60; // нормализуем положительно
+            }
+
+            if (hours < 0) hours = 0; // не даем уйти ниже 0 часов
+
+            time.value = formatTime({ hours, minutes, seconds });
+        });
+
+        function parseTime(str) {
+            // Разделители любые нецифровые символы
+            const parts = str.split(/\D+/).map(Number).filter(n => !isNaN(n));
+
+            let [hours = 0, minutes = 0, seconds = 0] = parts;
+
+            // Нормализуем минуты и секунды в пределах 0–59
+            if (minutes < 0) minutes = 0;
+            if (minutes > 59) minutes = 59;
+            if (seconds < 0) seconds = 0;
+            if (seconds > 59) seconds = 59;
+
+            // Часы можно любые >= 0
+            if (hours < 0) hours = 0;
+
+            return { hours, minutes, seconds };
+        }
+
+        // Форматируем обратно в строку HH:MM:SS
+        function formatTime({ hours, minutes, seconds }) {
+            const pad = n => String(n).padStart(2, '0');
+            return `${hours}:${pad(minutes)}:${pad(seconds)}`;
+        }
+
         function deleteTime()
         {
             if (time.value == null || time.value == "null" || time.value == "")
@@ -862,26 +926,13 @@
             document.getElementById("animationBack").classList.remove("animationBack2");
             document.getElementById("animationBack").classList.add("animationBack");
 
-            if (time.value.includes('.'))
-                var nums = time.value.split('.');
-            else if (time.value.includes(','))
-                var nums = time.value.split(',');
-            else if (time.value.includes('|'))
-                var nums = time.value.split('|');
-            else if (time.value.includes(':'))
-                var nums = time.value.split(':');
-            else if (time.value.includes(';'))
-                var nums = time.value.split(';');
+            let { hours, minutes, seconds } = parseTime(time.value);
 
-            var timer_hours = Number(nums[0]);
-            var timer_minutes = Number(nums[1]);
-            var timer_seconds = Number(nums[2]);
-
-            console.log("setting timer: " + timer_hours + ":" + timer_minutes + ":" + timer_seconds)
+            console.log("setting timer: " + hours + ":" + minutes + ":" + seconds)
 
             var now = new Date();
             localStorage.setItem(pause_start_key, now);
-            now.setMilliseconds(now.getMilliseconds() + (timer_hours * 60 * 60 + timer_minutes * 60 + timer_seconds) * 1000);
+            now.setMilliseconds(now.getMilliseconds() + (hours * 60 * 60 + minutes * 60 + seconds) * 1000);
 
             console.log("deleteTime, next time: " + now);
 
