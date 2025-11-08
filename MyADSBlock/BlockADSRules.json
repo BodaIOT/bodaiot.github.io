@@ -19,6 +19,7 @@
         "[class*='contentBottomBlock']",
         "[class*='VideoViewer-Direct_placement_before-player VideoViewer-Direct_withStore']",
         "[class*='VideoViewer-Direct_placement_under-player VideoViewer-Direct_withStore']",
+        "[class*='LyricsSidebarAd__Recommendations-sc']",
         "[class*='ya-recommendation-widget']",
         "[class*='content--ad']",
         "[class*='VideoViewer-Direct_placement_video-list']",
