@@ -16,6 +16,10 @@
         "hard-tm",
         "geekjob"
       ],
+      "domain_suffix": [
+        ".ru",
+        ".рф"
+      ]
       "protocol": [
         "bittorrent"
       ]
