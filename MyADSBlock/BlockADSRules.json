@@ -36,7 +36,8 @@
         "[data-test-id*='page-layout_right-column_container']",
         "[id*='heroBanner']",
         "[id*='cardRecommendationRoll']",
-        "[id*='marketfrontRecomLayout42/recomLayoutItem']"
+        "[id*='marketfrontRecomLayout42/recomLayoutItem']",
+        "[id*='content/page/fancyPage/recommendationRollTabs/recommendationRolls/remix_desktop_width_6']",
     ],
     "banWords": [
         "practicum.yandex.ru", 
