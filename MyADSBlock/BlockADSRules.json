@@ -34,7 +34,6 @@
         "[class*='serp-item_card']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
-        "[id*='marketfrontRecomLayout']",
         "[id*='heroBanner']",
         "[id*='cardRecommendationRoll']"
     ],
