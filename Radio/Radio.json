@@ -39,11 +39,6 @@
       "description": "Radio Record"
     },
     {
-      "title": "D'n'B Classics",
-      "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp",
-      "description": "Radio Record"
-    },
-    {
       "title": "Trap",
       "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
       "description": "Radio Record"
@@ -57,6 +52,11 @@
     {
       "title": "DubStep",
       "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
+      "description": "Radio Record"
+    },
+    {
+      "title": "DnB Classics",
+      "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp",
       "description": "Radio Record"
     },
     {
