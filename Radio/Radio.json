@@ -5,19 +5,19 @@
     {
       "title": "Маятник Фуко",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
-      "genre": "Rap",
+      "genre": "Рэп",
       "description": "Radio Record"
     },
     {
       "title": "Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
-      "genre": "Rap",
+      "genre": "Рэп",
       "description": "Radio Record"
     },
     {
       "title": "Rap Classics",
       "url": "https://radiorecord.hostingradio.ru/rapclassics96.aacp",
-      "genre": "Rap",
+      "genre": "Рэп",
       "description": "Radio Record"
     },
     {
@@ -66,7 +66,7 @@
     },
     {
       "title": "Dance UK Radio",
-      "url": "https://dancestream.danceradiouk.com/stream"
+      "url": "https://dancestream.danceradiouk.com/stream",
       "description": "UK"
     }
   ]
