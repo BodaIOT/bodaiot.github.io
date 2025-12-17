@@ -3,11 +3,15 @@
   "title": "Мой каталог радиостанций",
   "stations": [
     {
-      "title": "Маятник Фуко",
+      "title": "Маятник Фуко (Radio Record)",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp"
     },
     {
-      "title": "Rap Classics, radiorecord",
+      "title": "Rap Hits (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/rap96.aacp"
+    },
+    {
+      "title": "Rap Classics (Radio Record)",
       "url": "https://radiorecord.hostingradio.ru/rapclassics96.aacp"
     },
     {
@@ -17,6 +21,30 @@
     {
       "title": "Lo Fi Hip Hop Radio",
       "url": "https://live.lofiradio.ru/lofi_mp3_128"
+    },
+    {
+      "title": "Phonk (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/phonk96.aacp"
+    },
+    {
+      "title": "Tecktonik (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/tecktonik96.aacp"
+    },
+    {
+      "title": "D'n'B Classics (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp"
+    },
+    {
+      "title": "Trap (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/trap96.aacp"
+    },
+    {
+      "title": "Rave (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/rave96.aacp"
+    },
+    {
+      "title": "DubStep (Radio Record)",
+      "url": "https://radiorecord.hostingradio.ru/dub96.aacp"
     },
     {
       "title": "laut.fm EDM (Германия)",
