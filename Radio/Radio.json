@@ -7,24 +7,24 @@
       "url": "http://emgregion.hostingradio.ru:8064/spb.dorognoe.mp3"
     },
     {
-      "title": "Радио Эрмитаж",
-      "url": "https://hermitage.hostingradio.ru/hermitage128.mp3"
+      "title": "Hip Hop",
+      "url": "https://live.lofiradio.ru/hiphop_mp3_320"
     },
     {
-      "title": "Dance UK Radio",
-      "url": "https://dancestream.danceradiouk.com/stream"
+      "title": "Радио Эрмитаж",
+      "url": "https://hermitage.hostingradio.ru/hermitage128.mp3"
     },
     {
       "title": "Lo Fi Hip Hop Radio",
       "url": "https://live.lofiradio.ru/lofi_mp3_128"
     },
     {
-      "title": "Hip Hop",
-      "url": "https://live.lofiradio.ru/hiphop_mp3_320"
-    },
-    {
       "title": "laut.fm EDM (Германия)",
       "url": "https://edm.stream.laut.fm/edm"
+    },
+    {
+      "title": "Dance UK Radio",
+      "url": "https://dancestream.danceradiouk.com/stream"
     }
   ]
 }
