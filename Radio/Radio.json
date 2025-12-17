@@ -1,22 +1,21 @@
 {
-  "Version": 1,
-  "Title": "Мой каталог радиостанций",
-  "Items": [
+  "version": 1,
+  "title": "Мой каталог радиостанций",
+  "stations": [
     {
-      "Type": "test Group",
-      "Title": "Рок test",
-      "Items": [
-        {
-          "Type": "Station",
-          "Title": "Rock FM 1",
-          "URL": "http://stream.rockfm.com/rockfm.mp3"
-        },
-        {
-          "Type": "Station",
-          "Title": "Classic Rock 2",
-          "URL": "http://example.com/classicrock.aac"
-        }
-      ]
+      "id": "rock_fm",
+      "title": "Rock FM",
+      "url": "http://stream.rockfm.com/rockfm.mp3"
+    },
+    {
+      "id": "classic_rock",
+      "title": "Classic Rock",
+      "url": "http://example.com/classicrock.aac"
+    },
+    {
+      "id": "deep_house",
+      "title": "Deep House Radio",
+      "url": "http://example.com/deephouse.mp3"
     }
   ]
 }
