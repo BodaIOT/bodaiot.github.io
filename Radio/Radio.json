@@ -4,7 +4,9 @@
   "stations": [
     {
       "title": "Маятник Фуко (Radio Record)",
-      "url": "https://radiorecord.hostingradio.ru/mf96.aacp"
+      "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
+      "genre": "EDM / Dance",
+      "description": "Энергичное электронное радио с танцевальной музыкой, 24/7 эфир."
     },
     {
       "title": "Rap Hits (Radio Record)",
