@@ -1,0 +1,22 @@
+{
+  "Version": 1,
+  "Title": "Мой каталог радиостанций",
+  "Items": [
+    {
+      "Type": "test Group",
+      "Title": "Рок test",
+      "Items": [
+        {
+          "Type": "Station",
+          "Title": "Rock FM 1",
+          "URL": "http://stream.rockfm.com/rockfm.mp3"
+        },
+        {
+          "Type": "Station",
+          "Title": "Classic Rock 2",
+          "URL": "http://example.com/classicrock.aac"
+        }
+      ]
+    }
+  ]
+}
