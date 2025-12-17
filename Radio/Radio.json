@@ -3,19 +3,19 @@
   "title": "Мой каталог радиостанций",
   "stations": [
     {
-      "id": "rock_fm",
-      "title": "Rock FM",
-      "url": "http://stream.rockfm.com/rockfm.mp3"
+      "id": "1",
+      "title": "Дорожное радио Санкт-Петербург 87.5 FM",
+      "url": "http://emgregion.hostingradio.ru:8064/spb.dorognoe.mp3"
     },
     {
-      "id": "classic_rock",
-      "title": "Classic Rock",
-      "url": "http://example.com/classicrock.aac"
+      "id": "2",
+      "title": "Радио Эрмитаж",
+      "url": "https://hermitage.hostingradio.ru/hermitage128.mp3"
     },
     {
-      "id": "deep_house",
-      "title": "Deep House Radio",
-      "url": "http://example.com/deephouse.mp3"
+      "id": "3",
+      "title": "Dance UK Radio",
+      "url": "https://dancestream.danceradiouk.com/stream"
     }
   ]
 }
