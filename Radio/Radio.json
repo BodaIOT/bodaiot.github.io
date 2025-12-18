@@ -31,6 +31,11 @@
       "description": "LoFi Girl"
     },
     {
+      "title": "Gachi Radio",
+      "url": "http://gachiradio.ru:8000/radio",
+      "description": "♂"
+    },
+    {
       "title": "Phonk",
       "url": "https://radiorecord.hostingradio.ru/phonk96.aacp",
       "description": "Radio Record"
