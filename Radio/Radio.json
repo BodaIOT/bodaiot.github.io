@@ -9,8 +9,7 @@
       "description": "Radio Record",
       "country": "US",
       "countrycode":"RU",
-      "jazz,pop,rock,indie",
-      "tags": ["rap", "oldschool"]
+      "tags": "jazz,pop,rock,indie"
     },
     {
       "title": "Rap Hits",
