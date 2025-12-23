@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./icon.png" />
+    <title>Online Status</title>
+    <style>
+        .current-time {
+            font-size: 29px;
+        }
+        .budge {
+            width: 940px;
+        }
+    </style>
+</head>
+<body>
+    <div id="utc-time" class="current-time"></div>
+    <img class="budge" src="https://cronitor.io/badges/399pgU/production/ALjYVncq34lkz4FM4BGoAZK5mFc/detailed.svg" alt="">
+    <img class="budge" src="https://cronitor.io/badges/hlgG7V/production/-tSDzkghopmF-23iNzSZzAeMuz4/detailed.svg" alt="">
+<script>
+  const now = new Date();
+  document.getElementById('utc-time').textContent =
+    now.toUTCString();
+</script>
+</body>
+</html>
