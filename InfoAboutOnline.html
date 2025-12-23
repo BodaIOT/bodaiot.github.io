@@ -1,27 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./icon.png" />
-    <title>Online Status</title>
-    <style>
-        .current-time {
-            font-size: 29px;
-        }
-        .budge {
-            width: 940px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Статус устройств</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="./online.png" />
+
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #161a22;
+      --text: #e6e8eb;
+      --muted: #9aa0a6;
+      --online: #4ade80;
+      --offline: #f87171;
+      --accent: #3b82f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 50% -200px, #1b2030, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      padding: 24px;
+    }
+
+    .header {
+      margin-bottom: 24px;
+    }
+
+    .time {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #1a1f2b, var(--card));
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .device-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--offline);
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .status.online {
+      color: var(--online);
+    }
+
+    .status.online .dot {
+      background: var(--online);
+    }
+
+    .status.offline {
+      color: var(--offline);
+    }
+
+    .info {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .value {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .elapsed {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <div id="utc-time" class="current-time"></div>
-    <img class="budge" src="https://cronitor.io/badges/399pgU/production/ALjYVncq34lkz4FM4BGoAZK5mFc/detailed.svg" alt="">
-    <img class="budge" src="https://cronitor.io/badges/hlgG7V/production/-tSDzkghopmF-23iNzSZzAeMuz4/detailed.svg" alt="">
+
+<div class="container">
+  <div class="header">
+    <div class="time" id="localTime">
+      --:--:--
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card" id="pc">
+      <div class="card-header">
+        <div class="device-name">Компьютер</div>
+        <div class="status offline">
+          <div class="dot"></div>
+          <span>Офлайн</span>
+        </div>
+      </div>
+      <div class="info">
+        Последний онлайн:<br />
+        <span class="value">—</span><br />
+        Прошло времени: <span class="elapsed">—</span>
+      </div>
+    </div>
+
+    <div class="card" id="laptop">
+      <div class="card-header">
+        <div class="device-name">Ноутбук</div>
+        <div class="status offline">
+          <div class="dot"></div>
+          <span>Офлайн</span>
+        </div>
+      </div>
+      <div class="info">
+        Последний онлайн:<br />
+        <span class="value">—</span><br />
+        Прошло времени: <span class="elapsed">—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Обновление статуса каждые 30 секунд
+  </div>
+</div>
+
 <script>
-  const now = new Date();
-  document.getElementById('utc-time').textContent =
-    now.toUTCString();
+  /* ================= КОНФИГ ================= */
+
+  const ONLINE_THRESHOLD_SECONDS = 120; // количество секунд, чтобы считать устройство онлайн
+
+  const DEVICES = {
+    pc: {
+      url: "https://cronitor.io/badges/399pgU/production/ALjYVncq34lkz4FM4BGoAZK5mFc/detailed.svg",
+      lastOnline: null
+    },
+    laptop: {
+      url: "https://cronitor.io/badges/hlgG7V/production/-tSDzkghopmF-23iNzSZzAeMuz4/detailed.svg",
+      lastOnline: null
+    }
+  };
+
+  const DATE_REGEX = /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC/;
+
+  /* ================= ФУНКЦИИ ================= */
+
+  function updateLocalTime() {
+    const now = new Date();
+    document.getElementById("localTime").textContent = now.toLocaleTimeString();
+
+    // Обновляем прошедшее время для устройств
+    for (const id in DEVICES) {
+      const device = DEVICES[id];
+      if (device.lastOnline) {
+        const elapsedSeconds = (now - device.lastOnline) / 1000;
+        const elapsedEl = document.getElementById(id).querySelector(".elapsed");
+        elapsedEl.textContent = formatElapsed(elapsedSeconds);
+      }
+    }
+  }
+
+  function formatElapsed(seconds) {
+    seconds = Math.floor(seconds);
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h}ч ${m}м ${s}с`;
+  }
+
+  async function updateDevice(id, url) {
+    const card = document.getElementById(id);
+    const statusEl = card.querySelector(".status");
+    const statusText = statusEl.querySelector("span");
+    const lastOnlineEl = card.querySelector(".value");
+    const elapsedEl = card.querySelector(".elapsed");
+
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      const svgText = await response.text();
+
+      const match = svgText.match(DATE_REGEX);
+      if (!match) throw new Error("Дата не найдена");
+
+      const utcDate = new Date(match[0].replace(" UTC", "Z"));
+      DEVICES[id].lastOnline = utcDate;
+
+      const now = new Date();
+      const diffSeconds = (now - utcDate) / 1000;
+      const isOnline = diffSeconds <= ONLINE_THRESHOLD_SECONDS;
+
+      statusEl.classList.toggle("online", isOnline);
+      statusEl.classList.toggle("offline", !isOnline);
+      statusText.textContent = isOnline ? "Онлайн" : "Офлайн";
+
+      lastOnlineEl.textContent = utcDate.toLocaleString();
+      elapsedEl.textContent = formatElapsed(diffSeconds);
+
+    } catch (e) {
+      statusText.textContent = "Ошибка";
+      lastOnlineEl.textContent = "—";
+      elapsedEl.textContent = "—";
+    }
+  }
+
+  async function updateAllDevices() {
+    for (const [id, device] of Object.entries(DEVICES)) {
+      updateDevice(id, device.url);
+    }
+  }
+
+  // Запускаем обновление
+  updateAllDevices();
+  setInterval(updateAllDevices, 30_000);
+  setInterval(updateLocalTime, 1000); // локальное время + прошедшее время
+  updateLocalTime();
 </script>
+
 </body>
 </html>
