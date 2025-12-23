@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Статус устройств</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="./online.png" />
 
   <style>
     :root {
@@ -14,7 +13,6 @@
       --muted: #9aa0a6;
       --online: #4ade80;
       --offline: #f87171;
-      --accent: #3b82f6;
     }
 
     * {
@@ -40,13 +38,13 @@
 
     .header {
       margin-bottom: 24px;
+      text-align: center;
     }
 
     .time {
       font-size: 32px;
       font-weight: 600;
       letter-spacing: 0.5px;
-      text-align: center;
     }
 
     .cards {
@@ -108,11 +106,7 @@
       line-height: 1.6;
     }
 
-    .value {
-      color: var(--text);
-      font-weight: 500;
-    }
-
+    .value,
     .elapsed {
       color: var(--text);
       font-weight: 500;
@@ -130,9 +124,7 @@
 
 <div class="container">
   <div class="header">
-    <div class="time" id="localTime">
-      --:--:--
-    </div>
+    <div class="time" id="localTime">--:--:--</div>
   </div>
 
   <div class="cards">
@@ -145,9 +137,9 @@
         </div>
       </div>
       <div class="info">
-        Последний онлайн:<br />
-        <span class="value">—</span><br />
-        Прошло времени: <span class="elapsed">—</span>
+        Последний онлайн:
+        <span class="value">—</span>
+        Последний удар: <span class="elapsed">—</span>
       </div>
     </div>
 
@@ -160,22 +152,25 @@
         </div>
       </div>
       <div class="info">
-        Последний онлайн:<br />
-        <span class="value">—</span><br />
-        Прошло времени: <span class="elapsed">—</span>
+        Последний онлайн:
+        <span class="value">—</span>
+        Последний удар: <span class="elapsed">—</span>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    Обновление статуса каждые 30 секунд
+    Последнее обновление статуса:
+    <span id="lastStatusUpdate">—</span>
+    (<span id="lastStatusElapsed">—</span>)
   </div>
 </div>
 
 <script>
   /* ================= КОНФИГ ================= */
 
-  const ONLINE_THRESHOLD_SECONDS = 120; // количество секунд, чтобы считать устройство онлайн
+  const ONLINE_THRESHOLD_SECONDS = 120;
+  const STATUS_UPDATE_INTERVAL_SECONDS = 5;
 
   const DEVICES = {
     pc: {
@@ -190,20 +185,30 @@
 
   const DATE_REGEX = /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC/;
 
-  /* ================= ФУНКЦИИ ================= */
+  let lastStatusUpdateTime = null;
+
+  /* ================= ВРЕМЯ ================= */
 
   function updateLocalTime() {
     const now = new Date();
     document.getElementById("localTime").textContent = now.toLocaleTimeString();
 
-    // Обновляем прошедшее время для устройств
+    // Обновляем "прошло времени" у устройств
     for (const id in DEVICES) {
       const device = DEVICES[id];
       if (device.lastOnline) {
         const elapsedSeconds = (now - device.lastOnline) / 1000;
-        const elapsedEl = document.getElementById(id).querySelector(".elapsed");
-        elapsedEl.textContent = formatElapsed(elapsedSeconds);
+        document
+          .getElementById(id)
+          .querySelector(".elapsed")
+          .textContent = formatElapsed(elapsedSeconds);
       }
+    }
+
+    // Обновляем прошедшее время с момента обновления статуса
+    if (lastStatusUpdateTime) {
+      const diff = Math.floor((now - lastStatusUpdateTime) / 1000);
+      document.getElementById("lastStatusElapsed").textContent = `${diff} сек назад`;
     }
   }
 
@@ -215,6 +220,8 @@
     return `${h}ч ${m}м ${s}с`;
   }
 
+  /* ================= СТАТУС ================= */
+
   async function updateDevice(id, url) {
     const card = document.getElementById(id);
     const statusEl = card.querySelector(".status");
@@ -222,45 +229,46 @@
     const lastOnlineEl = card.querySelector(".value");
     const elapsedEl = card.querySelector(".elapsed");
 
-    try {
-      const response = await fetch(url, { cache: "no-store" });
-      const svgText = await response.text();
+    const response = await fetch(url, { cache: "no-store" });
+    const svgText = await response.text();
 
-      const match = svgText.match(DATE_REGEX);
-      if (!match) throw new Error("Дата не найдена");
+    const match = svgText.match(DATE_REGEX);
+    if (!match) throw new Error("Дата не найдена");
 
-      const utcDate = new Date(match[0].replace(" UTC", "Z"));
-      DEVICES[id].lastOnline = utcDate;
+    const utcDate = new Date(match[0].replace(" UTC", "Z"));
+    DEVICES[id].lastOnline = utcDate;
 
-      const now = new Date();
-      const diffSeconds = (now - utcDate) / 1000;
-      const isOnline = diffSeconds <= ONLINE_THRESHOLD_SECONDS;
+    const now = new Date();
+    const diffSeconds = (now - utcDate) / 1000;
+    const isOnline = diffSeconds <= ONLINE_THRESHOLD_SECONDS;
 
-      statusEl.classList.toggle("online", isOnline);
-      statusEl.classList.toggle("offline", !isOnline);
-      statusText.textContent = isOnline ? "Онлайн" : "Офлайн";
+    statusEl.classList.toggle("online", isOnline);
+    statusEl.classList.toggle("offline", !isOnline);
+    statusText.textContent = isOnline ? "Онлайн" : "Офлайн";
 
-      lastOnlineEl.textContent = utcDate.toLocaleString();
-      elapsedEl.textContent = formatElapsed(diffSeconds);
-
-    } catch (e) {
-      statusText.textContent = "Ошибка";
-      lastOnlineEl.textContent = "—";
-      elapsedEl.textContent = "—";
-    }
+    lastOnlineEl.textContent = utcDate.toLocaleString();
+    elapsedEl.textContent = formatElapsed(diffSeconds);
   }
 
   async function updateAllDevices() {
     for (const [id, device] of Object.entries(DEVICES)) {
-      updateDevice(id, device.url);
+      try {
+        await updateDevice(id, device.url);
+      } catch {}
     }
+
+    lastStatusUpdateTime = new Date();
+    document.getElementById("lastStatusUpdate").textContent =
+      lastStatusUpdateTime.toLocaleTimeString();
   }
 
-  // Запускаем обновление
+  /* ================= ЗАПУСК ================= */
+
   updateAllDevices();
-  setInterval(updateAllDevices, 30_000);
-  setInterval(updateLocalTime, 1000); // локальное время + прошедшее время
   updateLocalTime();
+
+  setInterval(updateLocalTime, 1000);
+  setInterval(updateAllDevices, STATUS_UPDATE_INTERVAL_SECONDS * 1000);
 </script>
 
 </body>
