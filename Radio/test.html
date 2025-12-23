@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span id="value"></span>
+</body>
+
+<script>
+(async function () {
+  const SVG_URL = 'https://cronitor.io/badges/399pgU/production/ALjYVncq34lkz4FM4BGoAZK5mFc/detailed.svg';
+  const VALUE_ELEMENT_ID = 'value';
+  const TIMEOUT_MS = 2 * 60 * 1000; // 2 минуты
+
+  try {
+    const response = await fetch(SVG_URL, { cache: 'no-store' });
+    const svgText = await response.text();
+
+    // Ищем дату вида: 2025-12-23 11:46:00 UTC
+    const match = svgText.match(
+      /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) UTC/
+    );
+
+    if (!match) {
+      throw new Error('Дата не найдена в SVG');
+    }
+
+    // Преобразуем в Date (UTC)
+    const utcString = match[1].replace(' ', 'T') + 'Z';
+    const badgeTime = new Date(utcString);
+    const now = new Date();
+
+    const isOnline = (now - badgeTime) <= TIMEOUT_MS;
+
+    const valueEl = document.getElementById(VALUE_ELEMENT_ID);
+    if (valueEl) {
+      valueEl.textContent = isOnline ? 'online' : 'offline';
+    }
+
+  } catch (err) {
+    console.error('Ошибка проверки статуса:', err);
+    const valueEl = document.getElementById(VALUE_ELEMENT_ID);
+    if (valueEl) {
+      valueEl.textContent = 'offline';
+    }
+  }
+})();
+</script>
+</html>
