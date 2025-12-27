@@ -3,22 +3,22 @@
   "title": "Мой каталог радиостанций",
   "stations": [
     {
-      "title": "Маятник Фуко",
+      "title": "Record Маятник Фуко",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
       "genre": "Рэп",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/mf"
     },
     {
-      "title": "Rap Hits",
+      "title": "Record Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
       "genre": "Рэп",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/rap"
     },
     {
       "title": "Record Rap Classics",
       "url": "https://radiorecord.hostingradio.ru/rapclassics96.aacp",
       "genre": "Рэп",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/rapclassics"
     },
     {
       "title": "Радио Эрмитаж",
@@ -31,40 +31,40 @@
       "description": "LoFi Girl"
     },
     {
-      "title": "Gachi Radio",
+      "title": "♂ Gachi Radio ♂",
       "url": "http://gachiradio.ru:8000/radio",
-      "description": "♂"
+      "description": "https://gachiradio.ru/files/"
     },
     {
       "title": "Record Phonk",
       "url": "https://radiorecord.hostingradio.ru/phonk96.aacp",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/phonk"
     },
     {
       "title": "Record Tecktonik",
       "url": "https://radiorecord.hostingradio.ru/tecktonik96.aacp",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/tecktonik"
     },
     {
       "title": "Record Trap",
       "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/trap"
     },
     {
       "title": "Record DubStep",
       "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/dub"
     },
     {
       "title": "Record Drum Hits",
       "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/drumhits"
     },
     {
       "title": "Record Rave",
       "url": "https://radiorecord.hostingradio.ru/rave96.aacp",
       "genre": "Rave",
-      "description": "Radio Record"
+      "description": "http://direct.radiorecord.ru/station/rave"
     },
     {
       "title": "laut.fm EDM",
@@ -74,7 +74,7 @@
     {
       "title": "Dance UK Radio",
       "url": "https://dancestream.danceradiouk.com/stream",
-      "description": "UK"
+      "description": "https://www.radio-uk.co.uk/dance-uk-radio"
     }
   ]
 }
