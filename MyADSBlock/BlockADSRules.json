@@ -32,6 +32,7 @@
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
+        "[class*='JustifierColumnLayout-Item']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
         "[id*='heroBanner']",
