@@ -208,7 +208,7 @@
 
     // Обновляем прошедшее время с момента обновления статуса
     if (lastStatusUpdateTime) {
-      const diff = Math.floor((now - lastStatusUpdateTime) / 1000);
+      const diff = Math.floor(((now - lastStatusUpdateTime) / 1000) + 1);
       document.getElementById("lastStatusElapsed").textContent = `${diff} сек назад`;
     }
   }
