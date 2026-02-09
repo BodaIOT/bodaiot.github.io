@@ -1,9 +1,14 @@
-token = "123";
+token = "123"; // это токен температуры, больше не юзается
 
-if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist") && localStorage.getItem("tokenCoord")) {
+if (localStorage.getItem("token")
+  && localStorage.getItem("tokenTodoist")
+  && localStorage.getItem("tokenCoord")
+  && localStorage.getItem("apiKeyYouTube")
+) {
   console.log(localStorage.getItem("token"));
   console.log(localStorage.getItem("tokenTodoist"));
   console.log(localStorage.getItem("tokenCoord"));
+  console.log(localStorage.getItem("apiKeyYouTube"));
   elem = document.getElementById("fc");
   elem.parentNode.removeChild(elem);
 } else {
@@ -14,6 +19,8 @@ if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist") && loc
     .addEventListener("click", function (e) {
       console.log(document.getElementById("token").value);
       console.log(document.getElementById("tokenTodoist").value);
+      console.log(document.getElementById("tokenCoord").value);
+      console.log(document.getElementById("apiKeyYouTube").value);
       localStorage.setItem(
         "token",
         document.getElementById("token").value
@@ -25,6 +32,10 @@ if (localStorage.getItem("token") && localStorage.getItem("tokenTodoist") && loc
       localStorage.setItem(
         "tokenCoord",
         document.getElementById("tokenCoord").value
+      );
+      localStorage.setItem(
+        "apiKeyYouTube",
+        document.getElementById("apiKeyYouTube").value
       );
     });
 }

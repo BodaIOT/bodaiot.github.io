@@ -16,6 +16,9 @@
         class="s3"
         style="margin: 0 0 100px 0; color: red; background-color: red"
       >
+      <br>
+      <br>
+      <br>
       <input
         autocomplete="on"
         class="s1"
@@ -42,6 +45,16 @@
         name="tokenCoord"
         id="tokenCoord"
         placeholder="ВВЕДИТЕ КООРДИНАТЫ ЗАКАТА СЮДА"
+        required="required"
+        type="text"
+      />
+      <br>
+      <input
+        autocomplete="on"
+        class="s1"
+        name="apiKeyYouTube"
+        id="apiKeyYouTube"
+        placeholder="ВВЕДИТЕ АПИ КЛЮЧ ЮТУБА СЮДА"
         required="required"
         type="text"
       />
@@ -243,35 +256,89 @@
     </a>
 
     <script>
-      var channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
-      var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
-      var video_url_embed = "";
-      var video_url = "";
+      (function () {
+        const apiKeyYouTube = localStorage.getItem("apiKeyYouTube");
+        if (!apiKeyYouTube) return; // 1️⃣ ключа нет — выходим
 
-      document.getElementById("my_video_button").onclick = function(){ OpenVideo(); };
+        const channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
+        const reqURL =
+          "https://www.googleapis.com/youtube/v3/search" +
+          "?part=snippet" +
+          "&channelId=" + channelID +
+          "&order=date" +
+          "&maxResults=1" +
+          "&type=video" +
+          "&key=" + apiKeyYouTube;
 
-      $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
-        var link = data.items[0].link;
-        var id = link.substr(link.indexOf("=")+1);
-        video_url = "https://www.youtube.com/watch?v=" + id + "?autoplay=1";
+        let video_url = "";
 
-        const urlParams = new URLSearchParams(window.location.search);
-        var news = urlParams.get('news');
-        console.log("news", news);
-      
-        let today = new Date();
-        console.log("Сейчас часов: " + today.getHours());
-        if ((today.getHours() > 5 && today.getHours() < 10) || news == "true") // 5 - 10
-        {
-          OpenVideo();
+        document.getElementById("my_video_button")
+          ?.addEventListener("click", OpenVideo);
+
+        console.log("[YOUTUBE] Начал запрос адреса видео: " + reqURL );
+
+        fetch(reqURL)
+          .then(r => r.json())
+          .then(data => {
+            const videoId = findVideoId(data);
+            if (!videoId) return;
+
+            video_url =
+              "https://www.youtube.com/watch?v=" +
+              videoId +
+              "?autoplay=1";
+
+            console.log("[YOUTUBE] Успешно запросил адрес видео: " + video_url );
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const news = urlParams.get("news");
+
+            const now = new Date().getHours();
+            if ((now > 5 && now < 10) || news === "true") {
+              console.log("[YOUTUBE] Сейчас " + now + ", открываю видео" );
+              OpenVideo();
+            }
+            else {
+              console.log("[YOUTUBE] Сейчас " + now + ", НЕ СТАЛ открывать видео" );
+            }
+          })
+          .catch(err => console.error("YouTube API error:", err));
+
+        function OpenVideo() {
+          if (!video_url) {
+            console.error("У МЕНЯ ПУСТОЙ URL")
+            return;
+          }
+          window.open(video_url, "_blank");
         }
-      });
 
-      function OpenVideo(){
-        window.open(video_url, '_blank');
-      }
-  </script>
-    <!-- YouTube end -->
+        // 🔥 СУПЕР-НАДЁЖНЫЙ поиск videoId
+        function findVideoId(obj) {
+          if (!obj || typeof obj !== "object") return null;
+
+          // стандартный путь
+          if (obj.id?.videoId) return obj.id.videoId;
+
+          // если API вдруг поменяется — рекурсивный обход
+          for (const key in obj) {
+            if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+
+            const value = obj[key];
+
+            if (key === "videoId" && typeof value === "string") {
+              return value;
+            }
+
+            if (typeof value === "object") {
+              const found = findVideoId(value);
+              if (found) return found;
+            }
+          }
+
+          return null;
+        }
+      })();
+      </script>
 
     <script src="TempAndClock.js"></script>
     <script
