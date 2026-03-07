@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Start Page</title>
+<link rel="icon" href="favicon.png" type="image/x-icon">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+color:white;
+background:url("back1.jpg") center/cover no-repeat fixed;
+overflow:hidden;
+}
+
+/* затемнение */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.15);
+/* backdrop-filter:blur(3px); */
+z-index:-1;
+}
+
+.container{
+margin-top:150px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* часы */
+
+.time{
+font-size:107px;
+font-weight:300;
+letter-spacing:3px;
+text-shadow: 4px 3px 4px black;
+}
+
+.date{
+font-size:22px;
+opacity:0.9;
+margin-top:6px;
+    text-shadow: 3px 2px 2px black;
+}
+
+/* поиск */
+
+.search-container{
+margin-top:40px;
+width:1000px;
+position:relative;
+z-index: 5;
+}
+
+.search-box{
+width:100%;
+padding:16px 22px;
+border-radius:30px;
+border:none;
+font-size:18px;
+outline:none;
+transition:all .25s;
+}
+
+.search-box:focus{
+box-shadow:0 8px 30px rgba(0,0,0,.4);
+transform:scale(1.02);
+}
+
+/* подсказки */
+
+.suggestions{
+position:absolute;
+top:60px;
+width:100%;
+background:white;
+color:black;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+display:none;
+}
+
+.suggestion{
+padding:12px 18px;
+cursor:pointer;
+transition:background .15s;
+}
+
+.suggestion:hover{
+background:#f2f2f2;
+}
+
+/* плитки сайтов */
+
+.links{
+margin-top:50px;
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+justify-content:center;
+max-width:900px;
+}
+
+.link-card{
+width:245px;
+height:145px;
+border-radius:14px;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+transition:all .25s;
+box-shadow:0 6px 20px rgba(0,0,0,.4);
+}
+
+.link-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(.8);
+}
+
+.link-card span{
+position:absolute;
+bottom:10px;
+left:14px;
+font-size:16px;
+font-weight:600;
+}
+
+.link-card:hover{
+transform:translateY(-6px) scale(1.03);
+box-shadow:0 14px 40px rgba(0,0,0,.6);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="time" id="time"></div>
+<div class="date" id="date"></div>
+
+<div class="search-container">
+<input id="search" class="search-box" placeholder="Введите запрос или адрес" autocomplete="off">
+<div id="suggestions" class="suggestions"></div>
+</div>
+
+<div id="links" class="links"></div>
+
+</div>
+
+<script>
+
+/* ---------------------------
+   ЧАСЫ
+--------------------------- */
+
+function updateClock(){
+
+let now=new Date()
+
+let time=now.toLocaleTimeString("ru-RU",{
+hour:"2-digit",
+minute:"2-digit",
+hour12:false
+})
+
+let date=now.toLocaleDateString("ru-RU",{
+weekday:"long",
+day:"numeric",
+month:"long"
+})
+
+document.getElementById("time").textContent=time
+document.getElementById("date").textContent=date
+
+}
+
+setInterval(updateClock,1000)
+updateClock()
+
+
+/* ---------------------------
+   ССЫЛКИ
+--------------------------- */
+
+const links=[
+
+{
+url:"https://vk.com",
+title:"ВКонтакте",
+image:"1.png"
+},
+
+{
+url:"https://youtube.com",
+title:"YouTube",
+image:"2.png"
+}
+
+]
+
+const linksContainer=document.getElementById("links")
+
+links.forEach(l=>{
+
+let card=document.createElement("div")
+card.className="link-card"
+
+card.innerHTML=`
+<img src="${l.image}">
+<span>${l.title}</span>
+`
+
+card.onclick=()=>location.href=l.url
+
+linksContainer.appendChild(card)
+
+})
+
+
+/* ---------------------------
+   ПОИСК
+--------------------------- */
+
+const input=document.getElementById("search")
+const suggestions=document.getElementById("suggestions")
+
+input.addEventListener("keydown",e=>{
+
+if(e.key==="Enter"){
+location.href="https://yandex.ru/search/?text="+encodeURIComponent(input.value)
+}
+
+})
+
+
+/* подсказки */
+
+let script
+
+input.addEventListener("input",()=>{
+
+let q=input.value.trim()
+
+if(q.length<2){
+suggestions.style.display="none"
+return
+}
+
+if(script) script.remove()
+
+    script=document.createElement("script")
+
+    script.src=`https://suggest.yandex.ru/suggest-ya.cgi?part=${encodeURIComponent(q)}&callback=suggest`
+
+    document.body.appendChild(script)
+
+})
+
+window.suggest = {
+    apply: function(data){
+        showSuggestions(data)
+    }
+}
+
+function showSuggestions(data){
+
+console.log("Полученные подсказки: ");
+console.log(data);
+
+let arr=data[1]
+
+suggestions.innerHTML=""
+
+arr.slice(0,6).forEach(s=>{
+
+let div=document.createElement("div")
+div.className="suggestion"
+div.textContent=s
+
+div.onclick=()=>{
+location.href="https://yandex.ru/search/?text="+encodeURIComponent(s)
+}
+
+suggestions.appendChild(div)
+
+})
+
+suggestions.style.display="block"
+
+}
+
+
+/* ---------------------------
+   ВСТАВКА КАРТИНКИ (CTRL+V)
+--------------------------- */
+
+document.addEventListener("paste",async e=>{
+
+    let items=e.clipboardData.items
+
+    for(let item of items){
+
+        if(item.type.indexOf("image")!==-1){
+
+            let file=item.getAsFile()
+
+            let form=new FormData()
+            form.append("upfile",file)
+
+            let res=await fetch("https://yandex.ru/images/search",{
+                method:"POST",
+                body:form
+            })
+
+            window.open(res.url,"_blank")
+
+        }
+
+    }
+
+})
+
+
+/* закрытие подсказок */
+
+document.addEventListener("click",e=>{
+
+if(!document.querySelector(".search-container").contains(e.target)){
+suggestions.style.display="none"
+}
+
+})
+
+</script>
+
+</body>
+</html>
