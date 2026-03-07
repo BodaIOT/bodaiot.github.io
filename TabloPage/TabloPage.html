@@ -322,17 +322,26 @@ document.addEventListener("paste",async e=>{
 
         if(item.type.indexOf("image")!==-1){
 
-            let file=item.getAsFile()
+            let file = item.getAsFile()
 
-            let form=new FormData()
-            form.append("upfile",file)
+            let form = document.createElement("form")
+            form.method = "POST"
+            form.action = "https://yandex.ru/images/search"
+            form.enctype = "multipart/form-data"
+            form.target = "_blank"
 
-            let res=await fetch("https://yandex.ru/images/search",{
-                method:"POST",
-                body:form
-            })
+            let input = document.createElement("input")
+            input.type = "file"
+            input.name = "upfile"
 
-            window.open(res.url,"_blank")
+            let dt = new DataTransfer()
+            dt.items.add(file)
+            input.files = dt.files
+
+            form.appendChild(input)
+            document.body.appendChild(form)
+
+            form.submit()
 
         }
 
