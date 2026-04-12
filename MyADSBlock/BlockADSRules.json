@@ -57,6 +57,7 @@
         "futuris_search"
     ],
     "elementsToHide": [
-        "[data-auto*='creativeBanner']"
+        "[data-auto*='creativeBanner']",
+        "[data-apiary-widget-name*='marketfront/RecomMediaAdv']"
     ]
 }
