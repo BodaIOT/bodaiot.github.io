@@ -53,5 +53,8 @@
         "neuro_answer", 
         "нейро", 
         "futuris_search"
+    ],
+    "elementsToHide": [
+        "[data-zone-name*='headerPromoStreamer']"
     ]
 }
