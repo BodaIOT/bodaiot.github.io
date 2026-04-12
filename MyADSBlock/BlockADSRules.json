@@ -28,7 +28,8 @@
         "[data-testid*='afishaProfit.wrapper']",
         "[data-test-id*='adfox']",
         "[data-test-id*='ommercialBanner']",
-        "[data-test-id*='afishaProfit.wrapper']"
+        "[data-test-id*='afishaProfit.wrapper']",
+        "[data-zone-name*='headerPromoStreamer']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
@@ -55,6 +56,6 @@
         "futuris_search"
     ],
     "elementsToHide": [
-        "[data-zone-name*='headerPromoStreamer']"
+        "[data-auto*='creativeBanner']"
     ]
 }
