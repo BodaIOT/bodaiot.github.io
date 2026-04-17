@@ -6,6 +6,7 @@
         "[id*='yandex-search-banner']",
         "[id*='kinopoisk-banner']",
         "[id*='adfox']",
+        "[id*='yandex__underheader']",
         "[class*='AppForecastMoney']", 
         "[class*='topBlockWithMoney']", 
         "[class*='AppMoneySidebar']", 
