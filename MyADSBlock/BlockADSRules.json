@@ -7,7 +7,7 @@
         "[id*='kinopoisk-banner']",
         "[id*='adfox']",
         "[id*='yandex__underheader']",
-        "[id*='tztugvdesktop_']",
+        "[id*='tztugvdesktop']",
         "[class*='AppForecastMoney']", 
         "[class*='topBlockWithMoney']", 
         "[class*='AppMoneySidebar']", 
