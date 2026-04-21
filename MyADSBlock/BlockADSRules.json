@@ -32,7 +32,8 @@
         "[data-test-id*='ommercialBanner']",
         "[data-test-id*='afishaProfit.wrapper']",
         "[data-zone-name*='headerPromoStreamer']",
-        "[data-apiary-widget-name*='monetize/HeroBannersCarousel']"
+        "[data-apiary-widget-name*='monetize/HeroBannersCarousel']",
+        "[data-apiary-widget-name*='monetize/HeroCarousel']"
     ],
     "elementsToCheck": [
         "[class*='serp-item_card']",
