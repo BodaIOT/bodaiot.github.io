@@ -15,10 +15,6 @@ function log(msg) {
 function startGyro() {
     log("startGyro");
 
-    if (ws.readyState === WebSocket.OPEN) {
-        ws.send("startGyro");
-    }
-
     if (typeof DeviceOrientationEvent !== "undefined" &&
         typeof DeviceOrientationEvent.requestPermission === "function") {
 
@@ -39,9 +35,7 @@ function startGyro() {
 
 function initGyro() {
     log("initGyro");
-    if (ws.readyState === WebSocket.OPEN) {
-        ws.send("initGyro");
-    }
+    
     log("secure: " + window.isSecureContext);
     log("gyro api: " + ("Gyroscope" in window));
     log("deviceorientation: " + ("DeviceOrientationEvent" in window));
@@ -60,18 +54,10 @@ function initGyro() {
     window.addEventListener("deviceorientation", (event) => {
         let x = event.gamma;
         log("GYRO:", x.toString());
-
-        if (ws.readyState === WebSocket.OPEN) {
-            ws.send(x.toString());
-        }
     });
     window.addEventListener("devicemotion", (event) => {
         let x = event.accelerationIncludingGravity;
         log("devicemotion:", x.toString());
-
-        if (ws.readyState === WebSocket.OPEN) {
-            ws.send(x.toString());
-        }
     });
 }
 </script>
