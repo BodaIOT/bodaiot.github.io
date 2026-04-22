@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button onclick="startGyro()" style="font-size:40px;">START</button>
+<div id="log" style="white-space:pre; font-size:14px;"></div>
+<script>
+
+function log(msg) {
+    console.log(msg);
+
+    const el = document.getElementById("log");
+    el.innerText += msg + "\n";
+}
+
+function startGyro() {
+    log("startGyro");
+
+    if (ws.readyState === WebSocket.OPEN) {
+        ws.send("startGyro");
+    }
+
+    if (typeof DeviceOrientationEvent !== "undefined" &&
+        typeof DeviceOrientationEvent.requestPermission === "function") {
+
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                log("permission:", response);
+
+                if (response === "granted") {
+                    initGyro();
+                }
+            })
+            .catch(error => log("error:" + error));
+
+    } else {
+        initGyro();
+    }
+}
+
+function initGyro() {
+    log("initGyro");
+    if (ws.readyState === WebSocket.OPEN) {
+        ws.send("initGyro");
+    }
+    log("secure: " + window.isSecureContext);
+    log("gyro api: " + ("Gyroscope" in window));
+    log("deviceorientation: " + ("DeviceOrientationEvent" in window));
+
+    let gyroscope = new Gyroscope({ frequency: 60 }); // Частота обновления — 60 Гц
+
+    gyroscope.addEventListener("reading", (e) => {
+        log(`Угловая скорость вдоль оси X-axis: ${gyroscope.x}`);
+        log(`Угловая скорость вдоль оси Y-axis: ${gyroscope.y}`);
+        log(`Угловая скорость вдоль оси Z-axis: ${gyroscope.z}`);
+    });
+
+    gyroscope.start();
+
+
+    window.addEventListener("deviceorientation", (event) => {
+        let x = event.gamma;
+        log("GYRO:", x.toString());
+
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(x.toString());
+        }
+    });
+    window.addEventListener("devicemotion", (event) => {
+        let x = event.accelerationIncludingGravity;
+        log("devicemotion:", x.toString());
+
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(x.toString());
+        }
+    });
+}
+</script>
+</body>
+</html>
