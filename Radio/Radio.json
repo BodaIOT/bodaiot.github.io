@@ -82,8 +82,21 @@
       "description": "https://www.radio-uk.co.uk/dance-uk-radio"
     },
     {
+      "title": "Rivendell",
+      "url": "https://play.radiorivendell.com/radio/8000/radio.mp3",
+      "genre": "DnD",
+      "description": "https://radiorivendell.com/"
+    },
+    {
       "title": "The Green Dragon",
       "url": "https://play.radiorivendell.com/radio/8010/radio.mp3",
+      "genre": "DnD",
+      "description": "https://radiorivendell.com/"
+    },
+    {
+      "title": "Lórien",
+      "url": "https://play.radiorivendell.com/radio/8020/radio.mp3",
+      "genre": "DnD",
       "description": "https://radiorivendell.com/"
     }
   ]
