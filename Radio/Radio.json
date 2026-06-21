@@ -80,6 +80,11 @@
       "title": "Dance UK Radio",
       "url": "https://dancestream.danceradiouk.com/stream",
       "description": "https://www.radio-uk.co.uk/dance-uk-radio"
+    },
+    {
+      "title": "Green Dragon",
+      "url": "https://play.radiorivendell.com/radio/8010/radio.mp3",
+      "description": "https://radiorivendell.com/"
     }
   ]
 }
