@@ -40,7 +40,7 @@
         "[class*='serp-item_card']",
         "[class*='JustifierColumnLayout-Item']",
         "[class*='Organic_withaq']",
-        "[class*='Organic_withaq2']",
+        "[class*='Organic_withAdvLabel']",
         "[class*='RsyaOrganic']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
