@@ -39,6 +39,7 @@
     "elementsToCheck": [
         "[class*='serp-item_card']",
         "[class*='JustifierColumnLayout-Item']",
+        "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
