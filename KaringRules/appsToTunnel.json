@@ -6,9 +6,7 @@
         "slack.exe",
         "Telegram.exe",
         "Telegram"
-      ]
-    },
-    {
+      ],
       "package": [
         "com.Slack",
         "org.telegram.messenger",
