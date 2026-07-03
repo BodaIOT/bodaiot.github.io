@@ -4,9 +4,7 @@
     {
       "domain": [
         "www.speedtest.net"
-      ]
-    },
-    { 
+      ],
       "domain_keyword": [
         "play.google.com",
         "googleusercontent",
@@ -103,9 +101,7 @@
         "xfree",
         "sex-studentki",
         "rule34"
-      ]
-    },
-    {
+      ],
       "ip_cidr": [
         "198.20.0.82",
         "198.20.0.83",
