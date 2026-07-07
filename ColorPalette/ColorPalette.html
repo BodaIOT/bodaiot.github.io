@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цветовая палетка</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="drawCanvas"></canvas>
+
+<div class="page">
+
+  <div class="picker">
+    <div class="sv-square" id="svSquare">
+      <div class="sv-cursor" id="svCursor"></div>
+    </div>
+
+    <div class="hue-slider" id="hueSlider">
+      <div class="hue-cursor" id="hueCursor"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="color-preview" id="colorPreview"></div>
+
+      <div class="field-group">
+        <div class="field-label">HEX</div>
+        <div class="value-field">
+          <div class="input-row">
+            <span class="hash">#</span>
+            <input type="text" id="hexInput" class="field-input">
+          </div>
+          <button type="button" class="copy-btn" data-copy-target="hexInput" data-with-hash="true" title="Скопировать значение">📋</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">RGB</div>
+        <div class="value-field">
+          <input type="text" id="rgb255Input" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="rgb255Input" title="Скопировать значение">📋</button>
+        </div>
+        <div class="value-field">
+          <input type="text" id="rgb1Input" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="rgb1Input" title="Скопировать значение">📋</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">RGBA</div>
+        <div class="value-field">
+          <input type="text" id="rgba255Input" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="rgba255Input" title="Скопировать значение">📋</button>
+        </div>
+        <div class="value-field">
+          <input type="text" id="rgba1Input" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="rgba1Input" title="Скопировать значение">📋</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">HSV</div>
+        <div class="value-field">
+          <input type="text" id="hsvInput" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="hsvInput" title="Скопировать значение">📋</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">CMYK</div>
+        <div class="value-field">
+          <input type="text" id="cmykInput" class="field-input">
+          <button type="button" class="copy-btn" data-copy-target="cmykInput" title="Скопировать значение">📋</button>
+        </div>
+      </div>
+
+      <div class="field-group brush-group">
+        <div class="field-label brush-label">Размер кисти: <span id="brushSizeValue"></span>px</div>
+        <input type="range" id="brushSize" min="4" max="80" value="16" class="brush-range">
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="alpha-slider" id="alphaSlider">
+      <div class="alpha-checker"></div>
+      <div class="alpha-gradient" id="alphaGradient"></div>
+      <div class="alpha-cursor" id="alphaCursor"></div>
+    </div>
+
+    <button type="button" class="theme-btn" id="themeToggleBtn" title="Переключить режим"></button>
+  </div>
+
+  <input type="text" class="sample-text" id="sampleText" spellcheck="false">
+
+  <div class="palettes" id="palettes"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
