@@ -262,16 +262,29 @@
         <input type="checkbox" id="autoVideoToggle" />
         Автозапрос и открытие видео
       </label>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+        <span>с</span>
+        <input type="number" id="autoVideoFrom" min="0" max="23" style="width:45px;" />
+        <span>до</span>
+        <input type="number" id="autoVideoTo" min="0" max="23" style="width:45px;" />
+        <span>ч.</span>
+      </div>
     </div>
 
     <script>
       (function () {
         const STORAGE_KEY = "autoVideoEnabled";
+        const FROM_KEY = "autoVideoFrom";
+        const TO_KEY = "autoVideoTo";
         const gear = document.getElementById("settingsGear");
         const popup = document.getElementById("settingsPopup");
         const toggle = document.getElementById("autoVideoToggle");
+        const fromInput = document.getElementById("autoVideoFrom");
+        const toInput = document.getElementById("autoVideoTo");
 
         toggle.checked = localStorage.getItem(STORAGE_KEY) === "true";
+        fromInput.value = localStorage.getItem(FROM_KEY) ?? "5";
+        toInput.value = localStorage.getItem(TO_KEY) ?? "10";
 
         gear.addEventListener("click", function (e) {
           popup.style.display = popup.style.display === "none" ? "block" : "none";
@@ -286,6 +299,14 @@
 
         toggle.addEventListener("change", function () {
           localStorage.setItem(STORAGE_KEY, toggle.checked ? "true" : "false");
+        });
+
+        fromInput.addEventListener("change", function () {
+          localStorage.setItem(FROM_KEY, fromInput.value);
+        });
+
+        toInput.addEventListener("change", function () {
+          localStorage.setItem(TO_KEY, toInput.value);
         });
       })();
     </script>
@@ -331,7 +352,9 @@
             const news = urlParams.get("news");
 
             const now = new Date().getHours();
-            if ((now > 5 && now < 10) || news === "true") {
+            const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
+            const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
+            if ((now > fromHour && now < toHour) || news === "true") {
               console.log("[YOUTUBE] Сейчас " + now + ", открываю видео" );
               OpenVideo();
             }
