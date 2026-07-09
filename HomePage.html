@@ -260,7 +260,7 @@
     <div id="settingsPopup" style="display:none;position:fixed;top:16px;right:2px;background:#222;color:#fff;border:1px solid #858585;border-radius:8px;padding:10px 14px;z-index:9999;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,0.5);white-space:nowrap;">
       <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
         <input type="checkbox" id="autoVideoToggle" />
-        Автозапрос и открытие видео
+        Автоматическое открытие видео-новостей
       </label>
       <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
         <span>с</span>
@@ -313,10 +313,13 @@
 
     <script>
       (function () {
-        if (localStorage.getItem("autoVideoEnabled") !== "true") return; // настройка выключена — выходим
+        const MAX_ATTEMPTS = 5;
 
         const apiKeyYouTube = localStorage.getItem("apiKeyYouTube");
-        if (!apiKeyYouTube) return; // 1️⃣ ключа нет — выходим
+        if (!apiKeyYouTube) {
+          console.warn("[Видео-новости] Апи-ключ YouTube не задан — запрос не выполняется");
+          return;
+        }
 
         const channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
         const reqURL =
@@ -333,40 +336,70 @@
         document.getElementById("my_video_button")
           ?.addEventListener("click", OpenVideo);
 
-        console.log("[YOUTUBE] Начал запрос адреса видео: " + reqURL );
+        requestVideo(1);
 
-        fetch(reqURL)
-          .then(r => r.json())
-          .then(data => {
-            const videoId = findVideoId(data);
-            if (!videoId) return;
+        function requestVideo(attempt) {
+          console.log("[Видео-новости] Запрос адреса видео, попытка " + attempt + " из " + MAX_ATTEMPTS + ": " + reqURL);
 
-            video_url =
-              "https://www.youtube.com/watch?v=" +
-              videoId +
-              "?autoplay=1";
+          fetch(reqURL)
+            .then(r => r.json().then(data => {
+              if (!r.ok || data.error) {
+                const message = (data && data.error && data.error.message) || ("HTTP " + r.status);
+                throw new Error(message);
+              }
+              return data;
+            }))
+            .then(data => {
+              const videoId = findVideoId(data);
+              if (!videoId) {
+                console.warn("[Видео-новости] В ответе API не найден videoId — адрес видео не получен");
+                return;
+              }
 
-            console.log("[YOUTUBE] Успешно запросил адрес видео: " + video_url );
+              video_url =
+                "https://www.youtube.com/watch?v=" +
+                videoId +
+                "?autoplay=1";
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const news = urlParams.get("news");
+              console.log("[Видео-новости] Успешно получен адрес видео: " + video_url);
 
-            const now = new Date().getHours();
-            const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
-            const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
-            if ((now > fromHour && now < toHour) || news === "true") {
-              console.log("[YOUTUBE] Сейчас " + now + ", открываю видео" );
-              OpenVideo();
-            }
-            else {
-              console.log("[YOUTUBE] Сейчас " + now + ", НЕ СТАЛ открывать видео" );
-            }
-          })
-          .catch(err => console.error("YouTube API error:", err));
+              maybeAutoOpenVideo();
+            })
+            .catch(err => {
+              console.error("[Видео-новости] Ошибка запроса на попытке " + attempt + " из " + MAX_ATTEMPTS + ": " + err.message);
+
+              if (attempt < MAX_ATTEMPTS) {
+                requestVideo(attempt + 1);
+              } else {
+                console.error("[Видео-новости] Все " + MAX_ATTEMPTS + " попыток запроса завершились ошибкой — прекращаю");
+              }
+            });
+        }
+
+        function maybeAutoOpenVideo() {
+          if (localStorage.getItem("autoVideoEnabled") !== "true") {
+            console.log("[Видео-новости] Автоматическое открытие выключено в настройках — не открываю видео");
+            return;
+          }
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const news = urlParams.get("news");
+
+          const now = new Date().getHours();
+          const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
+          const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
+
+          if ((now > fromHour && now < toHour) || news === "true") {
+            console.log("[Видео-новости] Сейчас " + now + " ч., попадает в диапазон " + fromHour + "-" + toHour + " ч. — открываю видео автоматически");
+            OpenVideo();
+          } else {
+            console.log("[Видео-новости] Сейчас " + now + " ч., вне диапазона " + fromHour + "-" + toHour + " ч. — автоматическое открытие пропущено");
+          }
+        }
 
         function OpenVideo() {
           if (!video_url) {
-            console.error("У МЕНЯ ПУСТОЙ URL")
+            console.error("[Видео-новости] Не удалось открыть видео — адрес видео пока не получен");
             return;
           }
           window.open(video_url, "_blank");
