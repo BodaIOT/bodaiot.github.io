@@ -49,15 +49,15 @@ setInterval(UpdateF, 1000 * 60 * 5);
 function UpdateF() {
     req.open(
         "GET",
-        "https://api.todoist.com/rest/v2/tasks",
+        "https://api.todoist.com/api/v1/tasks?limit=200",
         false
       );
     req.setRequestHeader('Authorization', 'Bearer ' + tokenTodoist);
     req.send(null);
 
     let answer = req.responseText;
-    
-    answer = JSON.parse(answer)
+
+    answer = JSON.parse(answer).results;
 
     console.log("---------------------- задачи ----------------------");
     console.log(answer);
