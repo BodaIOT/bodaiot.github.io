@@ -255,8 +255,45 @@
       </div>
     </a>
 
+    <div id="settingsGear" title="Настройки" style="position:fixed;top:2px;right:2px;font-size:9px;line-height:1;opacity:0.12;cursor:pointer;z-index:9999;user-select:none;">⚙️</div>
+
+    <div id="settingsPopup" style="display:none;position:fixed;top:16px;right:2px;background:#222;color:#fff;border:1px solid #858585;border-radius:8px;padding:10px 14px;z-index:9999;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,0.5);white-space:nowrap;">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+        <input type="checkbox" id="autoVideoToggle" />
+        Автозапрос и открытие видео
+      </label>
+    </div>
+
     <script>
       (function () {
+        const STORAGE_KEY = "autoVideoEnabled";
+        const gear = document.getElementById("settingsGear");
+        const popup = document.getElementById("settingsPopup");
+        const toggle = document.getElementById("autoVideoToggle");
+
+        toggle.checked = localStorage.getItem(STORAGE_KEY) === "true";
+
+        gear.addEventListener("click", function (e) {
+          popup.style.display = popup.style.display === "none" ? "block" : "none";
+          e.stopPropagation();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (popup.style.display !== "none" && !popup.contains(e.target) && e.target !== gear) {
+            popup.style.display = "none";
+          }
+        });
+
+        toggle.addEventListener("change", function () {
+          localStorage.setItem(STORAGE_KEY, toggle.checked ? "true" : "false");
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        if (localStorage.getItem("autoVideoEnabled") !== "true") return; // настройка выключена — выходим
+
         const apiKeyYouTube = localStorage.getItem("apiKeyYouTube");
         if (!apiKeyYouTube) return; // 1️⃣ ключа нет — выходим
 
