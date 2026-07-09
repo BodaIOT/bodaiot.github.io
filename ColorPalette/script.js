@@ -602,58 +602,89 @@ function renderPalettes() {
 
 const canvas = document.getElementById('drawCanvas');
 const ctx = canvas.getContext('2d');
-const squares = [];
+const marks = [];
 let brushSize = 16;
 let drawing = false;
+let lastPoint = null;
 
 function resizeCanvas() {
   const w = Math.max(document.documentElement.scrollWidth, window.innerWidth);
   const h = Math.max(document.documentElement.scrollHeight, window.innerHeight);
   canvas.width = w;
   canvas.height = h;
-  redrawSquares();
+  redrawMarks();
 }
 
-function redrawSquares() {
+function paintMark(mark) {
+  ctx.fillStyle = mark.color;
+  ctx.beginPath();
+  ctx.arc(mark.x, mark.y, mark.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function redrawMarks() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  squares.forEach((sq) => {
-    ctx.fillStyle = sq.color;
-    ctx.fillRect(sq.x - sq.size / 2, sq.y - sq.size / 2, sq.size, sq.size);
-  });
+  marks.forEach(paintMark);
 }
 
-function drawAt(pageX, pageY) {
+function stampAt(x, y) {
   const rgb = currentRgb();
-  const color = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${state.a})`;
-  const sq = { x: pageX, y: pageY, size: brushSize, color };
-  squares.push(sq);
-  ctx.fillStyle = color;
-  ctx.fillRect(sq.x - sq.size / 2, sq.y - sq.size / 2, sq.size, sq.size);
+  const mark = { x, y, size: brushSize, color: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${state.a})` };
+  marks.push(mark);
+  paintMark(mark);
+}
+
+// Stamps circles along the segment from the last point to (x, y) instead of
+// only at (x, y), so fast mouse movement (fewer mousemove events per pixel
+// traveled) still produces a continuous stroke instead of gapped dots.
+function strokeTo(x, y) {
+  if (!lastPoint) {
+    stampAt(x, y);
+  } else {
+    const dx = x - lastPoint.x;
+    const dy = y - lastPoint.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const spacing = Math.max(1, brushSize / 4);
+    const steps = Math.max(1, Math.ceil(dist / spacing));
+    for (let i = 1; i <= steps; i++) {
+      const t = i / steps;
+      stampAt(lastPoint.x + dx * t, lastPoint.y + dy * t);
+    }
+  }
+  lastPoint = { x, y };
 }
 
 canvas.addEventListener('mousedown', (e) => {
   drawing = true;
-  drawAt(e.pageX, e.pageY);
+  lastPoint = null;
+  strokeTo(e.pageX, e.pageY);
 });
 window.addEventListener('mousemove', (e) => {
-  if (drawing) drawAt(e.pageX, e.pageY);
+  if (drawing) strokeTo(e.pageX, e.pageY);
 });
-window.addEventListener('mouseup', () => { drawing = false; });
+window.addEventListener('mouseup', () => {
+  drawing = false;
+  lastPoint = null;
+});
 
 canvas.addEventListener('touchstart', (e) => {
   drawing = true;
+  lastPoint = null;
   const t = e.touches[0];
-  drawAt(t.pageX, t.pageY);
+  strokeTo(t.pageX, t.pageY);
   e.preventDefault();
 }, { passive: false });
 canvas.addEventListener('touchmove', (e) => {
   if (drawing) {
     const t = e.touches[0];
-    drawAt(t.pageX, t.pageY);
+    strokeTo(t.pageX, t.pageY);
   }
   e.preventDefault();
 }, { passive: false });
-window.addEventListener('touchend', () => { drawing = false; });
+window.addEventListener('touchend', () => {
+  drawing = false;
+  lastPoint = null;
+});
 
 window.addEventListener('resize', resizeCanvas);
 
