@@ -318,6 +318,18 @@
         const apiKeyYouTube = localStorage.getItem("apiKeyYouTube");
         if (!apiKeyYouTube) return; // 1️⃣ ключа нет — выходим
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const news = urlParams.get("news");
+
+        const now = new Date().getHours();
+        const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
+        const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
+
+        if (!((now > fromHour && now < toHour) || news === "true")) {
+          console.log("[YOUTUBE] Сейчас " + now + ", условие по времени не выполнено — запрос не делаю" );
+          return;
+        }
+
         const channelID = "UC3G2Z2qfGoOzr8kSQYkFDaQ";
         const reqURL =
           "https://www.googleapis.com/youtube/v3/search" +
@@ -347,20 +359,8 @@
               "?autoplay=1";
 
             console.log("[YOUTUBE] Успешно запросил адрес видео: " + video_url );
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const news = urlParams.get("news");
-
-            const now = new Date().getHours();
-            const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
-            const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
-            if ((now > fromHour && now < toHour) || news === "true") {
-              console.log("[YOUTUBE] Сейчас " + now + ", открываю видео" );
-              OpenVideo();
-            }
-            else {
-              console.log("[YOUTUBE] Сейчас " + now + ", НЕ СТАЛ открывать видео" );
-            }
+            console.log("[YOUTUBE] Сейчас " + now + ", открываю видео" );
+            OpenVideo();
           })
           .catch(err => console.error("YouTube API error:", err));
 
