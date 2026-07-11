@@ -37,9 +37,7 @@
         "[data-apiary-widget-name*='monetize/HeroCarousel']",
         "[data-name*='adWrapper']"
     ],
-    "elementsToCheck": [
-        "[class*='serp-item_card']",
-        "[class*='JustifierColumnLayout-Item']",
+    "elementsToCheckDelete": [
         "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
         "[data-testid*='page-layout_right-column_container']",
@@ -48,6 +46,10 @@
         "[id*='cardRecommendationRoll']",
         "[id*='marketfrontRecomLayout42/recomLayoutItem']",
         "[id*='search-list']"
+    ],
+    "elementsToCheckHide": [
+        "[class*='serp-item_card']",
+        "[class*='JustifierColumnLayout-Item']"
     ],
     "banWords": [
         "practicum.yandex.ru", 
