@@ -69,6 +69,7 @@
     ],
     "elementsToHide": [
         "[data-auto*='creativeBanner']",
-        "[data-apiary-widget-name*='marketfront/RecomMediaAdv']"
+        "[data-apiary-widget-name*='marketfront/RecomMediaAdv']",
+        "[data-apiary-widget-name*='@marketfront/RecomMediaAdv']"
     ]
 }
