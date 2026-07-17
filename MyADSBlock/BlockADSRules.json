@@ -33,13 +33,12 @@
         "[data-test-id*='ommercialBanner']",
         "[data-test-id*='afishaProfit.wrapper']",
         "[data-zone-name*='headerPromoStreamer']",
+        "[data-apiary-widget-name*='@monetize/HeroBannerCarousel']",
         "[data-apiary-widget-name*='monetize/HeroBannersCarousel']",
         "[data-apiary-widget-name*='monetize/HeroCarousel']",
         "[data-name*='adWrapper']"
     ],
-    "elementsToCheck": [
-        "[class*='serp-item_card']",
-        "[class*='JustifierColumnLayout-Item']",
+    "elementsToCheckDelete": [
         "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
         "[data-testid*='page-layout_right-column_container']",
@@ -48,6 +47,11 @@
         "[id*='cardRecommendationRoll']",
         "[id*='marketfrontRecomLayout42/recomLayoutItem']",
         "[id*='search-list']"
+    ],
+    "elementsToCheckHide": [
+        "[class*='serp-item_card']",
+        "[class*='JustifierColumnLayout-Item']",
+        "[data-apiary-widget-name*='@marketfront/RecomEntity']"
     ],
     "banWords": [
         "practicum.yandex.ru", 
@@ -66,6 +70,7 @@
     ],
     "elementsToHide": [
         "[data-auto*='creativeBanner']",
-        "[data-apiary-widget-name*='marketfront/RecomMediaAdv']"
+        "[data-apiary-widget-name*='marketfront/RecomMediaAdv']",
+        "[data-apiary-widget-name*='@marketfront/RecomMediaAdv']"
     ]
 }
