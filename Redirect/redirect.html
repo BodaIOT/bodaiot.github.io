@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirect</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+      }
+
+      #loadingGif {
+        width: 80px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="loadingGif" src="./loading.gif" alt="" />
+    <div id="loadingText">Загрузка...</div>
+
+    <script>
+      setTimeout(function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectUrl = urlParams.get("url_redirect");
+
+        if (!redirectUrl) return;
+
+        window.open(redirectUrl, "_blank");
+      }, 3000);
+    </script>
+  </body>
+</html>
