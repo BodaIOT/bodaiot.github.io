@@ -49,15 +49,9 @@
           return;
         }
 
-        console.log("[Redirect] Пытаюсь открыть новое окно: " + redirectUrl);
+        console.log("[Redirect] Перехожу по адресу в этом же окне: " + redirectUrl);
 
-        const newWindow = window.open(redirectUrl, "_blank");
-
-        if (!newWindow) {
-          console.error("[Redirect] Не удалось открыть окно — вероятно, браузер заблокировал всплывающее окно (popup blocked), так как открытие произошло не по прямому действию пользователя");
-        } else {
-          console.log("[Redirect] Окно успешно открыто: " + redirectUrl);
-        }
+        window.location.href = redirectUrl;
       }, 3000);
     </script>
   </body>
