@@ -377,19 +377,25 @@
         }
 
         function maybeAutoOpenVideo() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const news = urlParams.get("news") === "true";
+
+          if (news) {
+            console.log("[Видео-новости] В адресе указан параметр news=true — открываю видео независимо от настроек");
+            OpenVideo();
+            return;
+          }
+
           if (localStorage.getItem("autoVideoEnabled") !== "true") {
             console.log("[Видео-новости] Автоматическое открытие выключено в настройках — не открываю видео");
             return;
           }
 
-          const urlParams = new URLSearchParams(window.location.search);
-          const news = urlParams.get("news");
-
           const now = new Date().getHours();
           const fromHour = Number(localStorage.getItem("autoVideoFrom") ?? 5);
           const toHour = Number(localStorage.getItem("autoVideoTo") ?? 10);
 
-          if ((now > fromHour && now < toHour) || news === "true") {
+          if (now > fromHour && now < toHour) {
             console.log("[Видео-новости] Сейчас " + now + " ч., попадает в диапазон " + fromHour + "-" + toHour + " ч. — открываю видео автоматически");
             OpenVideo();
           } else {
