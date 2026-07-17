@@ -35,13 +35,29 @@
     <div id="loadingText">Загрузка...</div>
 
     <script>
+      console.log("[Redirect] Страница загружена, адрес: " + window.location.href);
+      console.log("[Redirect] Жду 3 секунды перед проверкой параметра url_redirect...");
+
       setTimeout(function () {
         const urlParams = new URLSearchParams(window.location.search);
         const redirectUrl = urlParams.get("url_redirect");
 
-        if (!redirectUrl) return;
+        console.log("[Redirect] Проверка параметров завершена. Значение url_redirect: " + redirectUrl);
 
-        window.open(redirectUrl, "_blank");
+        if (!redirectUrl) {
+          console.log("[Redirect] Параметр url_redirect не найден — ничего не делаю");
+          return;
+        }
+
+        console.log("[Redirect] Пытаюсь открыть новое окно: " + redirectUrl);
+
+        const newWindow = window.open(redirectUrl, "_blank");
+
+        if (!newWindow) {
+          console.error("[Redirect] Не удалось открыть окно — вероятно, браузер заблокировал всплывающее окно (popup blocked), так как открытие произошло не по прямому действию пользователя");
+        } else {
+          console.log("[Redirect] Окно успешно открыто: " + redirectUrl);
+        }
       }, 3000);
     </script>
   </body>
