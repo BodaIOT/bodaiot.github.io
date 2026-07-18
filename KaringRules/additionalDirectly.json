@@ -24,7 +24,8 @@
         ".рф",
         ".rf",
         ".by",
-        ".bel"
+        ".bel",
+        ".бел"
       ],
       "protocol": [
         "bittorrent"
