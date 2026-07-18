@@ -3,8 +3,10 @@
   "rules": [
     {
       "domain_keyword": [
+        "вк",
         "vk",
         "yandex",
+        "яндекс",
         "freetp.ru",
         "rotorrent",
         "bugakos.ru",
