@@ -20,7 +20,11 @@
       ],
       "domain_suffix": [
         ".ru",
-        ".рф"
+        ".ру",
+        ".рф",
+        ".rf",
+        ".by",
+        ".bel"
       ],
       "protocol": [
         "bittorrent"
