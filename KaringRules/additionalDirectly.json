@@ -3,24 +3,31 @@
   "rules": [
     {
       "domain_keyword": [
+        "вк",
         "vk",
-        "steampipe",
-        "cdn.steampipe",
+        "yandex",
+        "яндекс",
         "freetp.ru",
+        "rotorrent",
         "bugakos.ru",
         "dtf.ru",
-        "freesteam",
-        "rotorrent",
         "translate.google.ru",
         "playground.ru",
-        "yandex",
         "hard-tm",
         "geekjob",
+        "freesteam",
+        "steampipe",
+        "cdn.steampipe",
         "genius"
       ],
       "domain_suffix": [
         ".ru",
-        ".рф"
+        ".ру",
+        ".рф",
+        ".rf",
+        ".by",
+        ".bel",
+        ".бел"
       ],
       "protocol": [
         "bittorrent"
