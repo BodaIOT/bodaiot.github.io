@@ -74,5 +74,9 @@
         "[data-auto*='creativeBanner']",
         "[data-apiary-widget-name*='marketfront/RecomMediaAdv']",
         "[data-apiary-widget-name*='@marketfront/RecomMediaAdv']"
+    ],
+    "LinksToCheck": [
+        "https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fdaniland.ru%2Fupload%2Fuf%2Faac%2F67wzlm860qe2lcqtf92hxrn4ntn6rnb2%2F161007-0-1.webp&lr=120590&pos=0&rpt=simage&text=пистолет%20игрушечный",
+        "https://yandex.ru/search/?text=в+какой+университет+поступить&lr=120590&clid=2270455&win=609&src=suggest_B"
     ]
 }
