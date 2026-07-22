@@ -41,6 +41,7 @@
     "elementsToCheckDelete": [
         "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
+        "[class*='ImagesViewer-SidebarProducts']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
         "[id*='heroBanner']",
