@@ -27,6 +27,7 @@
         "[class*='content--ad']",
         "[class*='VideoViewer-Direct_placement_video-list']",
         "[class*='ImagesViewer-AdvPlaceholderContent']",
+        "[class*='CommercialProducts-Adv']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
         "[data-testid*='afishaProfit.wrapper']",
