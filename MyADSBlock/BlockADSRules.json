@@ -42,6 +42,7 @@
         "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
         "[class*='ImagesViewer-SidebarProducts']",
+        "[class*='ImagesViewer-AdvPlaceholderContent']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
         "[id*='heroBanner']",
