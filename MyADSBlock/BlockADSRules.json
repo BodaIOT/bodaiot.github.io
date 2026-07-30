@@ -44,7 +44,6 @@
         "[class*='Organic_withaq']",
         "[class*='RsyaOrganic']",
         "[class*='ImagesViewer-SidebarProducts']",
-        "[class*='CommercialProducts-Adv']",
         "[data-testid*='page-layout_right-column_container']",
         "[data-test-id*='page-layout_right-column_container']",
         "[id*='heroBanner']",
@@ -73,6 +72,7 @@
         "futuris_search"
     ],
     "elementsToHide": [
+        "[class*='CommercialProducts-Adv']",
         "[data-auto*='creativeBanner']",
         "[data-apiary-widget-name*='marketfront/RecomMediaAdv']",
         "[data-apiary-widget-name*='@marketfront/RecomMediaAdv']"
