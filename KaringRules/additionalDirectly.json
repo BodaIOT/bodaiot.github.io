@@ -41,7 +41,8 @@
         {
           "invert": true,
           "domain_keyword": [
-            "steambrew"
+            "steambrew",
+            "steamgriddb"
           ]
         }
       ]
