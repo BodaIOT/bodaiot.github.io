@@ -2,36 +2,48 @@
   "version": 1,
   "rules": [
     {
-      "domain_keyword": [
-        "вк",
-        "vk",
-        "yandex",
-        "yadi.sk",
-        "яндекс",
-        "freetp.ru",
-        "rotorrent",
-        "bugakos.ru",
-        "dtf.ru",
-        "translate.google.ru",
-        "playground.ru",
-        "hard-tm",
-        "geekjob",
-        "habr.com/ru",
-        "freesteam",
-        "steam",
-        "genius"
-      ],
-      "domain_suffix": [
-        ".ru",
-        ".ру",
-        ".рф",
-        ".rf",
-        ".by",
-        ".bel",
-        ".бел"
-      ],
-      "protocol": [
-        "bittorrent"
+      "type": "logical",
+      "mode": "and",
+      "rules": [
+        {
+          "domain_keyword": [
+            "вк",
+            "vk",
+            "yandex",
+            "yadi.sk",
+            "яндекс",
+            "freetp.ru",
+            "rotorrent",
+            "bugakos.ru",
+            "dtf.ru",
+            "translate.google.ru",
+            "playground.ru",
+            "hard-tm",
+            "geekjob",
+            "habr.com/ru",
+            "freesteam",
+            "steam",
+            "genius"
+          ],
+          "domain_suffix": [
+            ".ru",
+            ".ру",
+            ".рф",
+            ".rf",
+            ".by",
+            ".bel",
+            ".бел"
+          ],
+          "protocol": [
+            "bittorrent"
+          ]
+        },
+        {
+          "invert": true,
+          "domain_keyword": [
+            "steambrew"
+          ]
+        }
       ]
     }
   ]
