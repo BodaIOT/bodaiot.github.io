@@ -14,12 +14,26 @@
 <div class="page">
 
   <div class="picker">
-    <div class="sv-square" id="svSquare">
-      <div class="sv-cursor" id="svCursor"></div>
-    </div>
+    <div class="left-col">
+      <div class="square-row">
+        <div class="sv-square" id="svSquare">
+          <div class="sv-cursor" id="svCursor"></div>
+        </div>
 
-    <div class="hue-slider" id="hueSlider">
-      <div class="hue-cursor" id="hueCursor"></div>
+        <div class="hue-slider" id="hueSlider">
+          <div class="hue-cursor" id="hueCursor"></div>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="alpha-slider" id="alphaSlider">
+          <div class="alpha-checker"></div>
+          <div class="alpha-gradient" id="alphaGradient"></div>
+          <div class="alpha-cursor" id="alphaCursor"></div>
+        </div>
+
+        <button type="button" class="theme-btn" id="themeToggleBtn" title="Переключить режим"></button>
+      </div>
     </div>
 
     <div class="preview-panel">
@@ -97,16 +111,6 @@
         <input type="range" id="brushSize" min="2" max="120" value="16" class="brush-range">
       </div>
     </div>
-  </div>
-
-  <div class="bottom-row">
-    <div class="alpha-slider" id="alphaSlider">
-      <div class="alpha-checker"></div>
-      <div class="alpha-gradient" id="alphaGradient"></div>
-      <div class="alpha-cursor" id="alphaCursor"></div>
-    </div>
-
-    <button type="button" class="theme-btn" id="themeToggleBtn" title="Переключить режим"></button>
   </div>
 
   <input type="text" class="sample-text" id="sampleText" spellcheck="false">
