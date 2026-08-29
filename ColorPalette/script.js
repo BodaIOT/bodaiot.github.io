@@ -94,6 +94,24 @@ function cmykToRgb(c, m, y, k) {
   return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
 }
 
+// ---------- HSV <-> HSL ----------
+// Both share the same hue; only saturation/lightness differ.
+// s, v, sl, l are all expressed in percent (0..100).
+
+function hsvToHsl(s, v) {
+  s /= 100; v /= 100;
+  const l = v * (1 - s / 2);
+  const sl = (l === 0 || l === 1) ? 0 : (v - l) / Math.min(l, 1 - l);
+  return { s: sl * 100, l: l * 100 };
+}
+
+function hslToHsv(s, l) {
+  s /= 100; l /= 100;
+  const v = l + s * Math.min(l, 1 - l);
+  const sv = v === 0 ? 0 : 2 * (1 - l / v);
+  return { s: sv * 100, v: v * 100 };
+}
+
 // ---------- CIE Lab / LCH (perceptual color space) ----------
 // Used for the "perceptual" palette: rotating hue in LCH keeps the
 // perceived lightness/chroma constant across swatches, unlike a plain
@@ -226,6 +244,8 @@ const rgba255Input = document.getElementById('rgba255Input');
 const rgba1Input = document.getElementById('rgba1Input');
 const hsvInput = document.getElementById('hsvInput');
 const cmykInput = document.getElementById('cmykInput');
+const hslInput = document.getElementById('hslInput');
+const hslaInput = document.getElementById('hslaInput');
 
 const themeToggleBtn = document.getElementById('themeToggleBtn');
 
@@ -298,6 +318,7 @@ function updateFields(rgb) {
   const { h, s, v, a } = state;
   const hueDeg = Math.round(h % 360);
   const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+  const hsl = hsvToHsl(s, v);
 
   // RGBA always shows its alpha value. Every other format only shows an
   // alpha number/suffix when the color actually has transparency (a < 1).
@@ -312,6 +333,8 @@ function updateFields(rgb) {
   setIfNotFocused(rgba1Input, `${round2(rgb.r / 255)}, ${round2(rgb.g / 255)}, ${round2(rgb.b / 255)}, ${round2(a)}`);
   setIfNotFocused(hsvInput, `${hueDeg}, ${Math.round(s)}, ${Math.round(v)}${alphaSuffix}`);
   setIfNotFocused(cmykInput, `${Math.round(cmyk.c)}, ${Math.round(cmyk.m)}, ${Math.round(cmyk.y)}, ${Math.round(cmyk.k)}${alphaSuffix}`);
+  setIfNotFocused(hslInput, `${hueDeg}, ${Math.round(hsl.s)}, ${Math.round(hsl.l)}${alphaSuffix}`);
+  setIfNotFocused(hslaInput, `${hueDeg}, ${Math.round(hsl.s)}, ${Math.round(hsl.l)}, ${round2(a)}`);
 }
 
 function round2(n) {
@@ -443,7 +466,25 @@ cmykInput.addEventListener('input', () => {
   applyRgb(rgb.r, rgb.g, rgb.b, n[4]);
 });
 
-[hexInput, rgb255Input, rgb1Input, rgba255Input, rgba1Input, hsvInput, cmykInput].forEach((input) => {
+function applyHsl(n, minLen) {
+  if (!n || n.length < minLen) { render(); return; }
+  const hsv = hslToHsv(clamp(n[1], 0, 100), clamp(n[2], 0, 100));
+  state.h = clamp(n[0], 0, 360);
+  state.s = hsv.s;
+  state.v = hsv.v;
+  if (n[3] !== undefined) state.a = clamp(n[3], 0, 1);
+  render();
+}
+
+hslInput.addEventListener('input', () => {
+  applyHsl(parseNums(hslInput.value), 3);
+});
+
+hslaInput.addEventListener('input', () => {
+  applyHsl(parseNums(hslaInput.value), 4);
+});
+
+[hexInput, rgb255Input, rgb1Input, rgba255Input, rgba1Input, hsvInput, cmykInput, hslInput, hslaInput].forEach((input) => {
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') input.blur();
   });
