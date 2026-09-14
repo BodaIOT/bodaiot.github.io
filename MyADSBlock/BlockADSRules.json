@@ -37,6 +37,8 @@
         "[data-zone-name*='headerPromoStreamer']",
         "[data-apiary-widget-name*='@monetize/HeroBannerCarousel']",
         "[data-apiary-widget-name*='monetize/HeroBannersCarousel']",
+        "[data-apiary-widget-name*='@monetize/HeroContentCarousel']",
+        "[data-apiary-widget-name*='monetize/HeroContentCarousel']",
         "[data-apiary-widget-name*='monetize/HeroCarousel']",
         "[data-apiary-widget-name*='@monetize/HeroSlideshow']",
         "[data-name*='adWrapper']"
