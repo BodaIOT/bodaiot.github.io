@@ -53,8 +53,7 @@
         "[id*='heroBanner']",
         "[id*='cardRecommendationRoll']",
         "[id*='marketfrontRecomLayout42/recomLayoutItem']",
-        "[id*='search-list']",
-        "[class*='xy2AAyaQBawZ5yysYo0jK x83pK0PMwawZgwzdnvk7ZqDw']"
+        "[id*='search-list']"
     ],
     "elementsToCheckHide": [
         "[class*='serp-item_card']",
