@@ -6,19 +6,31 @@
       "title": "Record Маятник Фуко",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/mf"
+      "description": "http://direct.radiorecord.ru/station/mf",
+      "api": {
+        "type": "radiorecord",
+        "station": "mf"
+      }
     },
     {
       "title": "Record Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/rap"
+      "description": "http://direct.radiorecord.ru/station/rap",
+      "api": {
+        "type": "radiorecord",
+        "station": "rap"
+      }
     },
     {
       "title": "Record Rap Classics",
       "url": "https://radiorecord.hostingradio.ru/rapclassics96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/rapclassics"
+      "description": "http://direct.radiorecord.ru/station/rapclassics",
+      "api": {
+        "type": "radiorecord",
+        "station": "rapclassics"
+      }
     },
     {
       "title": "Радио Эрмитаж",
@@ -45,38 +57,66 @@
     {
       "title": "Record Phonk",
       "url": "https://radiorecord.hostingradio.ru/phonk96.aacp",
-      "description": "http://direct.radiorecord.ru/station/phonk"
+      "description": "http://direct.radiorecord.ru/station/phonk",
+      "api": {
+        "type": "radiorecord",
+        "station": "phonk"
+      }
     },
     {
       "title": "Record Tecktonik",
       "url": "https://radiorecord.hostingradio.ru/tecktonik96.aacp",
-      "description": "http://direct.radiorecord.ru/station/tecktonik"
+      "description": "http://direct.radiorecord.ru/station/tecktonik",
+      "api": {
+        "type": "radiorecord",
+        "station": "tecktonik"
+      }
     },
     {
       "title": "Record Trap",
       "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
-      "description": "http://direct.radiorecord.ru/station/trap"
+      "description": "http://direct.radiorecord.ru/station/trap",
+      "api": {
+        "type": "radiorecord",
+        "station": "trap"
+      }
     },
     {
       "title": "Record DubStep",
       "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
-      "description": "http://direct.radiorecord.ru/station/dub"
+      "description": "http://direct.radiorecord.ru/station/dub",
+      "api": {
+        "type": "radiorecord",
+        "station": "dub"
+      }
     },
     {
       "title": "Record Drum Hits",
       "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp",
-      "description": "http://direct.radiorecord.ru/station/drumhits"
+      "description": "http://direct.radiorecord.ru/station/drumhits",
+      "api": {
+        "type": "radiorecord",
+        "station": "drumhits"
+      }
     },
     {
       "title": "Record Rave",
       "url": "https://radiorecord.hostingradio.ru/rave96.aacp",
       "genre": "Rave",
-      "description": "http://direct.radiorecord.ru/station/rave"
+      "description": "http://direct.radiorecord.ru/station/rave",
+      "api": {
+        "type": "radiorecord",
+        "station": "rave"
+      }
     },
     {
       "title": "laut.fm EDM",
       "url": "https://edm.stream.laut.fm/edm",
-      "description": "Германия"
+      "description": "Германия",
+      "api": {
+        "type": "lautfm",
+        "station": "edm"
+      }
     },
     {
       "title": "Dance UK Radio",
@@ -87,19 +127,31 @@
       "title": "Rivendell",
       "url": "https://play.radiorivendell.com/radio/8000/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/"
+      "description": "https://radiorivendell.com/",
+      "api": {
+        "type": "azuracast",
+        "url": "https://play.radiorivendell.com/api/nowplaying/radio_rivendell"
+      }
     },
     {
       "title": "The Green Dragon",
       "url": "https://play.radiorivendell.com/radio/8010/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/"
+      "description": "https://radiorivendell.com/",
+      "api": {
+        "type": "azuracast",
+        "url": "https://play.radiorivendell.com/api/nowplaying/the_green_dragon"
+      }
     },
     {
       "title": "Lórien",
       "url": "https://play.radiorivendell.com/radio/8020/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/"
+      "description": "https://radiorivendell.com/",
+      "api": {
+        "type": "azuracast",
+        "url": "https://play.radiorivendell.com/api/nowplaying/3"
+      }
     }
   ]
 }
