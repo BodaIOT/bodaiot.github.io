@@ -76,7 +76,8 @@
       "api": {
         "type": "radiorecord",
         "station": "tecktonik"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/tecktonik.jpg"
     },
     {
       "title": "Record Trap",
@@ -85,7 +86,8 @@
       "api": {
         "type": "radiorecord",
         "station": "trap"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/trap.jpg"
     },
     {
       "title": "Record DubStep",
@@ -94,7 +96,8 @@
       "api": {
         "type": "radiorecord",
         "station": "dub"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/dubstep.jpg"
     },
     {
       "title": "Record Drum Hits",
@@ -103,7 +106,8 @@
       "api": {
         "type": "radiorecord",
         "station": "drumhits"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Record_Drum_Hits.jpg"
     },
     {
       "title": "Record Rave",
@@ -113,7 +117,8 @@
       "api": {
         "type": "radiorecord",
         "station": "rave"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/rave.jpg"
     },
     {
       "title": "laut.fm EDM",
@@ -122,12 +127,14 @@
       "api": {
         "type": "lautfm",
         "station": "edm"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/EDM.jpg"
     },
     {
       "title": "Dance UK Radio",
       "url": "https://dancestream.danceradiouk.com/stream",
-      "description": "https://www.radio-uk.co.uk/dance-uk-radio"
+      "description": "https://www.radio-uk.co.uk/dance-uk-radio",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/dance_uk.jpg"
     },
     {
       "title": "Rivendell",
@@ -137,7 +144,8 @@
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/radio_rivendell"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Rivendell.jpg"
     },
     {
       "title": "The Green Dragon",
@@ -147,7 +155,8 @@
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/the_green_dragon"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/The_Green_Dragon.jpg"
     },
     {
       "title": "Lórien",
@@ -157,7 +166,8 @@
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/3"
-      }
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Lorien.jpg"
     }
   ]
 }
