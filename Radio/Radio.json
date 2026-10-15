@@ -28,12 +28,14 @@
     {
       "title": "LoFi Radio",
       "url": "https://live.lofiradio.ru/lofi_mp3_128",
-      "description": "LoFi Girl"
+      "description": "LoFi Girl",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/lofi.jpg"
     },
     {
       "title": "♂ Gachi Radio ♂",
       "url": "https://gachiradio.com/play",
-      "description": "https://gachiradio.com/files/"
+      "description": "https://gachiradio.com/files/",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Gachi.jpg"
     },
     {
       "title": "Zeno Гавновоз",
