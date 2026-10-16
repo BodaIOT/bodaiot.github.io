@@ -3,6 +3,26 @@
   "title": "Мой каталог радиостанций",
   "stations": [
     {
+      "title": "Record Trap",
+      "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
+      "history": "http://direct.radiorecord.ru/station/trap",
+      "api": {
+        "type": "radiorecord",
+        "station": "trap"
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/trap.jpg"
+    },
+    {
+      "title": "Record DubStep",
+      "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
+      "history": "http://direct.radiorecord.ru/station/dub",
+      "api": {
+        "type": "radiorecord",
+        "station": "dub"
+      },
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/dubstep.jpg"
+    },
+    {
       "title": "Record Маятник Фуко",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
       "genre": "Рэп",
@@ -48,18 +68,6 @@
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/lofi.jpg"
     },
     {
-      "title": "♂ Gachi Radio ♂",
-      "url": "https://gachiradio.com/play",
-      "history": "https://gachiradio.com/files/",
-      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Gachi.jpg"
-    },
-    {
-      "title": "Zeno Гавновоз",
-      "url": "https://stream-162.zeno.fm/ae3tec0bhxtuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJhZTN0ZWMwYmh4dHV2IiwiaG9zdCI6InN0cmVhbS0xNjIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6ImZsSS1HTFRVVGstNmRuRnI0ZmJ5OVEiLCJpYXQiOjE3Njg5ODgzMjEsImV4cCI6MTc2ODk4ODM4MX0.AZPFas5086qCXj9LIdNXJo4CeV68JsB2SfAvzzIiDQ4",
-      "description": "Врубай насос!",
-      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/gavnovoz.jpg"
-    },
-    {
       "title": "Record Phonk",
       "url": "https://radiorecord.hostingradio.ru/phonk96.aacp",
       "history": "http://direct.radiorecord.ru/station/phonk",
@@ -78,26 +86,6 @@
         "station": "tecktonik"
       },
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/tecktonik.jpg"
-    },
-    {
-      "title": "Record Trap",
-      "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
-      "history": "http://direct.radiorecord.ru/station/trap",
-      "api": {
-        "type": "radiorecord",
-        "station": "trap"
-      },
-      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/trap.jpg"
-    },
-    {
-      "title": "Record DubStep",
-      "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
-      "history": "http://direct.radiorecord.ru/station/dub",
-      "api": {
-        "type": "radiorecord",
-        "station": "dub"
-      },
-      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/dubstep.jpg"
     },
     {
       "title": "Record Drum Hits",
@@ -168,6 +156,18 @@
         "url": "https://play.radiorivendell.com/api/nowplaying/3"
       },
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Lorien.jpg"
+    },
+    {
+      "title": "♂ Gachi Radio ♂",
+      "url": "https://gachiradio.com/play",
+      "history": "https://gachiradio.com/files/",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Gachi.jpg"
+    },
+    {
+      "title": "Zeno Гавновоз",
+      "url": "https://stream-162.zeno.fm/ae3tec0bhxtuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJhZTN0ZWMwYmh4dHV2IiwiaG9zdCI6InN0cmVhbS0xNjIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6ImZsSS1HTFRVVGstNmRuRnI0ZmJ5OVEiLCJpYXQiOjE3Njg5ODgzMjEsImV4cCI6MTc2ODk4ODM4MX0.AZPFas5086qCXj9LIdNXJo4CeV68JsB2SfAvzzIiDQ4",
+      "description": "Врубай насос!",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/gavnovoz.jpg"
     }
   ]
 }
