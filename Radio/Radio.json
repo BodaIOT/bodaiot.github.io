@@ -6,7 +6,7 @@
       "title": "Record Маятник Фуко",
       "url": "https://radiorecord.hostingradio.ru/mf96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/mf",
+      "history": "http://direct.radiorecord.ru/station/mf",
       "api": {
         "type": "radiorecord",
         "station": "mf"
@@ -17,7 +17,7 @@
       "title": "Record Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/rap",
+      "history": "http://direct.radiorecord.ru/station/rap",
       "api": {
         "type": "radiorecord",
         "station": "rap"
@@ -28,7 +28,7 @@
       "title": "Record Rap Classics",
       "url": "https://radiorecord.hostingradio.ru/rapclassics96.aacp",
       "genre": "Рэп",
-      "description": "http://direct.radiorecord.ru/station/rapclassics",
+      "history": "http://direct.radiorecord.ru/station/rapclassics",
       "api": {
         "type": "radiorecord",
         "station": "rapclassics"
@@ -50,7 +50,7 @@
     {
       "title": "♂ Gachi Radio ♂",
       "url": "https://gachiradio.com/play",
-      "description": "https://gachiradio.com/files/",
+      "history": "https://gachiradio.com/files/",
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Gachi.jpg"
     },
     {
@@ -62,7 +62,7 @@
     {
       "title": "Record Phonk",
       "url": "https://radiorecord.hostingradio.ru/phonk96.aacp",
-      "description": "http://direct.radiorecord.ru/station/phonk",
+      "history": "http://direct.radiorecord.ru/station/phonk",
       "api": {
         "type": "radiorecord",
         "station": "phonk"
@@ -72,7 +72,7 @@
     {
       "title": "Record Tecktonik",
       "url": "https://radiorecord.hostingradio.ru/tecktonik96.aacp",
-      "description": "http://direct.radiorecord.ru/station/tecktonik",
+      "history": "http://direct.radiorecord.ru/station/tecktonik",
       "api": {
         "type": "radiorecord",
         "station": "tecktonik"
@@ -82,7 +82,7 @@
     {
       "title": "Record Trap",
       "url": "https://radiorecord.hostingradio.ru/trap96.aacp",
-      "description": "http://direct.radiorecord.ru/station/trap",
+      "history": "http://direct.radiorecord.ru/station/trap",
       "api": {
         "type": "radiorecord",
         "station": "trap"
@@ -92,7 +92,7 @@
     {
       "title": "Record DubStep",
       "url": "https://radiorecord.hostingradio.ru/dub96.aacp",
-      "description": "http://direct.radiorecord.ru/station/dub",
+      "history": "http://direct.radiorecord.ru/station/dub",
       "api": {
         "type": "radiorecord",
         "station": "dub"
@@ -102,7 +102,7 @@
     {
       "title": "Record Drum Hits",
       "url": "https://radiorecord.hostingradio.ru/drumhits96.aacp",
-      "description": "http://direct.radiorecord.ru/station/drumhits",
+      "history": "http://direct.radiorecord.ru/station/drumhits",
       "api": {
         "type": "radiorecord",
         "station": "drumhits"
@@ -113,7 +113,7 @@
       "title": "Record Rave",
       "url": "https://radiorecord.hostingradio.ru/rave96.aacp",
       "genre": "Rave",
-      "description": "http://direct.radiorecord.ru/station/rave",
+      "history": "http://direct.radiorecord.ru/station/rave",
       "api": {
         "type": "radiorecord",
         "station": "rave"
@@ -133,14 +133,14 @@
     {
       "title": "Dance UK Radio",
       "url": "https://dancestream.danceradiouk.com/stream",
-      "description": "https://www.radio-uk.co.uk/dance-uk-radio",
+      "history": "https://www.radio-uk.co.uk/dance-uk-radio",
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/dance_uk.jpg"
     },
     {
       "title": "Rivendell",
       "url": "https://play.radiorivendell.com/radio/8000/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/",
+      "history": "https://radiorivendell.com/",
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/radio_rivendell"
@@ -151,7 +151,7 @@
       "title": "The Green Dragon",
       "url": "https://play.radiorivendell.com/radio/8010/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/",
+      "history": "https://radiorivendell.com/",
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/the_green_dragon"
@@ -162,7 +162,7 @@
       "title": "Lórien",
       "url": "https://play.radiorivendell.com/radio/8020/radio.mp3",
       "genre": "DnD",
-      "description": "https://radiorivendell.com/",
+      "history": "https://radiorivendell.com/",
       "api": {
         "type": "azuracast",
         "url": "https://play.radiorivendell.com/api/nowplaying/3"
