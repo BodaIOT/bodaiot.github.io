@@ -160,12 +160,14 @@
     {
       "title": "♂ Gachi Radio ♂",
       "url": "https://gachiradio.com/play",
+      "genre": "Прикол",
       "history": "https://gachiradio.com/files/",
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/Gachi.jpg"
     },
     {
       "title": "Zeno Гавновоз",
       "url": "https://stream-162.zeno.fm/ae3tec0bhxtuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJhZTN0ZWMwYmh4dHV2IiwiaG9zdCI6InN0cmVhbS0xNjIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6ImZsSS1HTFRVVGstNmRuRnI0ZmJ5OVEiLCJpYXQiOjE3Njg5ODgzMjEsImV4cCI6MTc2ODk4ODM4MX0.AZPFas5086qCXj9LIdNXJo4CeV68JsB2SfAvzzIiDQ4",
+      "genre": "Прикол",
       "description": "Врубай насос!",
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/gavnovoz.jpg"
     }
