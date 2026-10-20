@@ -41,6 +41,13 @@
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/gus_hardcore.png"
     },
     {
+      "title": "RADio CAPrice - GABBER",
+      "url": "http://213.141.131.10:8000/gabber",
+      "genre": "Хардкор",
+      "history": "http://radcap.ru/playback-history/5/gabber-ph.php",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/RADio CAPrice - GABBER.jpg"
+    },
+    {
       "title": "Record Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
       "genre": "Рэп",
