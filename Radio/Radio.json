@@ -34,6 +34,13 @@
       "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/fuko.jpg"
     },
     {
+      "title": "Гусь - хардкор",
+      "url": "https://stream3.radiogoose.ru/listen/hardcore/play",
+      "genre": "Хардкор",
+      "history": "https://radiogoose.ru/hardcore/",
+      "icon": "https://raw.githubusercontent.com/BodaIOT/bodaiot.github.io/refs/heads/main/Radio/Icons/gus_hardcore.png"
+    },
+    {
       "title": "Record Rap Hits",
       "url": "https://radiorecord.hostingradio.ru/rap96.aacp",
       "genre": "Рэп",
