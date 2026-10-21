@@ -1,0 +1,34 @@
+{
+    "whole_artist_names": [
+        "Tyler, The Creator", 
+        "Earth, Wind & Fire", 
+        "Freaks & Geeks",
+        "Kalwi & Remi",
+        "Ibrahim & Ømer",
+        "Slips & Slurs",
+        "Chase & Status",
+        "Rick & Morty"
+    ],
+    "separator_words": [
+        ",",
+        "feat",
+        "feat.",
+        "ft",
+        "ft.",
+        "featurng",
+        "remix",
+        "remix by",
+        "prod",
+        "remixex by",
+        "prod.",
+        "prod by",
+        "prod. by",
+        "produces by",
+        "instr",
+        "instr.",
+        "instr by",
+        "instr. by",
+        "cover",
+        "cover by"
+    ]
+}
