@@ -33,6 +33,7 @@
         "[class*='ImagesViewerGrid-SidebarAd']",
         "[class*='IDirectInline DirectInline_filled DirectInline DirectInline_viewerGrid']",
         "[class*='ImagesViewerGrid-UnderImageAd']",
+        "[class*='DirectInline DirectInline_filled DirectInline DirectInline_viewerGrid']",
         "[data-testid*='adfox']",
         "[data-testid*='ommercialBanner']",
         "[data-testid*='afishaProfit.wrapper']",
