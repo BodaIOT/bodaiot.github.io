@@ -8,6 +8,7 @@
         "[id*='adfox']",
         "[id*='yandex__underheader']",
         "[id*='tztugvdesktop']",
+        "[id*='ya_partner_']",
         "[class*='Organic_withAdvLabel']",
         "[class*='AppForecastMoney']", 
         "[class*='topBlockWithMoney']", 
